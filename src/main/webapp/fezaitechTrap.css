@@ -1,0 +1,58 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    margin: 0; /* Body'nin varsayılan margin'ini kaldır */
+    margin-top: 100px;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.column{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: space-between;
+}
+
+.container{
+
+}
+.header{
+    text-align: center; 
+    background-color: antiquewhite;
+    opacity: 0.95;
+    position: static;
+    top: 0;
+    z-index: 100;
+    position: fixed;
+    width: 100%;
+}
+
+.header ul {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+.header li {
+    display: inline-block;
+    padding: 20px 20px; 
+    height: 30px;
+}
+
+.header li:hover {
+    color: #000000;
+    background-color: black;
+}
+.header-items a{
+
+    text-decoration: overline;
+    color: #000000;
+}
+
+a{
+    text-decoration: none;
+    color: #000000;
+}
