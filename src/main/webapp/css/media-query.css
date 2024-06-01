@@ -1,0 +1,106 @@
+@media screen and (max-width: 1200px){
+    .btn{
+        height: 40px;
+        width: 120px;
+        border: 2px solid;
+    }
+    .profileBtn{
+        height: 50px;
+        width: 50px;
+    }
+    .search-container input[type="text"] {
+        padding: 5px;
+        font-size: 14px;
+        border: 2px solid #3A3E40;
+        border-radius: 5px 0 0 5px;
+        width: 750px;
+        height: 30px;
+    }
+}
+@media screen and (max-width: 900px){
+    .btn{
+        height: 40px;
+        width: 120px;
+        border: 2px solid;
+
+    }
+    .profileBtn{
+        height: 50px;
+        width: 50px;
+    }
+    .search-container input[type="text"] {
+        padding: 5px;
+        font-size: 14px;
+        border: 2px solid #3A3E40;
+        border-radius: 5px 0 0 5px;
+        width: 450px;
+        height: 30px;
+    }
+    #slider-bar .row{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        align-content: space-between;
+        justify-content: center;
+    }
+    #slider-bar .column{
+        gap: 5px;
+    }
+}
+@media screen and (max-width: 600px){ /*En küçük */
+    *{
+        font-size: 14px;
+    }
+    .btn{
+        height: 30px;
+        width: 85px;
+        border: 2px solid;
+    }
+    .profileBtn{
+        height: 40px;
+        width: 40px;
+    }
+    .search-container input[type="text"] {
+        padding: 5px;
+        font-size: 14px;
+        border: 2px solid #3A3E40;
+        border-radius: 5px 0 0 5px;
+        width: 350px;
+        height: 30px;
+    }
+    #scrollable-row{
+        margin-left: 55px;
+    }
+
+   
+}
+@media screen and (max-width: 1200px) {
+    body {
+        font-family: 'Montserrat', sans-serif;
+        color: black;
+        margin: 0; /* Body'nin varsayılan margin'ini kaldır */
+        padding: 140px 20px 0px 20px;
+    }
+    .header{
+        height: 140px;
+    }
+    .hidden{
+        display: inline-block;
+    }
+    .AccountBtn{
+        display: none;
+    }
+    .row-header {
+        padding: 20px 20px 2px 20px;
+    }
+    .search-container {
+        display: none;
+    }
+    .hidden.search-container {
+        display: flex;
+        align-self: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+}

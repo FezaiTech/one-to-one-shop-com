@@ -1,0 +1,10 @@
+.text{
+    font-size: 13px;
+    align-content: center;
+    align-self: center;
+}
+
+.title-sm{
+    font-size: 20px;
+    font-weight: 800;
+}
