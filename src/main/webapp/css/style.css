@@ -33,13 +33,11 @@
     padding: 0;
 }
 
-
 body {
     font-family: "Open Sans", sans-serif;
     background-color: var(--background-color);
     cursor: default;
 }
-
 
 html {
     scroll-behavior: smooth;
