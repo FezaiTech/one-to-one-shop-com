@@ -10,8 +10,6 @@
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
 
-<a href="register-servlet">Register Servlet</a>
-
 <body>
 <h2>User Registration</h2>
 <form action="register-servlet" method="post">

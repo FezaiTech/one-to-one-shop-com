@@ -27,22 +27,22 @@
                 <form class="registration-form" id="registration-form" action="" method="POST">
                     <div class="form-row">
                         <label for="name"></label>
-                        <input type="text" id="name" name="name" placeholder="Ad" required>
+                        <input type="text" id="name" name="name" placeholder="Ad" maxlength="48" required>
                         <div class="spacer"></div>
                         <label for="surname"></label>
-                        <input type="text" id="surname" name="surname" placeholder="Soyad" required>
+                        <input type="text" id="surname" name="surname" placeholder="Soyad" maxlength="48" required>
                     </div>
                     <label for="phone"></label>
-                    <input type="tel" id="phone" name="phone" placeholder="Telefon Numarası" required>
+                    <input type="tel" id="phone" name="phone" placeholder="Telefon Numarası" maxlength="18" required>
                     <label for="email"></label>
-                    <input type="text" id="email" name="email" placeholder="E-Posta Adresi" required>
+                    <input type="text" id="email" name="email" placeholder="E-Posta Adresi" maxlength="98" required>
                     <label for="password"></label>
                     <div class="password-container">
-                        <input type="password" id="password" name="password" placeholder="Şifre" required>
+                        <input type="password" id="password" name="password" placeholder="Şifre" maxlength="48" required>
                         <button type="button" id="toggle-password">göster</button>
                     </div>
                     <label for="password-repeat"></label>
-                    <input type="password" id="password-repeat" name="password" placeholder="Şifre Tekrar" required>
+                    <input type="password" id="password-repeat" name="password" placeholder="Şifre Tekrar" maxlength="48" required>
                     <button type="submit" class="button button-sign-up">Kayıt Ol</button>
                 </form>
             </div>
