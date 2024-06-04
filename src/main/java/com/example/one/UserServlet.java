@@ -18,6 +18,11 @@ public class UserServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
+        try {
+            DatabaseConnection.createTables();
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new ServletException("Error initializing database", e);
+        }
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -39,47 +44,45 @@ public class UserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        try (Connection conn = DatabaseConnection.initializeDatabase()) {
-            // Email kontrolü
-            String checkEmailQuery = "SELECT * FROM users WHERE email = ?";
-            PreparedStatement checkStmt = conn.prepareStatement(checkEmailQuery);
-            checkStmt.setString(1, email);
-            ResultSet rs = checkStmt.executeQuery();
+        DatabaseOperations dbOperations = null;
+        try {
+            dbOperations = new DatabaseOperations(DatabaseConnection.initializeDatabase());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
-            if (rs.next()) {
-                // E-posta zaten kayıtlıysa
+        boolean emailExists = false;
+        try {
+            emailExists = dbOperations.checkEmailExists(email);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        if (emailExists) {
+            response.setContentType("text/html");
+            try (PrintWriter out = response.getWriter()) {
+                out.println("<script type='text/javascript'>");
+                out.println("alert('Bu e-posta zaten kayıtlı. Lütfen giriş yapın.');");
+                out.println("window.location.href = 'login.jsp?email=" + email + "';");
+                out.println("</script>");
+            }
+        } else {
+            boolean query = dbOperations.insertUser(name,surname,phone,email,password,false);
+            if (query) {
+                response.sendRedirect("home.jsp");
+            } else {
                 response.setContentType("text/html");
                 try (PrintWriter out = response.getWriter()) {
                     out.println("<script type='text/javascript'>");
-                    out.println("alert('Bu e-posta zaten kayıtlı. Lütfen giriş yapın.');");
-                    out.println("window.location.href = 'login.jsp?email=" + email + "';");
+                    out.println("alert('Bir hata meydana geldi.');");
                     out.println("</script>");
                 }
-            } else {
-                // E-posta kayıtlı değilse yeni kullanıcı ekle
-                String query = "INSERT INTO users (name, surname, phone, email, password) VALUES (?, ?, ?, ?, ?)";
-                PreparedStatement pstmt = conn.prepareStatement(query);
-                pstmt.setString(1, name);
-                pstmt.setString(2, surname);
-                pstmt.setString(3, phone);
-                pstmt.setString(4, email);
-                pstmt.setString(5, password);
-                int rows = pstmt.executeUpdate();
-
-                if (rows > 0) {
-                    response.sendRedirect("home.jsp");
-                } else {
-                    response.setContentType("text/html");
-                    try (PrintWriter out = response.getWriter()) {
-                        out.println("<h1>Registration Failed</h1>");
-                    }
-                }
             }
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-            throw new ServletException("Database error", e);
         }
     }
+
+
 
     private void handleLogin(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -87,20 +90,16 @@ public class UserServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         try (Connection conn = DatabaseConnection.initializeDatabase()) {
-            String query = "SELECT * FROM users WHERE email = ? AND password = ?";
-            PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, email);
-            pstmt.setString(2, password);
-            ResultSet rs = pstmt.executeQuery();
+            String query = DatabaseOperations.loginUser(email, password);
 
-            if (rs.next()) {
+            if ("ok".equals(query)) {
                 response.sendRedirect("home.jsp");
             } else {
                 response.setContentType("text/html");
                 try (PrintWriter out = response.getWriter()) {
                     out.println("<script type='text/javascript'>");
-                    out.println("alert('Hatalı kullanıcı adı veya şifre');");
-                    out.println("location='/login.jsp';");
+                    out.println("alert(\"" + query + "\");");
+                    out.println("window.location.href = 'login.jsp" + (query.equals("E-posta hatalı") ? "" : "?email=" + email) + "';");
                     out.println("</script>");
                 }
             }
@@ -109,4 +108,6 @@ public class UserServlet extends HttpServlet {
             throw new ServletException("Database error", e);
         }
     }
+
+
 }
