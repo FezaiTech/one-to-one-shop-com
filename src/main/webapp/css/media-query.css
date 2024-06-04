@@ -16,6 +16,9 @@
         width: 750px;
         height: 30px;
     }
+    .banner{
+        width: 100%;
+    }
 }
 @media screen and (max-width: 900px){
     .btn{
@@ -46,6 +49,9 @@
     #slider-bar .column{
         gap: 5px;
     }
+    .banner{
+        width: 100%;
+    }
 }
 @media screen and (max-width: 600px){ /*En küçük */
     *{
@@ -53,23 +59,29 @@
     }
     .btn{
         height: 30px;
-        width: 85px;
+        width: 70px;
         border: 2px solid;
     }
     .profileBtn{
         height: 40px;
         width: 40px;
     }
+
+
+    
     .search-container input[type="text"] {
         padding: 5px;
         font-size: 14px;
         border: 2px solid #3A3E40;
         border-radius: 5px 0 0 5px;
-        width: 350px;
+        width: 300px;
         height: 30px;
     }
-    #scrollable-row{
-        margin-left: 55px;
+    .banner{
+        width: 100%;
+    }
+    .pass-btn{
+        display: none;
     }
 
    

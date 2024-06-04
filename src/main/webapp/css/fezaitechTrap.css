@@ -30,8 +30,6 @@ body {
 
 .container{
     display: flex;
-    white-space: nowrap;
-    flex-wrap: nowrap;
 }
 
 .header{
@@ -70,10 +68,6 @@ a{
     color: white;
 }
 
-.banner{
-    height: 90px;
-    width: 300px;
-}
 
 .selam{
     overflow-x: auto;

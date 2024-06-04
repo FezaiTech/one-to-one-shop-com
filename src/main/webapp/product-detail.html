@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>One to One Shop</title>
+    <title>Product-Detail-page</title>
     <link rel="stylesheet" href="css/fezaitechTrap.css">
     <link rel="stylesheet" href="css/btns.css">
     <link rel="stylesheet" href="css/items.css">
     <link rel="stylesheet" href="css/media-query.css">
     <link rel="stylesheet" href="css/text.css">
+    <link rel="stylesheet" href="css/product-info.css">
+    <link rel="stylesheet" href="css/section.css">
 </head>
-
 <body>
     <div style="gap: 25px;" class="column">
         <section id="header">
@@ -36,24 +37,31 @@
                 </div>
             </div>
         </section>
-
-        <section id="slider-bar">
-            <div class="container-pass">
-                <div style="height: 100%;" class="row">
-                    <div style="background-color:  pink;height: 100%;" class="slider">
-                        <div class="column">
-                            <div class="text">asaf</div>
-                            <div class="text">asaf</div>
-                        </div>
+    
+        <section id="product-info-section">
+            <div style="justify-content: start; gap: 5%;" class="row product-info-line">
+                <div class="container-background-product">
+                    <img src="assets/monitor-big.png" alt="product">
+                </div>
+                <div style="width: 100%; " class="column">
+                    <div class="title-l">MSI</div>
+                    <div class="product-desc-t">aşliafliaflafliafailTkfjaaifksaifasfşkşjfaş</div>
+                    <div class="row">
+                        <div class="text-m">SATICI : </div>
+                        <div class="text-m">MediaMarket</div>
                     </div>
-                    <div class="column">
-                        <img class="banner" src="assets/y.png"  alt="">
-                        <img class="banner" src="assets/k.png" alt="">
-                        <img class="banner" src="assets/t.png" alt="">
+                    <div style="align-items: end;" class="column">
+                        <div class="title-sm">KDV Dahil</div>
+                        <div class="title-l">10.239 ₺</div>
+                    </div>
+                    <div class="row">
+                        <div class="text-m">7 gün içinde kapınızda</div>
+                        <button id="addToCartBtn" class="addtocartBtn btn title-sm">Sepete Ekle</button>
                     </div>
                 </div>
             </div>
         </section>
+        <div style="height: 20px;" class="sizedBox"></div>
 
         <section id="electronics-section" >
             <div class="column">
@@ -384,16 +392,7 @@
             </div>
         
         </section>
-
-
-        <section id="footer">
-            <div style="background-color: #F2F2F2; height: 300px; justify-content: center; align-content: center; text-align: center;" class="container">
-                    ibrahim ethem akbıyık
-            </div>
-        </section>
+        
     </div>
-
-
-    <script src="slider-product.js"></script>
 </body>
 </html>

@@ -85,3 +85,26 @@
     background-color: #cccccc;
     cursor: not-allowed;
 }
+.btn-format{
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    height: 100%;
+    width: 100%;
+    border-radius: 12px;
+}
+.addtocartBtn{
+    width: 150px;
+    background-color: #F15016;
+    border-radius: 5px;
+    justify-content: center;
+    align-content: center;
+    color: white;
+}
+.addtocartBtn:hover{
+    background-color: #a93a11;
+}
+#addToCartBtn{
+    text-decoration: none;
+    border: none;
+}
