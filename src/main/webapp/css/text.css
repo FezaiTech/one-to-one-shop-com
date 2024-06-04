@@ -1,3 +1,27 @@
+.br {
+    display: block;
+    margin-bottom: 0;
+}
+
+.br-medium {
+    display: block;
+    margin-bottom: 1em;
+}
+
+.br-large {
+    display: block;
+    margin-bottom: 2em;
+}
+
+.br-small {
+    display: block;
+    margin-bottom: -.2em;
+}
+
+.br-x-small {
+    display: block;
+    margin-bottom: -.4em;
+}
 .text{
     font-size: 13px;
     align-content: center;
