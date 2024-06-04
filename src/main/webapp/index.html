@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One to One Shop</title>
+    <link rel="stylesheet" href="css/fezaitechTrap.css">
+    <link rel="stylesheet" href="css/btns.css">
+    <link rel="stylesheet" href="css/items.css">
+    <link rel="stylesheet" href="css/media-query.css">
+    <link rel="stylesheet" href="css/text.css">
+</head>
+
+<body>
+    <div style="gap: 25px;" class="column">
+        <section id="header">
+            <div class="header">
+                <div class="row-header">
+                    <img  src="assets/logo.png" height="60">
+                    <div class="search-container">
+                        <form action="/search" method="get">
+                            <input type="text" placeholder="Ürün, kategori veya marka arayın" name="query" class="search-box">
+                            <button type="submit" class="bon"><b>Ara</b></button>
+                        </form> 
+                    </div>
+                    <div class="btn categoriesBtn"><b>Kategoriler</b></div>
+                    <div class="btn myBucketBtn"><b>Sepetim (0)</b></div>
+                    <div class="btn AccountBtn"><b>Giriş Yap</b></div>
+                    <div class="hidden profileBtn"><b>a</b></div>
+                </div>
+                <div class="hidden search-container">
+                    <form action="/search" method="get">
+                        <input type="text" placeholder="Ürün, kategori veya marka arayın" name="query" class="search-box">
+                        <button type="submit" class="bon"><b>Ara</b></button>
+                    </form> 
+                </div>
+            </div>
+        </section>
+
+        <section id="slider-bar">
+            <div class="container-pass">
+                <div style="height: 100%;" class="row">
+                    <div style="background-color:  pink;height: 100%;" class="slider">
+                        <div class="column">
+                            <div class="text">asaf</div>
+                            <div class="text">asaf</div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <img class="banner" src="assets/y.png"  alt="">
+                        <img class="banner" src="assets/k.png" alt="">
+                        <img class="banner" src="assets/t.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="electronics-section" >
+            <div class="column">
+                <div class="row">
+                    <div class="column">
+                        <div class="title-sm">Elektronik</div>
+                        <div class="text">Kategorinin Öne Çıkan Özellikleri</div>
+                    </div>
+                    <div class="row">
+                        <div class="text">Tümü</div>
+                        <button id="go-more-btn-electtonics" style="background-color: #024059;" class="pass-btn"><img class="addToCart" src="assets/icons/forward-white.png" height="20" alt=""></button>
+                    </div>
+                </div>
+                <div  class="selam">
+                    <div class="row">
+                        <button class="pass-btn" id="left-btn"><img src="assets/icons/back.png" alt="back" height="30"></button>
+                        <div id="scrollable-row" style="overflow-x: hidden; scroll-behavior: smooth; gap: 32px;" class="row">
+                            <button class="btn-format" >
+                                <div class="product-box column">
+                                    <div class="title-sm">MSI</div>
+                                    <div class="text">27" Kurumasl Monitör</div>
+                                    <div style="justify-content: center;" class="container">
+                                        <img src="assets/monitor.png" height="100" width="100" alt="img">
+                                    </div>
+                                    <div class="row">
+                                        <div class="title-sm">10.239 ₺</div>
+                                        <a href="/product-detail.html"><div id="addToCart">+</div></a>
+                                    </div>
+                                </div>
+                            </button>
+                            <div class="product-box column">
+                                <div class="title-sm">Apple</div>
+                                <div class="text">2024 M3 13”</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/laptop.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">36.4399 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                
+                            <div class="product-box column">
+                                <div class="title-sm">Apple</div>
+                                <div class="text">Watch Ultra 2</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/watch.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">36.999 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                            <div class="product-box column">
+                                <div class="title-sm">MSI</div>
+                                <div class="text">27" Kurumasl Monitör</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/monitor.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">10.239 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                
+                            <div class="product-box column">
+                                <div class="title-sm">Apple</div>
+                                <div class="text">2024 M3 13”</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/laptop.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">36.4399 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                
+                            <div class="product-box column">
+                                <div class="title-sm">Apple</div>
+                                <div class="text">Watch Ultra 2</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/watch.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">36.999 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                            <div class="product-box column">
+                                <div class="title-sm">MSI</div>
+                                <div class="text">27" Kurumasl Monitör</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/monitor.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">10.239 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                
+                            <div class="product-box column">
+                                <div class="title-sm">Apple</div>
+                                <div class="text">2024 M3 13”</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/laptop.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">36.4399 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                
+                            <div class="product-box column">
+                                <div class="title-sm">Apple</div>
+                                <div class="text">Watch Ultra 2</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/watch.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">36.999 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                
+                            <div class="product-box column">
+                                <div class="title-sm">MSI</div>
+                                <div class="text">27" Kurumasl Monitör</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/monitor.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">10.239 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                
+                            <div class="product-box column">
+                                <div class="title-sm">Apple</div>
+                                <div class="text">2024 M3 13”</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/laptop.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">36.4399 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                
+                            <div class="product-box column">
+                                <div class="title-sm">Apple</div>
+                                <div class="text">Watch Ultra 2</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/watch.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">36.999 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="pass-btn" id="right-btn"><img src="assets/icons/forward.png" alt="forward" height="30"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="stil" >
+            <div class="column">
+                <div class="row">
+                    <div class="column">
+                        <div class="title-sm">Moda</div>
+                        <div class="text">Kategorinin Öne Çıkan Ürünleri</div>
+                    </div>
+                    <div class="row">
+                        <div class="text">Tümü</div>
+                        <button id="go-more-btn-still" style="background-color: #024059;" class="pass-btn"><img class="addToCart" src="assets/icons/forward-white.png" height="20" alt=""></button>
+                    </div>
+                </div>
+                <div  class="selam">
+                    <div class="row">
+                        <button class="pass-btn" id="left-btn"><img src="assets/icons/back.png" alt="back" height="30"></button>
+                        <div id="scrollable-row" style="overflow-x: hidden; scroll-behavior: smooth; gap: 32px;" class="row">
+                            <div class="product-box column">
+                                <div class="title-sm">MSI</div>
+                                <div class="text">27" Kurumasl Monitör</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/monitor.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">10.239 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                
+                            <div class="product-box column">
+                                <div class="title-sm">Apple</div>
+                                <div class="text">2024 M3 13”</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/laptop.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">36.4399 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                
+                            <div class="product-box column">
+                                <div class="title-sm">Apple</div>
+                                <div class="text">Watch Ultra 2</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/watch.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">36.999 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                            <div class="product-box column">
+                                <div class="title-sm">MSI</div>
+                                <div class="text">27" Kurumasl Monitör</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/monitor.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">10.239 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                
+                            <div class="product-box column">
+                                <div class="title-sm">Apple</div>
+                                <div class="text">2024 M3 13”</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/laptop.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">36.4399 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                
+                            <div class="product-box column">
+                                <div class="title-sm">Apple</div>
+                                <div class="text">Watch Ultra 2</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/watch.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">36.999 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                            <div class="product-box column">
+                                <div class="title-sm">MSI</div>
+                                <div class="text">27" Kurumasl Monitör</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/monitor.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">10.239 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                
+                            <div class="product-box column">
+                                <div class="title-sm">Apple</div>
+                                <div class="text">2024 M3 13”</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/laptop.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">36.4399 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                
+                            <div class="product-box column">
+                                <div class="title-sm">Apple</div>
+                                <div class="text">Watch Ultra 2</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/watch.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">36.999 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                
+                            <div class="product-box column">
+                                <div class="title-sm">MSI</div>
+                                <div class="text">27" Kurumasl Monitör</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/monitor.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">10.239 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                
+                            <div class="product-box column">
+                                <div class="title-sm">Apple</div>
+                                <div class="text">2024 M3 13”</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/laptop.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">36.4399 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                
+                            <div class="product-box column">
+                                <div class="title-sm">Apple</div>
+                                <div class="text">Watch Ultra 2</div>
+                                <div style="justify-content: center;" class="container">
+                                    <img src="assets/watch.png" height="100" width="100" alt="img">
+                                </div>
+                                <div class="row">
+                                    <div class="title-sm">36.999 ₺</div>
+                                    <div id="addToCart">+</div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="pass-btn" id="right-btn"><img src="assets/icons/forward.png" alt="forward" height="30"></button>
+                    </div>
+                </div>
+            </div>
+        
+        </section>
+
+
+        <section id="footer">
+            <div style="background-color: #F2F2F2; height: 300px; justify-content: center; align-content: center; text-align: center;" class="container">
+                    ibrahim ethem akbıyık
+            </div>
+        </section>
+    </div>
+
+
+    <script src="slider-product.js"></script>
+</body>
+</html>

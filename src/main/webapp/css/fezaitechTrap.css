@@ -1,0 +1,74 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    margin: 0; /* Body'nin varsayılan margin'ini kaldır */
+    padding: 120px 100px 0px 100px;
+}
+
+.hidden{
+    display: none;
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.row-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 30px 100px 30px 100px;
+}
+.column{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    justify-content: space-between;
+}
+
+.container{
+    display: flex;
+}
+
+.header{
+    display: block;
+    height: 120px;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.95;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+.header-items a{
+    text-decoration: overline;
+    color: #000000;
+}
+
+a{
+    text-decoration: none;
+    color: #000000;
+}
+
+.container-pass {
+    width: 100%;
+    height: 300px;
+    background-color: #F2F2F2;
+    border-radius: 15px;
+    text-align: center;
+    align-content: space-between;
+    color: white;
+}
+
+
+.selam{
+    overflow-x: auto;
+}
