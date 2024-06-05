@@ -1,118 +1,134 @@
-@media screen and (max-width: 1200px){
-    .btn{
-        height: 40px;
-        width: 120px;
-        border: 2px solid;
+@media screen and (max-width: 1140px){
+    #header {
+        padding: 2ch 2ch;
     }
-    .profileBtn{
-        height: 50px;
-        width: 50px;
-    }
-    .search-container input[type="text"] {
-        padding: 5px;
-        font-size: 14px;
-        border: 2px solid #3A3E40;
-        border-radius: 5px 0 0 5px;
-        width: 750px;
-        height: 30px;
-    }
-    .banner{
-        width: 100%;
-    }
-}
-@media screen and (max-width: 900px){
-    .btn{
-        height: 40px;
-        width: 120px;
-        border: 2px solid;
 
+    #slider-bar {
+        padding: 2ch 2ch;
     }
-    .profileBtn{
-        height: 50px;
-        width: 50px;
+
+    #tech {
+        padding: 2ch 2ch;
     }
-    .search-container input[type="text"] {
-        padding: 5px;
-        font-size: 14px;
-        border: 2px solid #3A3E40;
-        border-radius: 5px 0 0 5px;
-        width: 450px;
-        height: 30px;
+
+    .app-icon{
+        height: 32px;
     }
-    #slider-bar .row{
-        display: flex;
-        align-items: center;
+
+    .banner{
+        width: auto;
+        height: auto;
+        max-height: 90px;
+        max-width: 300px;
+    }
+
+}
+
+@media screen and (max-width: 740px){
+    #header{
         flex-direction: column;
-        align-content: space-between;
-        justify-content: center;
+        gap: 8px;
     }
-    #slider-bar .column{
-        gap: 5px;
+
+    #slider-bar {
+        flex-direction: column;
+        gap: 8px;
     }
+
     .banner{
         width: 100%;
-    }
-}
-@media screen and (max-width: 600px){ /*En küçük */
-    *{
-        font-size: 14px;
-    }
-    .btn{
-        height: 30px;
-        width: 70px;
-        border: 2px solid;
-    }
-    .profileBtn{
-        height: 40px;
-        width: 40px;
+        height: auto;
     }
 
+    .header-row{
+        gap: 6px;
+    }
 
-    
-    .search-container input[type="text"] {
-        padding: 5px;
-        font-size: 14px;
-        border: 2px solid #3A3E40;
-        border-radius: 5px 0 0 5px;
-        width: 300px;
-        height: 30px;
+    .header-button{
+        height: 36px;
     }
-    .banner{
-        width: 100%;
+
+    .button-text{
+        font-size: 0.65rem;
     }
-    .pass-btn{
+
+    .my-profile-text{
         display: none;
     }
 
-   
-}
-@media screen and (max-width: 1200px) {
-    body {
-        font-family: 'Montserrat', sans-serif;
-        color: black;
-        margin: 0; /* Body'nin varsayılan margin'ini kaldır */
-        padding: 140px 20px 0px 20px;
-    }
-    .header{
-        height: 140px;
-    }
-    .hidden{
-        display: inline-block;
-    }
-    .AccountBtn{
-        display: none;
-    }
-    .row-header {
-        padding: 20px 20px 2px 20px;
-    }
-    .search-container {
-        display: none;
-    }
-    .hidden.search-container {
-        display: flex;
-        align-self: center;
-        justify-content: center;
-        width: 100%;
+    .text-buttons{
+        gap: 6px;
     }
 
+    .posters{
+        flex-direction: column-reverse;
+        gap: 4px;
+    }
+
+    .poster-index{
+        flex-direction: row;
+        padding: 6px 12px;
+        gap: 12px;
+    }
+    .index{
+        width: 5px;
+        height: 5px;
+        font-size: 0;
+        background-color: var(--orange-color-1);
+    }
+
+    .product {
+        border-radius: 6px;
+        padding: 8px;
+        width: 170px;
+        height: 170px;
+    }
+    .product h2 {
+        font-size: 1rem;
+    }
+    .product p {
+        font-size: 0.85rem;
+    }
+
+    .product-price{
+        font-size: 1.2rem;
+    }
+    .product-image{
+        max-width: 80px;
+    }
+
+    .add-cart-button{
+        width: 20px;
+        height: 20px;
+    }
+
+    .cart-icon{
+        width: 12px;
+        height: 12px;
+    }
+
+    .category-title{
+        font-size: 1.5rem;
+    }
+    .category-subtitle{
+        font-size: 0.85rem;
+    }
+
+    .dropdown-content {
+        min-width: 120px;
+        margin-top: 112px;
+    }
+
+    .dropdown-content a {
+        padding: 6px 10px;
+        font-size: 0.75rem;
+    }
+
+    .dropdown-content a:hover {background-color: #ddd;}
+
+    .category-button:hover .dropdown-content {display: block;}
+
+    .header-button{
+        padding: 0 8px;
+    }
 }
