@@ -2,7 +2,7 @@ package com.example.one.beans;
 
 import java.security.Timestamp;
 
-public class Order {
+public class OrderBean {
     private int id;
     private int userId;
     private String orderNumber;
@@ -14,7 +14,18 @@ public class Order {
     private String deliveryAddress;
 
     // Constructor
-    public Order() {}
+    public OrderBean() {}
+
+    public OrderBean(int userId, String orderNumber, int productId, int quantity, String paymentMethod, String status, String deliveryAddress) {
+        super();
+        this.userId = userId;
+        this.orderNumber = orderNumber;
+        this.productId = productId;
+        this.quantity = quantity;
+        this.paymentMethod = paymentMethod;
+        this.status = status;
+        this.deliveryAddress = deliveryAddress;
+    }
 
     // Getters and Setters
     public int getId() {

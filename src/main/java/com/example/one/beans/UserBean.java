@@ -2,7 +2,7 @@ package com.example.one.beans;
 
 import java.security.Timestamp;
 
-public class User {
+public class UserBean {
     private int id;
     private String name;
     private String surname;
@@ -13,7 +13,17 @@ public class User {
     private Timestamp joinDate;
 
     // Constructor
-    public User() {}
+    public UserBean() {}
+
+    public UserBean(String name, String surname, String phone, String email, String password, boolean sellerStatus) {
+        super();
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
+        this.sellerStatus = sellerStatus;
+    }
 
     // Getters and Setters
     public int getId() {

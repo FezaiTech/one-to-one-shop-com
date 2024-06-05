@@ -49,7 +49,7 @@ public class DatabaseConnection {
                     + "description TEXT, "
                     + "category VARCHAR(50), "
                     + "price DECIMAL(10, 2) NOT NULL, "
-                    + "image_id VARCHAR(255), "
+                    + "image BLOB, "
                     + "added_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, "
                     + "FOREIGN KEY (seller_id) REFERENCES users(id)"
                     + ")";
@@ -76,7 +76,6 @@ public class DatabaseConnection {
                     + "FOREIGN KEY (user_id) REFERENCES users(id), "
                     + "FOREIGN KEY (product_id) REFERENCES products(id)"
                     + ")";
-
 
             statement.execute(createUsersTableSQL);
             statement.execute(createProductsTableSQL);

@@ -2,19 +2,30 @@ package com.example.one.beans;
 
 import java.math.BigDecimal;
 import java.security.Timestamp;
-
-public class Product {
+import java.io.InputStream;
+import java.io.Serializable;
+public class ProductBean implements Serializable {
     private int id;
     private int sellerId;
     private String name;
     private String description;
     private String category;
     private BigDecimal price;
-    private String imageId;
+    private InputStream image;
     private Timestamp addedDate;
 
     // Constructor
-    public Product() {}
+    public ProductBean() {}
+
+    public ProductBean(int sellerId, String name, String description, String category, BigDecimal price, InputStream image) {
+        super();
+        this.sellerId = sellerId;
+        this.name = name;
+        this.description = description;
+        this.category = category;
+        this.price = price;
+        this.image = image;
+    }
 
     // Getters and Setters
     public int getId() {
@@ -65,12 +76,12 @@ public class Product {
         this.price = price;
     }
 
-    public String getImageId() {
-        return imageId;
+    public InputStream getImage() {
+        return image;
     }
 
-    public void setImageId(String imageId) {
-        this.imageId = imageId;
+    public void setImage(InputStream image) {
+        this.image = image;
     }
 
     public Timestamp getAddedDate() {
