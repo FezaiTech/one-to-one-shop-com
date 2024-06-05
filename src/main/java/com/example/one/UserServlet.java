@@ -3,15 +3,13 @@ package com.example.one;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "userServlet", value = {"/register-servlet", "/login-servlet"})
+@WebServlet(name = "userServlet", value = {"/register-servlet", "/login-servlet", "/logout-servlet"})
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -47,9 +45,7 @@ public class UserServlet extends HttpServlet {
         DatabaseOperations dbOperations = null;
         try {
             dbOperations = new DatabaseOperations(DatabaseConnection.initializeDatabase());
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
@@ -68,8 +64,10 @@ public class UserServlet extends HttpServlet {
                 out.println("</script>");
             }
         } else {
-            boolean query = dbOperations.insertUser(name,surname,phone,email,password,false);
+            boolean query = dbOperations.insertUser(name, surname, phone, email, password, false);
             if (query) {
+                HttpSession session = request.getSession();
+                session.setAttribute("userEmail", email);
                 response.sendRedirect("home.jsp");
             } else {
                 response.setContentType("text/html");
@@ -82,8 +80,6 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-
-
     private void handleLogin(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String email = request.getParameter("email");
@@ -93,6 +89,8 @@ public class UserServlet extends HttpServlet {
             String query = DatabaseOperations.loginUser(email, password);
 
             if ("ok".equals(query)) {
+                HttpSession session = request.getSession();
+                session.setAttribute("userEmail", email);
                 response.sendRedirect("home.jsp");
             } else {
                 response.setContentType("text/html");
@@ -109,5 +107,22 @@ public class UserServlet extends HttpServlet {
         }
     }
 
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getServletPath();
 
+        if ("/logout-servlet".equals(action)) {
+            handleLogout(request, response);
+        }
+    }
+
+    private void handleLogout(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        response.sendRedirect("home.jsp");
+    }
 }
