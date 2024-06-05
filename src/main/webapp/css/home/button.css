@@ -38,6 +38,7 @@
     font-size: 1rem;
     margin: 0;
     color: var(--primary-color-1);
+    text-decoration: none;
 }
 
 .text-color{
@@ -111,8 +112,21 @@
     border-radius: 4px;
 }
 
+.dropdown-profile{
+    background-color: var(--orange-color-1);
+    min-width: 120px;
+    margin-top: 112px;
+}
+
 .dropdown-content a {
-    color: black;
+    color: var(--primary-color-2);
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-profile a {
+    color: var(--primary-color-1);
     padding: 8px 12px;
     text-decoration: none;
     display: block;
@@ -120,4 +134,8 @@
 
 .dropdown-content a:hover {background-color: #ddd;}
 
+.dropdown-profile a:hover {background-color: var(--orange-color-2);}
+
 .category-button:hover .dropdown-content {display: block;}
+
+.profile-button:hover .dropdown-profile {display: block;}

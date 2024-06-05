@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.net.URLDecoder" %>
+<%@ page import="javax.servlet.http.HttpSession" %>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -17,9 +19,14 @@
 </head>
 
 <body>
+<%
+  String userEmail = (session != null) ? (String) session.getAttribute("userEmail") : null;
+%>
+<h1>Welcome, <%= (userEmail != null) ? userEmail : "Yabancı" %></h1>
+
 <section id="header">
   <div class="header-row">
-    <img src="assets/brand/onetone.png" alt="AppIcon" class="app-icon">
+    <a href="home.jsp"><img src="assets/brand/onetone.png" alt="AppIcon" class="app-icon"></a>
     <div class="search-container main-s-bar ">
       <form action="/search" method="get">
         <input type="text" placeholder="Ürün, kategori veya marka arayın" name="query" class="search-box">
@@ -36,12 +43,22 @@
         </div>
       </div>
       <div class="header-button cart-button">
-        <img src="assets/icons/cart.png" alt="AppIcon" class="icon">
+        <img  src="assets/icons/cart.png" alt="AppIcon" class="icon">
         <p class="button-text">Sepetim (0)</p>
       </div>
       <div class="header-button profile-button">
         <img src="assets/icons/profile.png" alt="AppIcon" class="icon">
-        <p class="button-text my-profile-text">Profilim</p>
+        <p class="button-text my-profile-text">
+          <%if (userEmail != null) {%>Profilim<%
+          } else {%><a href="login.jsp" class="button-text my-profile-text">Giriş Yap</a><%}%>
+        </p>
+        </p>
+        <%if (userEmail != null) {%>
+        <div class="dropdown-content dropdown-profile">
+          <a href="account.jsp">Hesap Bilgileri</a>
+          <a href="logout-servlet">Çıkış Yap</a>
+        </div><%
+          }%>
       </div>
     </div>
   </div>

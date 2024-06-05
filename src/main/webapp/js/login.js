@@ -23,13 +23,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (toLogin) {
         toLogin.addEventListener('click', function () {
-            window.location.href = 'login.html';
+            window.location.href = 'login.jsp';
         });
     }
 
     if (toSignUp) {
         toSignUp.addEventListener('click', function () {
-            window.location.href = 'sign_up.html';
+            window.location.href = 'sign_up.jsp';
         });
     }
 });
