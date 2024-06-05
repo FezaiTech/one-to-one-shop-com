@@ -6,10 +6,12 @@ import com.example.one.service.ProductService;
 
 import java.io.InputStream;
 import java.math.BigDecimal;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +24,7 @@ public class ProductOperations implements ProductService {
     @Override
     public String addProduct(ProductBean product) {
         String status = "fail";
-        String sql = "INSERT INTO products values(?,?,?,?,?,?);";
+        String sql = "INSERT INTO shopping_db.products values(?,?,?,?,?,?);";
         Connection con = DatabaseConnection.provideConnection();
         PreparedStatement ps = null;
         try {
@@ -52,7 +54,7 @@ public class ProductOperations implements ProductService {
 
     @Override
     public String removeProduct(int id) {
-        String sql = "DELETE FROM products WHERE id = ?";
+        String sql = "DELETE FROM shopping_db.products WHERE id = ?";
         try (Connection con = DatabaseConnection.provideConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, id);
@@ -68,7 +70,7 @@ public class ProductOperations implements ProductService {
 
     @Override
     public String updateProduct(int prevProductId, ProductBean updatedProduct) {
-        String sql = "UPDATE products SET name = ?, description = ?, category = ?, price = ?, image = ? WHERE id = ?";
+        String sql = "UPDATE shopping_db.products SET name = ?, description = ?, category = ?, price = ?, image = ? WHERE id = ?";
         try (Connection con = DatabaseConnection.provideConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, updatedProduct.getName());
@@ -89,7 +91,7 @@ public class ProductOperations implements ProductService {
 
     @Override
     public String updateProductPrice(int id, BigDecimal updatedPrice) {
-        String sql = "UPDATE products SET price = ? WHERE id = ?";
+        String sql = "UPDATE shopping_db.products SET price = ? WHERE id = ?";
         try (Connection con = DatabaseConnection.provideConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setBigDecimal(1, updatedPrice);
@@ -106,7 +108,7 @@ public class ProductOperations implements ProductService {
 
     @Override
     public List<ProductBean> getAllProductsByCategory(String category) {
-        String sql = "SELECT * FROM products WHERE category = ?";
+        String sql = "SELECT * FROM shopping_db.products WHERE category = ?";
         List<ProductBean> productList = new ArrayList<>();
         try (Connection con = DatabaseConnection.provideConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -138,7 +140,7 @@ public class ProductOperations implements ProductService {
 
     @Override
     public List<ProductBean> searchAllProducts(String search) {
-        String sql = "SELECT * FROM products WHERE name LIKE ? OR description LIKE ?";
+        String sql = "SELECT * FROM shopping_db.products WHERE name LIKE ? OR description LIKE ?";
         List<ProductBean> productList = new ArrayList<>();
         try (Connection con = DatabaseConnection.provideConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -174,7 +176,7 @@ public class ProductOperations implements ProductService {
 
     @Override
     public ProductBean getProductDetails(String id) {
-        String sql = "SELECT * FROM products WHERE id = ?";
+        String sql = "SELECT * FROM shopping_db.products WHERE id = ?";
         try (Connection con = DatabaseConnection.provideConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, id);

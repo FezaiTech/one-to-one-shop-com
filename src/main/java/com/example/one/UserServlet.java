@@ -44,9 +44,9 @@ public class UserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        DatabaseOperations dbOperations = null;
+
         try {
-            dbOperations = new DatabaseOperations(DatabaseConnection.initializeDatabase());
+            DatabaseOperations dbOperations = new DatabaseOperations(DatabaseConnection.initializeDatabase());
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -63,7 +63,7 @@ public class UserServlet extends HttpServlet {
                 out.println("</script>");
             }
         } else {
-            boolean query = dbOperations.insertUser(name, surname, phone, email, password, false);
+            boolean query = dao.registerUser(name,surname,phone,email,password,false);
             if (query) {
                 HttpSession session = request.getSession();
                 session.setAttribute("userEmail", email);

@@ -11,13 +11,29 @@ import java.sql.SQLException;
 
 public class UserOperations implements UserService {
     @Override
-    public String registerUser(String name, String surname, String phone, String email, String password, boolean sellerStatus) {
-        return null;
+    public boolean registerUser(String name, String surname, String phone, String email, String password, boolean sellerStatus) {
+        String sql = "INSERT INTO shopping_db.users (name, surname, phone, email, password, seller_status) VALUES (?, ?, ?, ?, ?, ?)";
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, name);
+            ps.setString(2, surname);
+            ps.setString(3, phone);
+            ps.setString(4, email);
+            ps.setString(5, password);
+            ps.setBoolean(6, sellerStatus);
+            int rows = ps.executeUpdate();
+            DatabaseConnection.closeConnection(con);
+            DatabaseConnection.closeConnection(ps);
+            return rows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override
-    public String registerUser(UserBean user) {
-        return null;
+    public boolean registerUser(UserBean user) {
+        return false;
     }
 
     @Override
@@ -28,8 +44,6 @@ public class UserOperations implements UserService {
             ps.setString(1, email);
             try (ResultSet rs = ps.executeQuery()) {
                 return rs.next();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

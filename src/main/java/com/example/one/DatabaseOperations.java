@@ -12,25 +12,6 @@ public class DatabaseOperations {
         this.connection = connection;
     }
 
-    public boolean insertUser(String name, String surname, String phone, String email, String password, boolean isSeller) {
-        String query = "INSERT INTO users (name, surname, phone, email, password, seller_status) VALUES (?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
-            pstmt.setString(1, name);
-            pstmt.setString(2, surname);
-            pstmt.setString(3, phone);
-            pstmt.setString(4, email);
-            pstmt.setString(5, password);
-            pstmt.setBoolean(6, isSeller);
-            int rows = pstmt.executeUpdate();
-            return rows > 0;
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-
-
     public static String loginUser(String email, String password) throws SQLException {
         String message;
         String query = "SELECT * FROM users WHERE email = ?";

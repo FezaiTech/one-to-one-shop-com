@@ -4,9 +4,9 @@ import com.example.one.beans.UserBean;
 
 public interface UserService {
 
-    public String registerUser(String name, String surname, String phone, String email, String password, boolean sellerStatus);
+    public boolean registerUser(String name, String surname, String phone, String email, String password, boolean sellerStatus);
 
-    public String registerUser(UserBean user);
+    public boolean registerUser(UserBean user);
 
     public boolean isRegistered(String email);
 
