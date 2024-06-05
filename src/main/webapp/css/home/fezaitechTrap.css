@@ -89,6 +89,7 @@ body{
     width: 100%;
     height: auto;
     overflow: hidden;
+    cursor: grab;
 }
 
 .poster-img {
@@ -111,6 +112,7 @@ body{
     width: auto;
     height: 100%;
     max-height: 90px;
+    cursor: pointer;
 }
 
 #tech {
