@@ -1,9 +1,7 @@
 package com.example.one;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ResourceBundle;
 
 public class DatabaseConnection {
 
@@ -24,6 +22,55 @@ public class DatabaseConnection {
              Statement statement = connection.createStatement()) {
             String createDatabaseSQL = "CREATE DATABASE IF NOT EXISTS " + DB_NAME;
             statement.executeUpdate(createDatabaseSQL);
+        }
+    }
+
+    private static Connection conn;
+
+    public DatabaseConnection() {
+    }
+
+    public static Connection provideConnection() {
+        try {
+            if (conn == null || conn.isClosed()) {
+                conn = DriverManager.getConnection(URL, USER, PASSWORD);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return conn;
+    }
+
+    public static void closeConnection(Connection con) {
+        try { if (con != null && !con.isClosed()) {con.close(); } } catch (SQLException e) {e.printStackTrace(); }
+
+    }
+    public static void closeConnection(ResultSet rs) {
+        try {
+            if (rs != null && !rs.isClosed()) {
+                try {
+                    rs.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void closeConnection(PreparedStatement ps) {
+        try {
+            if (ps != null && !ps.isClosed()) {
+                try {
+                    ps.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
