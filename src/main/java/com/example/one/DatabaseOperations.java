@@ -29,15 +29,7 @@ public class DatabaseOperations {
         }
     }
 
-    public boolean checkEmailExists(String email) throws SQLException {
-        String checkEmailQuery = "SELECT * FROM users WHERE email = ?";
-        try (PreparedStatement checkStmt = connection.prepareStatement(checkEmailQuery)) {
-            checkStmt.setString(1, email);
-            try (ResultSet rs = checkStmt.executeQuery()) {
-                return rs.next();
-            }
-        }
-    }
+
 
     public static String loginUser(String email, String password) throws SQLException {
         String message;

@@ -8,7 +8,9 @@ import java.io.InputStream;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductOperations implements ProductService {
@@ -20,12 +22,11 @@ public class ProductOperations implements ProductService {
     @Override
     public String addProduct(ProductBean product) {
         String status = "fail";
-
+        String sql = "INSERT INTO products values(?,?,?,?,?,?);";
         Connection con = DatabaseConnection.provideConnection();
         PreparedStatement ps = null;
-
         try {
-            ps = con.prepareStatement("insert into products values(?,?,?,?,?,?);");
+            ps = con.prepareStatement(sql);
             ps.setInt(1, product.getSellerId());
             ps.setString(2, product.getName());
             ps.setString(3, product.getDescription());
@@ -51,32 +52,119 @@ public class ProductOperations implements ProductService {
 
     @Override
     public String removeProduct(int id) {
-        return null;
+        String sql = "DELETE FROM products WHERE id = ?";
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            int rowsAffected = ps.executeUpdate();
+            DatabaseConnection.closeConnection(con);
+            DatabaseConnection.closeConnection(ps);
+            return rowsAffected > 0 ? "ok" : "Product not found.";
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "Error removing product.";
+        }
     }
 
     @Override
     public String updateProduct(int prevProductId, ProductBean updatedProduct) {
-        return null;
+        String sql = "UPDATE products SET name = ?, description = ?, category = ?, price = ?, image = ? WHERE id = ?";
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, updatedProduct.getName());
+            ps.setString(2, updatedProduct.getDescription());
+            ps.setString(3, updatedProduct.getCategory());
+            ps.setBigDecimal(4, updatedProduct.getPrice());
+            ps.setBlob(5, updatedProduct.getImage());
+            ps.setInt(6, prevProductId);
+            int rowsAffected = ps.executeUpdate();
+            DatabaseConnection.closeConnection(con);
+            DatabaseConnection.closeConnection(ps);
+            return rowsAffected > 0 ? "ok" : "Product not found.";
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "Error updating product.";
+        }
     }
 
     @Override
     public String updateProductPrice(int id, BigDecimal updatedPrice) {
-        return null;
-    }
-
-    @Override
-    public List<ProductBean> getAllProducts() {
-        return null;
+        String sql = "UPDATE products SET price = ? WHERE id = ?";
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setBigDecimal(1, updatedPrice);
+            ps.setInt(2, id);
+            int rowsAffected = ps.executeUpdate();
+            DatabaseConnection.closeConnection(con);
+            DatabaseConnection.closeConnection(ps);
+            return rowsAffected > 0 ? "ok" : "Product not found.";
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "Error updating product price.";
+        }
     }
 
     @Override
     public List<ProductBean> getAllProductsByCategory(String category) {
-        return null;
+        String sql = "SELECT * FROM products WHERE category = ?";
+        List<ProductBean> productList = new ArrayList<>();
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, category);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    //other way is set
+                    ProductBean product = new ProductBean(
+                            rs.getInt("seller_id"),
+                            rs.getString("name"),
+                            rs.getString("description"),
+                            rs.getString("category"),
+                            rs.getBigDecimal("price"),
+                            rs.getBlob("image").getBinaryStream()
+                    );
+                    product.setId(rs.getInt("id"));
+                    productList.add(product);
+                }
+                DatabaseConnection.closeConnection(rs);
+            }
+            DatabaseConnection.closeConnection(con);
+            DatabaseConnection.closeConnection(ps);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return productList;
     }
 
     @Override
     public List<ProductBean> searchAllProducts(String search) {
-        return null;
+        String sql = "SELECT * FROM products WHERE name LIKE ? OR description LIKE ?";
+        List<ProductBean> productList = new ArrayList<>();
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, "%" + search + "%");
+            ps.setString(2, "%" + search + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    ProductBean product = new ProductBean(
+                            rs.getInt("seller_id"),
+                            rs.getString("name"),
+                            rs.getString("description"),
+                            rs.getString("category"),
+                            rs.getBigDecimal("price"),
+                            rs.getBlob("image").getBinaryStream()
+                    );
+                    product.setId(rs.getInt("id"));
+                    productList.add(product);
+                }
+                DatabaseConnection.closeConnection(rs);
+            }
+            DatabaseConnection.closeConnection(con);
+            DatabaseConnection.closeConnection(ps);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return productList;
     }
 
     @Override
@@ -86,6 +174,30 @@ public class ProductOperations implements ProductService {
 
     @Override
     public ProductBean getProductDetails(String id) {
+        String sql = "SELECT * FROM products WHERE id = ?";
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    ProductBean product = new ProductBean(
+                            rs.getInt("seller_id"),
+                            rs.getString("name"),
+                            rs.getString("description"),
+                            rs.getString("category"),
+                            rs.getBigDecimal("price"),
+                            rs.getBlob("image").getBinaryStream()
+                    );
+                    product.setId(rs.getInt("id"));
+                    DatabaseConnection.closeConnection(rs);
+                    return product;
+                }
+                DatabaseConnection.closeConnection(con);
+                DatabaseConnection.closeConnection(ps);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 

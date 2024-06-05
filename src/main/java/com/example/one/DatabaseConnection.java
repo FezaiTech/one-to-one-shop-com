@@ -89,24 +89,25 @@ public class DatabaseConnection {
                     + "join_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP"
                     + ")";
 
-            String createProductsTableSQL = "CREATE TABLE IF NOT EXISTS products ("
-                    + "id INT AUTO_INCREMENT PRIMARY KEY, "
-                    + "seller_id INT NOT NULL, "
-                    + "name VARCHAR(100) NOT NULL, "
-                    + "description TEXT, "
-                    + "category VARCHAR(50), "
-                    + "price DECIMAL(10, 2) NOT NULL, "
-                    + "image BLOB, "
-                    + "added_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, "
-                    + "FOREIGN KEY (seller_id) REFERENCES users(id)"
-                    + ")";
+            String createProductsTableSQL = "CREATE TABLE IF NOT EXISTS products (" +
+                    "id INT AUTO_INCREMENT PRIMARY KEY, " +
+                    "seller_id INT NOT NULL, " +
+                    "name VARCHAR(100) NOT NULL, " +
+                    "description TEXT, " +
+                    "category VARCHAR(50), " +
+                    "price DECIMAL(10, 2) NOT NULL, " +
+                    "image LONGBLOB NULL DEFAULT NULL, " +
+                    "added_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " +
+                    "FOREIGN KEY (seller_id) REFERENCES users(id)" +
+                    ")";
+
 
             String createSellersTableSQL = "CREATE TABLE IF NOT EXISTS sellers ("
                     + "id INT AUTO_INCREMENT PRIMARY KEY, "
                     + "user_id INT NOT NULL, "
                     + "store_name VARCHAR(100) NOT NULL, "
                     + "store_number VARCHAR(20) NOT NULL, "
-                    + "join_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, "
+                    + "join_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
                     + "FOREIGN KEY (user_id) REFERENCES users(id)"
                     + ")";
 

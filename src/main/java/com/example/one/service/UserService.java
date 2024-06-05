@@ -8,7 +8,7 @@ public interface UserService {
 
     public String registerUser(UserBean user);
 
-    public boolean isRegistered(String emailId);
+    public boolean isRegistered(String email);
 
     public UserBean getUserDetails(String email, String password);
 
