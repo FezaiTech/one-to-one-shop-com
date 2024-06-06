@@ -1,6 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.net.URLDecoder" %>
 <%@ page import="javax.servlet.http.HttpSession" %>
+<%@ page import="com.example.one.beans.ProductBean" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.one.service.UserService" %>
+<%@ page import="com.example.one.service.ProductService" %>
+<%@ page import="com.example.one.service.operations.ProductOperations" %>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -109,7 +114,32 @@
     </div>
   </div>
 
-  <div class="product-containers" id="productContainer"></div>
+  <%
+    ProductService dao = new ProductOperations();
+    List<ProductBean> products = dao.getAllProductsByCategory("Elektronik");
+  %>
+
+  <div class="product-containers" id="productContainer">
+    <%
+      for (ProductBean product : products) {
+    %>
+    <div class="product">
+      <h2><%= product.getName() %></h2>
+      <p class="br-x-small"><%= product.getDescription() %></p>
+      <div class="image-center">
+        <img src="<%= product.getImage() %>" alt="" class="product-image" data-productid="<%= product.getId() %>">
+      </div>
+      <div class="product-row">
+        <p class="product-price"><%= product.getPrice() %> ₺</p>
+        <div class="add-cart-button">
+          <img src="assets/icons/add.png" class="cart-icon">
+        </div>
+      </div>
+    </div>
+    <%
+      }
+    %>
+  </div>
 </section>
 
 <script src="js/home.js"></script>
