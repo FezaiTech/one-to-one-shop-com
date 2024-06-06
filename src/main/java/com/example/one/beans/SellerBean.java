@@ -2,7 +2,7 @@ package com.example.one.beans;
 
 import java.security.Timestamp;
 
-public class Seller {
+public class SellerBean {
     private int id;
     private int userId;
     private String storeName;
@@ -10,7 +10,15 @@ public class Seller {
     private Timestamp joinDate;
 
     // Constructor
-    public Seller() {}
+    public SellerBean() {}
+
+    public SellerBean(int id, int userId, String storeName, String storeNumber) {
+        super();
+        this.id = id;
+        this.userId = userId;
+        this.storeName = storeName;
+        this.storeNumber = storeNumber;
+    }
 
     // Getters and Setters
     public int getId() {

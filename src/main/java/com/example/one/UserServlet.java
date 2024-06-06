@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import com.example.one.service.UserService;
+import com.example.one.service.operations.UserOperations;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -42,19 +44,16 @@ public class UserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        DatabaseOperations dbOperations = null;
+
         try {
-            dbOperations = new DatabaseOperations(DatabaseConnection.initializeDatabase());
+            DatabaseOperations dbOperations = new DatabaseOperations(DatabaseConnection.initializeDatabase());
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
-        boolean emailExists = false;
-        try {
-            emailExists = dbOperations.checkEmailExists(email);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        UserService dao = new UserOperations();
+        boolean emailExists = dao.isRegistered(email);
+
         if (emailExists) {
             response.setContentType("text/html");
             try (PrintWriter out = response.getWriter()) {
@@ -64,7 +63,7 @@ public class UserServlet extends HttpServlet {
                 out.println("</script>");
             }
         } else {
-            boolean query = dbOperations.insertUser(name, surname, phone, email, password, false);
+            boolean query = dao.registerUser(name,surname,phone,email,password,false);
             if (query) {
                 HttpSession session = request.getSession();
                 session.setAttribute("userEmail", email);
