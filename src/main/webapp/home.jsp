@@ -29,6 +29,7 @@
 <body>
 <%
   String userEmail = (session != null) ? (String) session.getAttribute("userEmail") : null;
+  List<CartBean> cartItems = (List<CartBean>) session.getAttribute("cartItems");
 %>
 <h1>Welcome, <%= (userEmail != null) ? userEmail : "Yabancı" %></h1>
 
@@ -53,7 +54,7 @@
       <a href="cart.jsp" style="text-decoration: none">
         <div class="header-button cart-button">
             <img src="assets/icons/cart.png" alt="AppIcon" class="icon">
-            <p class="button-text">Sepetim (0)</p>
+            <p class="button-text">Sepetim (<%=cartItems != null ? cartItems.size() : 0%>)</p>
         </div>
       </a>
       <div class="header-button profile-button">

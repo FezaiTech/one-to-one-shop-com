@@ -158,7 +158,7 @@ public class ProductOperations implements ProductService {
                             rs.getString("description"),
                             rs.getString("category"),
                             rs.getBigDecimal("price"),
-                            rs.getBlob("image").getBinaryStream()
+                            rs.getBlob("image") != null ? rs.getBlob("image").getBinaryStream() : null
                     );
                     product.setId(rs.getInt("id"));
                     productList.add(product);
@@ -192,7 +192,7 @@ public class ProductOperations implements ProductService {
                             rs.getString("description"),
                             rs.getString("category"),
                             rs.getBigDecimal("price"),
-                            rs.getBlob("image").getBinaryStream()
+                            rs.getBlob("image") != null ? rs.getBlob("image").getBinaryStream() : null
                     );
                     product.setId(rs.getInt("id"));
                     DatabaseConnection.closeConnection(rs);
