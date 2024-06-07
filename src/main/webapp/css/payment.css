@@ -1,0 +1,137 @@
+body{
+    background-image: url('../assets/const/background_1.png');
+    background-size: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/*HEADER*/
+#header {
+    padding: 2ch 16ch;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.app-icon{
+    height: 44px;
+    cursor: pointer;
+}
+.icon{
+    height: 16px;
+}
+
+.header-button{
+    width: max-content;
+    height: 44px;
+    padding: 0 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.cart-button{
+    border-radius: 6px;
+    gap: 8px;
+    background-color: var(--blue-color-1);
+}
+
+.cart-button:hover{
+    background-color: var(--blue-color-2);
+}
+
+.button-text{
+    font-size: 1rem;
+    margin: 0;
+    color: var(--primary-color-1);
+}
+
+/*PAYMENT*/
+#payment-stage {
+    padding: 2ch 16ch;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    gap: 18px;
+    justify-content: space-between;
+    align-items: center;
+}
+.payment-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    min-height: 300px;
+    min-width: 200px;
+    border-radius: 12px;
+    padding: 12px;
+}
+.payment-info{
+    background: linear-gradient(180deg, var(--blue-color-1) 0%, var(--blue-color-2) 100%);
+    color: var(--primary-color-1);
+}
+
+.payment-method{
+    background: linear-gradient(180deg, var(--orange-color-1) 0%, var(--orange-color-2) 100%);
+    color: var(--primary-color-1);
+}
+
+.payment-form{
+    width: 100%;
+    background-color: var(--primary-color-1);
+    box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+}
+
+.title-text{
+    font-weight: bold;
+    font-size: 1.15rem;
+}
+
+.form-title{
+    color: var(--green-color-1);
+}
+
+.button{
+    width: 100%;
+    height: 40px;
+    border-radius: 30px;
+    color: var(--primary-color-1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: var(--primary-color-1);
+    color: var(--orange-color-2);
+}
+
+.hidden {
+    display: none;
+}
+
+@media screen and (max-width: 1140px) {
+    #header {
+        padding: 2ch 2ch;
+    }
+    #payment-stage {
+        padding: 2ch 2ch;
+    }
+
+    .app-icon{
+        height: 36px;
+    }
+}
+
+@media screen and (max-width: 740px) {
+
+    #payment-stage {
+        flex-direction: column;
+    }
+
+}

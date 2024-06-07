@@ -175,7 +175,7 @@
     xhr.onreadystatechange = function () {
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
-          alert('Ürün başarıyla sepete eklendi!');
+          location.reload();
         } else {
           alert('Ürün sepete eklenirken bir hata oluştu.');
         }

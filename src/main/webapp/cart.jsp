@@ -56,7 +56,7 @@
       <p>Sepetinde</p>
       <p><span  class="bold-font"><%=cartSize != 0 ? cartSize : ""%></span> <%=cartSize != 0 ? "ürün var": "ürün yok"%></p>
     </div>
-    <div class="cart-row-fixed content-end pointer cart-subtitle" >
+    <div class="cart-row-fixed content-end pointer cart-subtitle" onclick="clearCart()">
       <img src="assets/icons/bin.png" alt="" class="icon">
       <p>Sepeti Temizle</p>
     </div>
@@ -150,7 +150,7 @@
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
           // Başarılı yanıt
-          alert('Sepet başarıyla güncellendi!');
+          location.reload();
         } else {
           // Hata durumu
           alert('Sepet güncellenirken bir hata oluştu.');
@@ -159,6 +159,26 @@
     };
 
     xhr.send(params);
+  }
+
+  function clearCart() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'removeCartServlet', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          // Başarılı yanıt
+          location.reload();
+        } else {
+          // Hata durumu
+          alert('Sepet temizlenirken bir hata oluştu.');
+        }
+      }
+    };
+
+    xhr.send();
   }
 
 </script>

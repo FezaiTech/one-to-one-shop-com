@@ -12,9 +12,20 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-@WebServlet("/updateCartServlet")
+@WebServlet(name = "cartUpdate",value = {"/updateCartServlet","/removeCartServlet"})
 public class UpdateCartServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String action = request.getServletPath();
+
+        if ("/updateCartServlet".equals(action)) {
+            handleUpdate(request, response);
+        } else if ("/removeCartServlet".equals(action)) {
+            handleRemove(request, response);
+        }
+    }
+    private void handleUpdate(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int productId = Integer.parseInt(request.getParameter("productId"));
         int newQuantity = Integer.parseInt(request.getParameter("newQuantity"));
 
@@ -39,5 +50,14 @@ public class UpdateCartServlet extends HttpServlet {
         response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write("Sepet başarıyla güncellendi!");
+    }
+
+    private void handleRemove(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        session.removeAttribute("cartItems"); // Sepet verilerini temizler
+
+        response.setContentType("text/plain");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write("Sepet başarıyla temizlendi!");
     }
 }
