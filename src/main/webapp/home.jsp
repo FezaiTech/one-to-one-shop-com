@@ -6,6 +6,9 @@
 <%@ page import="com.example.one.service.UserService" %>
 <%@ page import="com.example.one.service.ProductService" %>
 <%@ page import="com.example.one.service.operations.ProductOperations" %>
+<%@ page import="com.example.one.service.CartService" %>
+<%@ page import="com.example.one.service.operations.CartOperations" %>
+<%@ page import="com.example.one.beans.CartBean" %>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -119,6 +122,9 @@
   <%
     ProductService dao = new ProductOperations();
     List<ProductBean> products = dao.getAllProductsByCategory("Elektronik");
+
+    CartService cao = new CartOperations();
+    List<CartBean> cart = null;
   %>
 
   <div class="product-containers" id="productContainer">
@@ -145,5 +151,38 @@
 </section>
 
 <script src="js/home.js"></script>
+<script>
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var addButtons = document.querySelectorAll('.add-cart-button');
+
+    addButtons.forEach(function (button) {
+      button.addEventListener('click', function (event) {
+        var productContainer = event.target.closest('.product');
+        var productId = productContainer.querySelector('.product-image').getAttribute('data-productid');
+
+        addToCart(productId, 1); // 1 ürün eklemek için
+      });
+    });
+  });
+
+
+  function addToCart(productId, count) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'addToCartServlet', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          alert('Ürün başarıyla sepete eklendi!');
+        } else {
+          alert('Ürün sepete eklenirken bir hata oluştu.');
+        }
+      }
+    };
+    xhr.send('productId=' + productId + '&count=' + count);
+  }
+
+</script>
 </body>
 </html>
