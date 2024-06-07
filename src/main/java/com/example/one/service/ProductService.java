@@ -23,12 +23,12 @@ public interface ProductService {
 
     public List<ProductBean> searchAllProducts(String search);
 
-    public byte[] getImage(String id);
+    public byte[] getImage(int id);
 
-    public ProductBean getProductDetails(String id);
+    public ProductBean getProductDetails(int id);
 
-    public String updateProductWithoutImage(String prevProductId, ProductBean updatedProduct);
+    public String updateProductWithoutImage(int prevProductId, ProductBean updatedProduct);
 
-    public double getProductPrice(String id);
+    public double getProductPrice(int id);
 
 }

@@ -174,16 +174,16 @@ public class ProductOperations implements ProductService {
     }
 
     @Override
-    public byte[] getImage(String id) {
+    public byte[] getImage(int id) {
         return new byte[0];
     }
 
     @Override
-    public ProductBean getProductDetails(String id) {
+    public ProductBean getProductDetails(int id) {
         String sql = "SELECT * FROM shopping_db.products WHERE id = ?";
         try (Connection con = DatabaseConnection.provideConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, id);
+            ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     ProductBean product = new ProductBean(
@@ -208,12 +208,12 @@ public class ProductOperations implements ProductService {
     }
 
     @Override
-    public String updateProductWithoutImage(String prevProductId, ProductBean updatedProduct) {
+    public String updateProductWithoutImage(int prevProductId, ProductBean updatedProduct) {
         return null;
     }
 
     @Override
-    public double getProductPrice(String id) {
+    public double getProductPrice(int id) {
         return 0;
     }
 }

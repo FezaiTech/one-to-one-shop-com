@@ -6,6 +6,10 @@
     gap: 24px;
 }
 
+.text-buttons a {
+    text-decoration: none;
+}
+
 .header-button{
     width: max-content;
     height: 44px;
