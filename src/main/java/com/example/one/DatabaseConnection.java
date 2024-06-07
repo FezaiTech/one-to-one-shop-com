@@ -31,14 +31,13 @@ public class DatabaseConnection {
     }
 
     public static Connection provideConnection() {
+        Connection conn = null;
         try {
-            if (conn == null || conn.isClosed()) {
-                conn = DriverManager.getConnection(URL, USER, PASSWORD);
-            }
-        } catch (SQLException e) {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(URL, USER, PASSWORD);
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
-
         return conn;
     }
 

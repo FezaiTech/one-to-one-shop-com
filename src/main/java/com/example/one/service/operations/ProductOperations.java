@@ -110,8 +110,12 @@ public class ProductOperations implements ProductService {
     public List<ProductBean> getAllProductsByCategory(String category) {
         String sql = "SELECT * FROM shopping_db.products WHERE category = ?";
         List<ProductBean> productList = new ArrayList<>();
+
         try (Connection con = DatabaseConnection.provideConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
+            if (con == null) {
+                throw new SQLException("Failed to establish a database connection.");
+            }
             ps.setString(1, category);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
@@ -122,7 +126,7 @@ public class ProductOperations implements ProductService {
                             rs.getString("description"),
                             rs.getString("category"),
                             rs.getBigDecimal("price"),
-                            rs.getBlob("image").getBinaryStream()
+                            rs.getBlob("image") != null ? rs.getBlob("image").getBinaryStream() : null
                     );
                     product.setId(rs.getInt("id"));
                     productList.add(product);
