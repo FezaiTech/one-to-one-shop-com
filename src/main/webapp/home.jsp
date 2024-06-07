@@ -47,10 +47,12 @@
           <a href="#">Ev, Yaşam</a>
         </div>
       </div>
-      <div class="header-button cart-button">
-        <img  src="assets/icons/cart.png" alt="AppIcon" class="icon">
-        <p class="button-text">Sepetim (0)</p>
-      </div>
+      <a href="cart.jsp" style="text-decoration: none">
+        <div class="header-button cart-button">
+            <img src="assets/icons/cart.png" alt="AppIcon" class="icon">
+            <p class="button-text">Sepetim (0)</p>
+        </div>
+      </a>
       <div class="header-button profile-button">
         <img src="assets/icons/profile.png" alt="AppIcon" class="icon">
         <p class="button-text my-profile-text">
