@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sotore-management</title>
+    <link rel="stylesheet" href="css/text.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/store_management/button.css"/>
+    <link rel="stylesheet" href="css/store_management/bone.css"/>
+    <link rel="stylesheet" href="css/store_management/media-query-sm.css"/>
+    <link rel="stylesheet" href="css/store_management/search-bar.css"/>
+
+</head>
+<body>
+    <section id="header-sm">
+        <div class="header-row-sm">
+            <img src="assets/brand/onetone.png" alt="AppIcon" class="app-icon">
+            <div class="spacer"></div>
+            <div class="text-buttons">
+                <div class="header-button profile-button">
+                    <img src="assets/icons/profile.png" alt="AppIcon" class="icon">
+                    <p class="button-text my-profile-text">Profilim</p>
+                    <div class="dropdown-content dropdown-profile">
+                        <a href="">Hesap Bilgileri</a>
+                        <a href="">Çıkış Yap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="store-desk">
+        <div class="title">
+            <div class="custom-row">
+                <div  class="title-container"></div>
+                <div style="max-width: 300px" class="column">
+                    <p class="order-title">Mağaza Yönetimi</p>
+                    <p class="order-title">Mağaza ADI</p>
+                </div>
+            </div>
+            <div class="row-store-man-header" >
+                <div class="store-man-header-button"><div class="button-text-center">Ürünlerim</div></div>
+                <div class="store-man-header-button"><div class="button-text-center">Siparişlerin</div></div>
+                <div class="store-man-header-button"><div class="button-text-center">Müşterilerin</div></div>
+                <div class="store-man-header-button"><div class="button-text-center">Yönetim</div></div>
+            </div>
+        </div>
+    </section>
+    <div class="sizedBox"></div>
+    <section id="search-bar">
+        <div style="gap: 10px;" class="column">
+            <div class="row">
+                <div class="text-l">Ürün Sayısı : 3</div>
+                <div class="search-container-sm unhidden">
+                    <form action="/search" method="get">
+                        <input type="text" placeholder="Ürün, kategori veya marka arayın" name="query" class="search-box">
+                        <button type="submit" class="search-button"><b>Ara</b></button>
+                    </form>
+                </div>
+                <div class="add-new-product-btn">+ Yeni Ürün Ekle</div>
+            </div>
+            <div class="search-container-sm hidden">
+                <form action="/search" method="get">
+                    <input type="text" placeholder="Ürün, kategori veya marka arayın" name="query" class="search-box">
+                    <button type="submit" class="search-button"><b>Ara</b></button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+.store-man-header-button {
+    border-radius: 5px;
+    align-content: center;
+    width: 140px;
+    height: 44px;
+    background-color: var(--blue-color-4);
+    cursor: pointer;
+}
+.store-man-header-button:hover {
+    background-color: var(--blue-color-1) ;
+}
+
+.button-text-center{
+    font-size: 1rem;
+    text-align: center;
+    justify-content: center;
+    color: var(--primary-color-1);
+    text-decoration: none;
+}
+
+.profile-button{
+    border-radius: 64px;
+    gap: 8px;
+    background-color: var(--orange-color-1);
+}
+
+.text-buttons{
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 24px;
+}
+
+.add-new-product-btn{
+    background-color: var(--green-color-1);
+    border-radius: 50px;
+    padding: 10px;
+    align-self: center;
+}
+.add-new-product-btn:hover{
+    background-color: var(--green-color-2);
+}

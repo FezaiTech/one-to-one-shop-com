@@ -1,0 +1,128 @@
+@media screen and (max-width: 1140px){
+    body{
+        padding: 2ch 2ch;
+    }
+    .app-icon{
+        height: 32px;
+    }
+    .store-man-header-button{
+        width: 90px;
+        height: 35px;
+    }
+    .button-text-center{
+        font-size: 15px;
+    }
+    .row-store-man-header{
+        gap: 20px;
+    }
+    #header{
+        width: 100%;
+    }
+    
+
+}
+@media screen and (max-width: 740px){
+    .hidden{
+        display: flex;
+    }
+    .unhidden{
+        display: none;
+    }
+    .search-container{
+        width: 100%;
+    }
+    .search-container form{
+        width: 100%;
+    }
+    .store-man-header-button{
+        width: 70px;
+    }
+    .button-text-center{
+        font-size: 9px;
+    }
+    #header{
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .header-row{
+        gap: 6px;
+    }
+
+    .header-button{
+        height: 36px;
+    }
+
+    .button-text{
+        font-size: 0.65rem;
+    }
+
+    .my-profile-text{
+        display: none;
+    }
+
+    .text-buttons{
+        gap: 6px;
+    }
+
+    .dropdown-content {
+        min-width: 120px;
+        margin-top: 112px;
+    }
+
+    .dropdown-content a {
+        padding: 6px 10px;
+        font-size: 0.75rem;
+    }
+
+    .header-button{
+        padding: 0 8px;
+    }
+    .order-title{
+        font-size: 1.20rem;
+    }
+    .title-container{
+        height: 50px;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .row-store-man-header{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 10px;
+        align-self: center;
+    }
+    .button-text-center{
+        font-size: 12px;
+    }
+    .store-man-header-button{
+        width: 200px;
+        height: 35px;
+    }
+    .order-title{
+        font-size: 1.1rem;
+    }
+    .title-container{
+        height: 40px;
+    }
+    .title{
+        flex-direction: column;
+        width: 100%;
+        align-items: start;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .store-man-header-button{
+        width: 140px;
+        height: 30px;
+    }
+}
+
+@media screen and (max-width: 330px){
+    .store-man-header-button{
+        width: 100px;
+        height: 30px;
+    }
+}

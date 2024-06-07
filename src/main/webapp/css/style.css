@@ -44,6 +44,9 @@ html {
     scroll-behavior: smooth;
     font-size: 16px;
 }
+.sizedBox{
+    height: 20px;
+}
 
 p{
     margin: 0;
