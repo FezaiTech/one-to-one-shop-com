@@ -29,6 +29,7 @@
 <body>
 <%
   String userEmail = (session != null) ? (String) session.getAttribute("userEmail") : null;
+  List<CartBean> cartItems = (List<CartBean>) session.getAttribute("cartItems");
 %>
 <h1>Welcome, <%= (userEmail != null) ? userEmail : "Yabancı" %></h1>
 
@@ -53,7 +54,7 @@
       <a href="cart.jsp" style="text-decoration: none">
         <div class="header-button cart-button">
             <img src="assets/icons/cart.png" alt="AppIcon" class="icon">
-            <p class="button-text">Sepetim (0)</p>
+            <p class="button-text">Sepetim (<%=cartItems != null ? cartItems.size() : 0%>)</p>
         </div>
       </a>
       <div class="header-button profile-button">
@@ -65,7 +66,7 @@
         </p>
         <%if (userEmail != null) {%>
         <div class="dropdown-content dropdown-profile">
-          <a href="account.jsp">Hesap Bilgileri</a>
+          <a href="profile.jsp">Hesap Bilgileri</a>
           <a href="logout-servlet">Çıkış Yap</a>
         </div><%
           }%>
@@ -174,7 +175,7 @@
     xhr.onreadystatechange = function () {
       if (xhr.readyState === XMLHttpRequest.DONE) {
         if (xhr.status === 200) {
-          alert('Ürün başarıyla sepete eklendi!');
+          location.reload();
         } else {
           alert('Ürün sepete eklenirken bir hata oluştu.');
         }

@@ -13,7 +13,7 @@ public class CartBean {
     }
 
     // Getters and Setters
-    public int getProductIdId() {
+    public int getProductId() {
         return productId;
     }
 

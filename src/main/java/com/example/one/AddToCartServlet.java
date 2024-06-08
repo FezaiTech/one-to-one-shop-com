@@ -17,15 +17,11 @@ import java.util.List;
 @WebServlet("/addToCartServlet")
 public class AddToCartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        System.out.println("Servlet Sepet çalıştı");
         int productId = Integer.parseInt(request.getParameter("productId"));
         int count = Integer.parseInt(request.getParameter("count"));
 
         CartService cartService = new CartOperations();
         CartBean newItem = cartService.addItemToCart(productId, count);
-
-        System.out.println(newItem);
 
         HttpSession session = request.getSession();
 
@@ -33,12 +29,18 @@ public class AddToCartServlet extends HttpServlet {
 
         if (cartItems == null) {
             cartItems = new ArrayList<>();
+        } else {
+            for (CartBean item : cartItems) {
+                if (item.getProductId() == productId) {
+                    item.setCount(item.getCount() + count);
+                    session.setAttribute("cartItems", cartItems);
+                    return;
+                }
+            }
         }
 
         cartItems.add(newItem);
         session.setAttribute("cartItems", cartItems);
-
-        System.out.println(cartItems);
 
         response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");
