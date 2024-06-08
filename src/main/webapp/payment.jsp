@@ -74,8 +74,9 @@
   </div>
   <div class="payment-box payment-form" id="payment-form">
     <p class="title-text form-title" id="form-title">Kart Bilgileriniz</p>
+
     <div id="pay-by-card">
-      <form class="card-form" id="card-form" action="" method="POST">
+      <form class="card-form" id="card-form" action="payment-servlet" method="GET">
         <div class="form-row">
           <div class="form-column">
             <input type="text" id="card-name" name="card-name" placeholder="Kart sahibinin adı" maxlength="48" required>
@@ -87,27 +88,32 @@
           </div>
         </div>
         <p class="title-text form-title full-text">Adres Bilgileriniz</p>
-        <input type="text" id="address" name="address" placeholder="Teslimat adresini giriniz" maxlength="124" required>
+        <input type="text" id="address" name="address" placeholder="Teslimat adresini giriniz" maxlength="144" required>
+        <input type="hidden" id="card" name="card" value="Kredi/Banka Kartı">
         <button type="submit" class="button-form ">Siparişi Oluştur</button>
       </form>
     </div>
+
     <div id="pay-at-door" class="hidden">
       <p>Kapıda ödeme yapabilmeniz için kargonuzu teslim almadan önce OneToOneShop imzalı faturanızı kontrol ediniz ve
         fatura tutarını görevliye teslim ediniz.</p>
       <p>İlave kargo ücreti eklenebilir.</p>
-      <form class="at-door-form" id="at-door-form" action="" method="POST">
+      <form class="at-door-form" id="at-door-form" action="payment-servlet" method="GET">
         <p class="title-text form-title full-text">Adres Bilgileriniz</p>
-        <input type="text" id="address-door" name="address" placeholder="Teslimat adresini giriniz" maxlength="124" required>
+        <input type="text" id="address-door" name="address" placeholder="Teslimat adresini giriniz" maxlength="144" required>
+        <input type="hidden" id="door" name="door" value="Kapıda Ödeme">
         <button type="submit" class="button-form ">Siparişi Oluştur</button>
       </form>
     </div>
+
     <div id="pay-by-eft" class="hidden">
       <p>Aşağıda yazan hesap bilgilerine EFT/Havale işlemini gerçekleştiriniz.
         Ödemeniz alındığı zaman sipariş oluşturulacak tarafınıza bilgilendirme yapılacaktır.</p>
       <p>OneToOneShop TR00 0000 0000 0000 0000 0000 00</p>
-      <form class="eft-form" id="eft-form" action="" method="POST">
+      <form class="eft-form" id="eft-form" action="payment-servlet" method="GET">
         <p class="title-text form-title full-text">Adres Bilgileriniz</p>
-        <input type="text" id="address-eft" name="address" placeholder="Teslimat adresini giriniz" maxlength="124" required>
+        <input type="text" id="address-eft" name="address" placeholder="Teslimat adresini giriniz" maxlength="144" required>
+        <input type="hidden" id="eft" name="eft" value="EFT/Havale">
         <button type="submit" class="button-form ">Siparişi Oluştur</button>
       </form>
     </div>
