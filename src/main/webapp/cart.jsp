@@ -22,6 +22,9 @@
 <body>
 
 <%
+
+  String userEmail = (session != null) ? (String) session.getAttribute("userEmail") : null;
+
   Map<CartBean, ProductBean> productMap = new HashMap<>();
   List<CartBean> cartItems = (List<CartBean>) session.getAttribute("cartItems");
   ProductService dao = new ProductOperations();
@@ -111,6 +114,9 @@
       BigDecimal percentage = new BigDecimal("0.18");
       BigDecimal percentageAmount = totalAmount.multiply(percentage).setScale(2, BigDecimal.ROUND_HALF_UP);
       BigDecimal amountAfterPercentage = totalAmount.subtract(percentageAmount).setScale(2, BigDecimal.ROUND_HALF_UP);%>
+    <%
+      if (productMap != null && productMap.size() > 0) {
+     %>
     <div class="end-row">
       <div class="total-cart-container">
         <div class="total-text-row">
@@ -130,10 +136,14 @@
           <p class="text-large"><%=totalAmount%> TL</p>
         </div>
 
-        <p class="to-pay-button">Alışverişi Tamamla</p>
+        <p class="to-pay-button" onclick="redirectToPayment('<%=userEmail%>')">Alışverişi Tamamla</p>
 
       </div>
     </div>
+    <%
+      }
+    %>
+
   </div>
 </section>
 
@@ -179,6 +189,16 @@
     };
 
     xhr.send();
+  }
+
+  function redirectToPayment(email) {
+    if (email !== 'null' && email !== '') {
+      window.location.href = 'payment.jsp';
+    } else {
+      if (confirm("Giriş yapmanız gerekmektedir. Giriş yapmak istiyor musunuz?")) {
+        window.location.href = 'login.jsp';
+      }
+    }
   }
 
 </script>

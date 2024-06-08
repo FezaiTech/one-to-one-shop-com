@@ -31,8 +31,6 @@
   String userEmail = (session != null) ? (String) session.getAttribute("userEmail") : null;
   List<CartBean> cartItems = (List<CartBean>) session.getAttribute("cartItems");
 %>
-<h1>Welcome, <%= (userEmail != null) ? userEmail : "Yabancı" %></h1>
-
 <section id="header">
   <div class="header-row">
     <a href="home.jsp"><img src="assets/brand/onetone.png" alt="AppIcon" class="app-icon"></a>
