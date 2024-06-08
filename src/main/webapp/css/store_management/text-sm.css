@@ -22,3 +22,12 @@
     font-weight: 700;
     font-style: normal;
 }
+
+@media screen and (max-width: 450px) {
+    .sm-title{
+        font-size: 14px;
+    }
+    .sm-answer{
+        font-size: 14px;
+    }
+}

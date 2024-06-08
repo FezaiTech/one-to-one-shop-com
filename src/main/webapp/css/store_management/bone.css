@@ -8,7 +8,10 @@ body{
     padding: 0 16ch;
     color: #dddddd;
 }
-
+button{
+    border: none;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
 .column{
     display: flex;
     height: auto;
@@ -162,10 +165,10 @@ body{
 }
 
 .sm-product-box{
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 12px;
     background-color: #FFFFFF;
     width: 100%;
-    border: var(--grey-color-1) 2px solid;
 }
 .sm-product-box-padding{
     display: flex;
@@ -182,4 +185,51 @@ body{
 .image-box img{
     max-width: 80px;
     max-height: 80px;
+}
+
+.popup {
+    display: none; /* Gizli başlar */
+    position: fixed; /* Sabit pozisyon, sayfanın tamamını kaplar */
+    z-index: 100; /* Yüksek bir z-index değeri */
+    left: 0;
+    top: 0;
+    width: 34%;
+    height: 100%;
+    padding: 0 33%;
+    background-color: rgba(0, 0, 0, 0.4); /* Karanlık arka plan */
+}
+
+
+.popup-content {
+    background-color: #F2F2F2;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 7%;
+    width: 80%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#add-product-form input{
+    border: none;
+    border-radius: .25rem;
+    padding: 3% 2%;
+    width: 96%;
+    background-color: #FFFFFF;
+    height: 100%;
+    font-size: 14px;
 }
