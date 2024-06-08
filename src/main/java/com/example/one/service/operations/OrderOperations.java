@@ -6,6 +6,7 @@ import com.example.one.service.OrderService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -46,5 +47,24 @@ public class OrderOperations implements OrderService {
     @Override
     public List<OrderBean> getAllOrdersForUser(int userId) {
         return null;
+    }
+
+    @Override
+    public int getLastOrderNumber() {
+        int lastOrderNumber = 0;
+        String query = "SELECT MAX(order_number) FROM shopping_db.orders";
+
+        try (Connection conn = DatabaseConnection.provideConnection();
+             PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            if (rs.next()) {
+                lastOrderNumber = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return lastOrderNumber;
     }
 }

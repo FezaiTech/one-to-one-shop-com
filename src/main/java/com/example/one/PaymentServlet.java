@@ -63,6 +63,8 @@ public class PaymentServlet extends HttpServlet {
         }
 
         OrderService dao = new OrderOperations();
+        int lastOrderNumber = dao.getLastOrderNumber();
+        int newOrderNumber = lastOrderNumber + 1;
 
         Map<CartBean, ProductBean> productMap = new HashMap<>();
         List<CartBean> cartItems = (List<CartBean>) session.getAttribute("cartItems");
@@ -87,7 +89,7 @@ public class PaymentServlet extends HttpServlet {
 
                 OrderBean newOrder = new OrderBean();
                 newOrder.setUserId(userInfo.getId());
-                newOrder.setOrderNumber("1");
+                newOrder.setOrderNumber(String.valueOf(newOrderNumber));
                 newOrder.setProductId(product.getId());
                 newOrder.setQuantity(quantity);
                 newOrder.setPaymentMethod(paymentMethod);

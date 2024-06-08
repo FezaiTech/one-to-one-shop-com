@@ -12,4 +12,6 @@ public interface OrderService {
 
     public List<OrderBean> getAllOrdersForUser(int userId);
 
+    public int getLastOrderNumber();
+
 }
