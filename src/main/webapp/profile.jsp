@@ -1,6 +1,9 @@
 <%@ page import="com.example.one.service.UserService" %>
 <%@ page import="com.example.one.service.operations.UserOperations" %>
 <%@ page import="com.example.one.beans.UserBean" %>
+<%@ page import="com.example.one.service.SellerService" %>
+<%@ page import="com.example.one.service.operations.SellerOperations" %>
+<%@ page import="com.example.one.beans.SellerBean" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="tr">
@@ -19,6 +22,12 @@
   String userEmail = (session != null) ? (String) session.getAttribute("userEmail") : null;
   UserService daou = new UserOperations();
   UserBean userInfo = daou.getUserDetails(userEmail);
+  boolean isSeller = userInfo.getSellerStatus();
+  SellerBean seller = null;
+  if(isSeller){
+    SellerService daos = new SellerOperations();
+    seller = daos.getSellerDetails(userInfo.getId());
+  }
 %>
 <body>
 <section id="header">
@@ -55,16 +64,18 @@
     <p class="password-change">Şifremi Değiştirmek İstiyorum</p>
   </div>
   <div class="seller-profile">
-    <p class="title-box seller-title">Satıcı Olmak İstiyorum</p>
+    <p class="title-box seller-title"><%=isSeller ? "Satıcı Bilgileriniz" : "Satıcı Olmak İstiyorum"%></p>
     <div class="form-box">
       <p class="form-title seller-form-title">Mağaza Bilgileriniz</p>
-      <form class="user-update-form" id="sellerUpdateForm" action="" method="GET">
-        <label for="phone"></label>
-        <input type="text" id="seller-name" name="seller-name" placeholder="Mağaza Adı" maxlength="48" required>
-        <label for="email"></label>
-        <input type="number" id="seller-no" name="seller-no" placeholder="Vergi Numarası" maxlength="18" required>
-        <p class="info-text">Gerekli kontrol işlemlerinin ardından mağazanız aktif olacaktır. Profilinizden kontrol edebilirsiniz.</p>
-        <button type="submit" class="button button-seller-info">Satıcı Ol</button>
+      <form class="user-update-form" id="sellerUpdateForm" action="<%= isSeller ? "shop.jsp" : "update-seller-servlet" %>" method="POST">
+        <input type="hidden" id="sellerUserId" name="sellerUserId" value="<%= userInfo.getId() %>">
+        <label for="seller-name"></label>
+        <input type="text" id="seller-name" name="seller-name" value="<%= isSeller ? seller.getStoreName() : "" %>" placeholder="Mağaza Adı" maxlength="48" <%= isSeller ? "readonly" : "" %> required>
+        <label for="seller-no"></label>
+        <input type="number" id="seller-no" name="seller-no" value="<%= isSeller ? seller.getStoreNumber() : "" %>" placeholder="Vergi Numarası" maxlength="10" <%= isSeller ? "readonly" : "" %> required>
+        <p class="info-text"><%= isSeller ? "Daha önceden açtığınız mağaza bilgileri yukarıda yer almaktadır. Mağazanıza giderek panele erişebilirsiniz"
+                : "Gerekli kontrol işlemlerinin ardından mağazanız aktif olacaktır. Profilinizden kontrol edebilirsiniz." %></p>
+        <button type="submit" class="button button-seller-info"><%= isSeller ? "Mağazaya Git" : "Satıcı Ol" %></button>
       </form>
     </div>
   </div>

@@ -104,6 +104,23 @@ public class UserOperations implements UserService {
         }
     }
 
+    public String updateUserForSeller(int userId, boolean newSellerStatus){
+        String sql = "UPDATE shopping_db.users SET seller_status = ? WHERE id = ?";
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setBoolean(1, newSellerStatus);
+            ps.setInt(2, userId);
+
+            int rowsAffected = ps.executeUpdate();
+            DatabaseConnection.closeConnection(con);
+            DatabaseConnection.closeConnection(ps);
+            return rowsAffected > 0 ? "ok" : "Product not found.";
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "Error updating product.";
+        }
+    }
+
     @Override
     public String getFName(String email) {
         return null;

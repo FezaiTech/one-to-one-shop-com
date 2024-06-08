@@ -1,7 +1,10 @@
 package com.example.one;
 
+import com.example.one.beans.SellerBean;
 import com.example.one.beans.UserBean;
+import com.example.one.service.SellerService;
 import com.example.one.service.UserService;
+import com.example.one.service.operations.SellerOperations;
 import com.example.one.service.operations.UserOperations;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -69,6 +72,33 @@ public class UpdateUserServlet extends HttpServlet {
 
     private void handleSellerUpdate(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        int userId = Integer.parseInt(request.getParameter("sellerUserId"));
+
+        String storeName = request.getParameter("seller-name");
+        String storeNo = request.getParameter("seller-no");
+
+        SellerBean newSeller = new SellerBean();
+        newSeller.setUserId(userId);
+        newSeller.setStoreName(storeName);
+        newSeller.setStoreNumber(storeNo);
+
+        SellerService daos = new SellerOperations();
+        String updateStatusSeller = daos.addSeller(newSeller);
+
+        UserService dao = new UserOperations();
+        String updateStatusUser = dao.updateUserForSeller(userId, true);
+
+        if ("ok".equals(updateStatusUser) && "ok".equals(updateStatusSeller)) {
+            response.sendRedirect("profile.jsp");
+        } else {
+            response.setContentType("text/html");
+            try (PrintWriter out = response.getWriter()) {
+                out.println("<script type='text/javascript'>");
+                out.println("alert('Bir hata meydana geldi.');");
+                out.println("</script>");
+            }
+        }
 
     }
 
