@@ -101,12 +101,13 @@
         grid-template-columns: repeat(2,1fr);
         gap: 10px;
         align-self: center;
+        width: 100%;
     }
     .button-text-center{
         font-size: 12px;
     }
     .store-man-header-button{
-        width: 200px;
+        width: 100%;
         height: 35px;
     }
     .order-title{
@@ -134,10 +135,6 @@
 }
 
 @media screen and (max-width: 450px){
-    .store-man-header-button{
-        width: 140px;
-        height: 30px;
-    }
     .text-l{
         font-size: 15px;
     }
@@ -151,9 +148,5 @@
 }
 
 @media screen and (max-width: 330px){
-    .store-man-header-button{
-        width: 100px;
-        height: 30px;
-    }
 
 }
