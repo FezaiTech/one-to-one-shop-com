@@ -174,7 +174,7 @@
 <div id="product-add-popup-box" class="popup">
     <div class="popup-content column">
         <span class="close">&times;</span>
-        <form style="gap: 20px" class="column" id="add-product-form" name="add-product-form" method="POST" action="addToProductServlett" >
+        <form style="gap: 20px" class="column" id="add-product-form" name="add-product-form" method="GET" action="addToProductServlett" >
             <p style="text-align: center;;color: var(--green-color-1);font-weight: 800;" class="title-m">Mağazana Yeni Ürün Ekle</p>
             <input id="product-brand" name="product-brand" type="text" placeholder="Marka">
             <input id="prdoduct-category" name="product-category" type="text" placeholder="Kategori">
