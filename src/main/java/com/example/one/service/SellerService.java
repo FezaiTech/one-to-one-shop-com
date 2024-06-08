@@ -1,10 +1,15 @@
 package com.example.one.service;
 
 import com.example.one.beans.SellerBean;
+import com.example.one.beans.UserBean;
 
 public interface SellerService {
 
-    public boolean addSeller(SellerBean order);
+    public String addSeller(SellerBean sellerInfo);
 
-    public  boolean updateUserToSeller(int userId);
+    public  boolean updateSeller(int sellerId);
+
+    public  boolean deleteSeller(int sellerId);
+
+    public SellerBean getSellerDetails(int userId);
 }

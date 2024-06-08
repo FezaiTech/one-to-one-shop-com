@@ -14,6 +14,8 @@ public interface UserService {
 
     public String updateUserDetails(int userId, UserBean updateUser);
 
+    public String updateUserForSeller(int userId, boolean newSellerStatus);
+
     public String getFName(String emailId);
 
 }
