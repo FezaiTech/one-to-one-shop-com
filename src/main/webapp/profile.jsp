@@ -34,7 +34,10 @@
     <p class="title-box profile-title">Hesap</p>
     <div class="form-box">
       <p class="form-title">Bilgileriniz</p>
-      <form class="user-update-form" id="userUpdateForm" action="" method="GET">
+      <form class="user-update-form" id="userUpdateForm" action="update-user-servlet" method="GET">
+        <input type="hidden" id="userId" name="userId" value="<%= userInfo.getId() %>">
+        <input type="hidden" id="password" name="password" value="<%= userInfo.getPassword() %>">
+        <input type="hidden" id="sellerStatus" name="sellerStatus" value="<%= userInfo.isSellerStatus() %>">
         <div class="form-row">
           <label for="name"></label>
           <input type="text" id="name" name="name" value="<%= userInfo.getName()%>" placeholder="Adınız" maxlength="48" required>

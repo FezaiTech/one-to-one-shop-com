@@ -82,6 +82,8 @@ public class UserBean {
         this.sellerStatus = sellerStatus;
     }
 
+    public boolean getSellerStatus() {return sellerStatus;}
+
     public Timestamp getJoinDate() {
         return joinDate;
     }

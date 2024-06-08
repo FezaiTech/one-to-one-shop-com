@@ -80,6 +80,30 @@ public class UserOperations implements UserService {
         return null;
     }
 
+
+    public String updateUserDetails(int userId, UserBean updateUser){
+
+        String sql = "UPDATE shopping_db.users SET name = ?, surname = ?, phone = ?, email = ?, password = ?, seller_status = ? WHERE id = ?";
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, updateUser.getName());
+            ps.setString(2, updateUser.getSurname());
+            ps.setString(3, updateUser.getPhone());
+            ps.setString(4, updateUser.getEmail());
+            ps.setString(5, updateUser.getPassword());
+            ps.setBoolean(6, updateUser.getSellerStatus());
+            ps.setInt(7, userId);
+
+            int rowsAffected = ps.executeUpdate();
+            DatabaseConnection.closeConnection(con);
+            DatabaseConnection.closeConnection(ps);
+            return rowsAffected > 0 ? "ok" : "Product not found.";
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "Error updating product.";
+        }
+    }
+
     @Override
     public String getFName(String email) {
         return null;
