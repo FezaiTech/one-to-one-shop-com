@@ -5,6 +5,13 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.one.beans.OrderBean" %>
 <%@ page import="java.util.Objects" %>
+<%@ page import="com.example.one.beans.ProductBean" %>
+<%@ page import="com.example.one.service.ProductService" %>
+<%@ page import="com.example.one.service.operations.ProductOperations" %>
+<%@ page import="com.example.one.service.SellerService" %>
+<%@ page import="com.example.one.service.operations.SellerOperations" %>
+<%@ page import="com.example.one.beans.SellerBean" %>
+<%@ page import="java.math.BigDecimal" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="tr">
@@ -58,7 +65,12 @@
     <div id="orderList">
         <%
             if (orders != null) {
+                ProductService daop = new ProductOperations();
+                SellerService daos = new SellerOperations();
                 for (OrderBean order : orders) {
+                    ProductBean orderToProduct = daop.getProductDetails(order.getProductId());
+                    SellerBean orderToSeller = daos.getSellerDetails(orderToProduct.getSellerId());
+                    BigDecimal totalPrice = orderToProduct.getPrice().multiply(BigDecimal.valueOf(order.getQuantity()));
         %>
         <div class="order-item">
             <div class="order-info">
@@ -69,9 +81,10 @@
                 <div class="order-line"></div>
                 <div class="order-details">
                     <div class="text-column">
-                        <p class="order-info-title">Ürün ID: <%= order.getProductId() %></p>
-                        <p>Satıcı: <%= order.getOrderNumber() %></p>
-                        <p>Adet: <%= order.getQuantity() %></p>
+                        <p class="order-info-title"><%=orderToProduct.getName()%></p>
+                        <p><%=orderToProduct.getDescription()%></p>
+                        <p><%=order.getQuantity()%> Adet</p>
+                        <p>Satıcı : <%=orderToSeller.getStoreName()%></p>
                     </div>
                     <div class="order-image">
                         <!-- Ürün resmi buraya gelecek -->
@@ -86,7 +99,7 @@
                 </div>
                 <div class="order-amount">
                     <p class="order-operation-text">Ödendi</p>
-                    <p class="order-amount-text text-align-end"><%= order.getQuantity() %> TL</p>
+                    <p class="order-amount-text text-align-end"><%=totalPrice%> TL</p>
                 </div>
                 <div class="order-button">
                     <p class="order-button-text" style="color: <%= order.getStatus().equals("0") ? "var(--orange-color-1)" : order.getStatus().equals("1") ? "var(--blue-color-1)" : "var(--green-color-1)" %>;">

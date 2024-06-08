@@ -117,6 +117,14 @@ public class OrderOperations implements OrderService {
         return orderList;
     }
 
+    public String updateOrder(int orderId,OrderBean order){
+        return "";
+    }
+
+    public String updateOrderStatus(int orderId, String newStatus){
+        return "";
+    }
+
     @Override
     public int getLastOrderNumber() {
         int lastOrderNumber = 0;
