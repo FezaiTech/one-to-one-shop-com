@@ -10,7 +10,7 @@ public interface UserService {
 
     public boolean isRegistered(String email);
 
-    public UserBean getUserDetails(String email, String password);
+    public UserBean getUserDetails(String email);
 
     public String getFName(String emailId);
 

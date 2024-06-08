@@ -66,7 +66,7 @@
         </p>
         <%if (userEmail != null) {%>
         <div class="dropdown-content dropdown-profile">
-          <a href="account.jsp">Hesap Bilgileri</a>
+          <a href="profile.jsp">Hesap Bilgileri</a>
           <a href="logout-servlet">Çıkış Yap</a>
         </div><%
           }%>
