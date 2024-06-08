@@ -35,9 +35,34 @@
 .add-new-product-btn{
     background-color: var(--green-color-1);
     border-radius: 50px;
-    padding: 10px;
+    align-content: center;
     align-self: center;
+    padding: 0 1%;
+    min-width: 140px;
+    width: 140px;
+    height: 44px;
+    cursor: pointer;
 }
 .add-new-product-btn:hover{
     background-color: var(--green-color-2);
+}
+
+.sm-product-edit-btn{
+    border-radius: 7px;
+    background-color: var(--blue-color-3) ;
+    padding: 1.5% 2%;
+    cursor: pointer;
+}
+.sm-product-edit-btn:hover{
+    background-color: var(--blue-color-1);
+}
+
+.sm-product-delete-btn{
+    border-radius: 50px;
+    background-color: var(--red-color-1) ;
+    padding: 1.5% 5%;
+    cursor: pointer;
+}
+.sm-product-delete-btn:hover{
+    background-color: var(--red-color-2);
 }

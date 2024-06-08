@@ -2,6 +2,7 @@
     body{
         padding: 2ch 2ch;
     }
+
     .app-icon{
         height: 32px;
     }
@@ -18,7 +19,14 @@
     #header{
         width: 100%;
     }
-    
+    .search-container-sm{
+        max-width: 200px;
+    }
+    .search-container-sm input{
+        max-height: 30px;
+    }
+    .add-new-product-btn{height: 35px}
+
 
 }
 @media screen and (max-width: 740px){
@@ -28,10 +36,10 @@
     .unhidden{
         display: none;
     }
-    .search-container{
+    .search-container-sm{
         width: 100%;
     }
-    .search-container form{
+    .search-container-sm form{
         width: 100%;
     }
     .store-man-header-button{
@@ -84,6 +92,7 @@
     .title-container{
         height: 50px;
     }
+
 }
 
 @media screen and (max-width: 600px){
@@ -111,6 +120,17 @@
         width: 100%;
         align-items: start;
     }
+    .sm-body-grid{
+        grid-template-columns: repeat(1,1fr);
+        gap: 1%;
+    }
+    .sm-title{
+        font-size: 70px;
+        color: orange;
+    }
+    .sm-answer{
+        color: red;
+    }
 }
 
 @media screen and (max-width: 450px){
@@ -118,6 +138,16 @@
         width: 140px;
         height: 30px;
     }
+    .text-l{
+        font-size: 15px;
+    }
+    .add-new-product-btn{
+        height: 30px;
+        font-size: 11px;
+        width: 70px;
+        min-width: 100px;
+    }
+
 }
 
 @media screen and (max-width: 330px){
@@ -125,4 +155,5 @@
         width: 100px;
         height: 30px;
     }
+
 }

@@ -1,5 +1,6 @@
 #search-bar{
     width: 100%;
+    height: auto;
 }
 
 .search-container-sm form {
@@ -8,7 +9,8 @@
 .search-container-sm {
     text-align: center;
     align-self: center;
-    width: 50%;
+    width: 100%;
+    max-width: 800px;
 }
 
 .search-container-sm form {
