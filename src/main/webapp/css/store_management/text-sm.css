@@ -1,0 +1,33 @@
+.title-grid{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    height: 140px;
+}
+.sm-title{
+    color: black;
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 400;
+}
+.sm-answer{
+    color: black;
+    font-style: normal;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.sm-button-text{
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 700;
+    font-style: normal;
+}
+
+@media screen and (max-width: 450px) {
+    .sm-title{
+        font-size: 14px;
+    }
+    .sm-answer{
+        font-size: 14px;
+    }
+}
