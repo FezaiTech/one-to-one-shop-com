@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+/* Default Light Mode */
+:root {
+    --primary-color-1: white;
+    --primary-color-2: black;
+
+    --blue-color-1: rgb(2,64,89);
+    --blue-color-2: rgb(0,20,28);
+    --blue-color-3: rgb(2,104,115);
+    --blue-color-4: rgb(134,166,157);
+
+    --orange-color-1: rgb(242,81,22);
+    --orange-color-2: rgb(217,50,13);
+
+    --green-color-1: rgb(3,166,74);
+    --green-color-2: rgb(2,89,64);
+
+    --red-color-1: rgb(242,7,50);
+    --red-color-2: rgb(140,0,26);
+
+    --grey-color-1: rgb(164,165,166);
+    --grey-color-2: rgb(110,113,115);
+
+    --background-color: rgb(242, 242, 242);
+
+    --secondary-color-1: rgb(242,242,242);
+    --secondary-color-2: rgb(58,62,64);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    transition: all 300ms ease;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    background-color: var(--background-color);
+    cursor: default;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+.sizedBox{
+    height: 20px;
+}
+
+p{
+    margin: 0;
+}
+

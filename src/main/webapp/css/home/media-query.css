@@ -1,0 +1,134 @@
+@media screen and (max-width: 1140px){
+    #header {
+        padding: 2ch 2ch;
+    }
+
+    #slider-bar {
+        padding: 2ch 2ch;
+    }
+
+    #tech {
+        padding: 2ch 2ch;
+    }
+
+    .app-icon{
+        height: 32px;
+    }
+
+    .banner{
+        width: auto;
+        height: auto;
+        max-height: 90px;
+        max-width: 300px;
+    }
+
+}
+
+@media screen and (max-width: 740px){
+    #header{
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    #slider-bar {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .banner{
+        width: 100%;
+        height: auto;
+    }
+
+    .header-row{
+        gap: 6px;
+    }
+
+    .header-button{
+        height: 36px;
+    }
+
+    .button-text{
+        font-size: 0.65rem;
+    }
+
+    .my-profile-text{
+        display: none;
+    }
+
+    .text-buttons{
+        gap: 6px;
+    }
+
+    .posters{
+        flex-direction: column-reverse;
+        gap: 4px;
+    }
+
+    .poster-index{
+        flex-direction: row;
+        padding: 6px 12px;
+        gap: 12px;
+    }
+    .index{
+        width: 5px;
+        height: 5px;
+        font-size: 0;
+        background-color: var(--orange-color-1);
+    }
+
+    .product {
+        border-radius: 6px;
+        padding: 8px;
+        width: 170px;
+        height: 170px;
+    }
+    .product h2 {
+        font-size: 1rem;
+    }
+    .product p {
+        font-size: 0.85rem;
+    }
+
+    .product-price{
+        font-size: 1.2rem;
+    }
+    .product-image{
+        max-width: 80px;
+    }
+
+    .add-cart-button{
+        width: 20px;
+        height: 20px;
+    }
+
+    .cart-icon{
+        width: 12px;
+        height: 12px;
+    }
+
+    .category-title{
+        font-size: 1.5rem;
+    }
+    .category-subtitle{
+        font-size: 0.85rem;
+    }
+
+    .dropdown-content {
+        min-width: 120px;
+        margin-top: 112px;
+    }
+
+    .dropdown-content a {
+        padding: 6px 10px;
+        font-size: 0.75rem;
+    }
+
+    .dropdown-content a:hover {background-color: #ddd;}
+
+    .category-button:hover .dropdown-content {display: block;}
+
+    .header-button{
+        padding: 0 8px;
+    }
+}

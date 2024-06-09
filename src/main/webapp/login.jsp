@@ -1,0 +1,50 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.net.URLDecoder" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giriş Yap</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/login.css" />
+  <link rel="stylesheet" href="css/text.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+
+<section id="login">
+  <div class="custom-row">
+    <div class="container-text">
+      <div>
+        <p class="info-text-p1">Hoş <span class="br-login"></span>Geldiniz</p>
+        <p class="info-text-p2">Size dair<span class="br-login"></span> her şey</p>
+      </div>
+      <img src="./assets/brand/onetone-w.png" alt="App Icon" class="app-icon"/>
+    </div>
+    <div class="custom-column">
+      <div class="container-form">
+        <p class="info-text-p3">Giriş Yap</p>
+        <form class="registration-form" id="registration-form" action="login-servlet" method="POST">
+          <label for="email"></label>
+          <input type="text" id="email" name="email" placeholder="E-Posta Adresiniz" value="<%= request.getParameter("email") != null ? URLDecoder.decode(request.getParameter("email"), "UTF-8") : "" %>" required>
+          <label for="password"></label>
+          <div class="password-container">
+            <input type="password" id="password" name="password" placeholder="Şifreniz" required>
+            <button type="button" id="toggle-password">göster</button>
+          </div>
+          <p class="info-text-p4">Şifremi Unuttum</p>
+          <button type="submit" class="button">Giriş Yap</button>
+        </form>
+      </div>
+      <div class="custom-row custom-text-row">
+        <p class="info-text-p4">OneToOneShop’ta yeni misin?</p>
+        <p id="toSignUp" class="info-text-p5">Hesap Oluştur</p>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="js/login.js"></script>
+</body>
+</html>
