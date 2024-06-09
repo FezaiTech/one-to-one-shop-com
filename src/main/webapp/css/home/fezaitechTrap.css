@@ -10,7 +10,6 @@ body{
 #header {
     padding: 2ch 16ch;
     display: flex;
-    gap: 44px;
     width: 100%;
     justify-content: start;
     align-items: center;

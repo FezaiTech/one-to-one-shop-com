@@ -20,9 +20,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Siparişlerim</title>
-    <link rel="stylesheet" href="css/style.css"/>
-    <link rel="stylesheet" href="css/text.css"/>
-    <link rel="stylesheet" href="css/orders.css"/>
+    <link rel="stylesheet" href="css/orders.css?v=1"/>
+    <link rel="stylesheet" href="css/style.css?v=1"/>
+    <link rel="stylesheet" href="css/text.css?v=1"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
@@ -38,12 +38,13 @@
         orders = orderService.getAllOrdersForUser(userId);
     }
     int activeOrders = 0;
-    for (OrderBean order : orders) {
-        if (!Objects.equals(order.getStatus(), "2")) {
-            activeOrders++;
+    if(userEmail != null){
+        for (OrderBean order : orders) {
+            if (!Objects.equals(order.getStatus(), "2")) {
+                activeOrders++;
+            }
         }
     }
-
 %>
 
 <section id="header">
@@ -67,10 +68,17 @@
             if (orders != null) {
                 ProductService daop = new ProductOperations();
                 SellerService daos = new SellerOperations();
+                String currentOrderNumber = null;
                 for (OrderBean order : orders) {
                     ProductBean orderToProduct = daop.getProductDetails(order.getProductId());
                     SellerBean orderToSeller = daos.getSellerDetails(orderToProduct.getSellerId());
                     BigDecimal totalPrice = orderToProduct.getPrice().multiply(BigDecimal.valueOf(order.getQuantity()));
+                    if (currentOrderNumber == null || !currentOrderNumber.equals(order.getOrderNumber())) {
+                        currentOrderNumber = order.getOrderNumber();
+        %>
+        <p class="order-number">Sipariş Numarası: #<%= order.getOrderNumber() %></p>
+        <%
+            }
         %>
         <div class="order-item">
             <div class="order-info">

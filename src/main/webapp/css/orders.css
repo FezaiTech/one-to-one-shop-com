@@ -135,7 +135,12 @@ body{
     flex-direction: row;
     justify-content: space-between;
 }
-
+.order-number{
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--red-color-1);
+}
 .order-info-title{
     text-align: center;
     font-weight: bold;
@@ -224,9 +229,7 @@ body{
     font-weight: bold;
     color: var(--orange-color-1);
 }
-.br-order{
 
-}
 
 @media screen and (max-width: 1140px) {
     #header {
@@ -259,12 +262,13 @@ body{
         display: none;
     }
     .order-operation{
-        width: 100%;
         border-radius: 0 0 8px 8px;
-        gap: 16px;
+        padding: 10px;
+        min-width: 100%;
     }
     .order-button{
         width: 100%;
+        padding: 0 20px;
     }
     .order-info{
         flex-direction: column;
@@ -287,9 +291,6 @@ body{
         height: 4px;
         background-color: var(--primary-color-1);
         margin: 6px 0;
-    }
-    .br-order{
-        display: none;
     }
     .order-title{
         font-size: 1.35rem;

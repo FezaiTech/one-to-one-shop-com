@@ -119,7 +119,6 @@
 .dropdown-profile{
     background-color: var(--orange-color-1);
     min-width: 120px;
-    margin-top: 112px;
 }
 
 .dropdown-content a {
