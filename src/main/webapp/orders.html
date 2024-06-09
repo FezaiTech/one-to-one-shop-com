@@ -96,9 +96,12 @@
                             <p class="order-operation-text">Ödendi</p>
                             <p class="order-amount-text text-align-end">${order.amount} ₺</p>
                         </div>
-                        <div class="order-button">
-                            <p class="order-button-text" style="color: ${operationColor};">${buttonText}</p>
-                        </div>
+                        <form action="customer-order-cancellation" class="form-temp" method="GET">
+                            <input type="hidden" name="orderId" value="<%= order.getId() %>">
+                            <button type="submit" class="order-button" >
+                                <p class="order-button-text" style="color: ${operationColor};">${buttonText}</p>
+                            </button>
+                         </form>
                     </div>
                 `;
 

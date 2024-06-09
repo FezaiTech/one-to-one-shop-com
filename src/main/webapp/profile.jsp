@@ -67,7 +67,7 @@
     <p class="title-box seller-title"><%=isSeller ? "Satıcı Bilgileriniz" : "Satıcı Olmak İstiyorum"%></p>
     <div class="form-box">
       <p class="form-title seller-form-title">Mağaza Bilgileriniz</p>
-      <form class="user-update-form" id="sellerUpdateForm" action="<%= isSeller ? "shop.jsp" : "update-seller-servlet" %>" method="POST">
+      <form class="user-update-form" id="sellerUpdateForm" action="<%= isSeller ? "store-management.jsp" : "update-seller-servlet" %>" method="POST">
         <input type="hidden" id="sellerUserId" name="sellerUserId" value="<%= userInfo.getId() %>">
         <label for="seller-name"></label>
         <input type="text" id="seller-name" name="seller-name" value="<%= isSeller ? seller.getStoreName() : "" %>" placeholder="Mağaza Adı" maxlength="48" <%= isSeller ? "readonly" : "" %> required>

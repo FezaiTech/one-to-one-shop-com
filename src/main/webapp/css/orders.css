@@ -207,24 +207,35 @@ body{
     margin: 0;
 }
 
+.form-temp{
+    width: 100%;
+}
+
+input {
+    border: none;
+    width: 100%;
+}
+
 .order-button {
     width: 100%;
     height: 44px;
     padding: 0 60px;
     border-radius: 64px;
+    border: none;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     background-color: var(--primary-color-1);
+    user-select: none;
 }
 
 .order-button:hover{
     background-color: var(--secondary-color-1);
 }
 
-.order-button-text {
+.order-button-text{
     margin: 0;
     font-weight: bold;
     color: var(--orange-color-1);

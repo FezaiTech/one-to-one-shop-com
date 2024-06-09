@@ -79,6 +79,32 @@
         <p class="order-number">Sipariş Numarası: #<%= order.getOrderNumber() %></p>
         <%
             }
+                    String boxAndTextColor = "var(--secondary-color-1)";
+                    String status = "Bilinmiyor";
+                    String buttonText = "İşlem yapılamaz";
+                    String orderStatus = order.getStatus();
+                    if(orderStatus.equals("0")){
+                        boxAndTextColor = "var(--orange-color-1)";
+                        status = "Hazırlanıyor";
+                        buttonText = "Siparişi İptal Et";
+                    } else if (orderStatus.equals("1")) {
+                        boxAndTextColor = "var(--blue-color-1)";
+                        status = "Kargo Takip";
+                        buttonText = "Siparişi İptal Et";
+                    } else if (orderStatus.equals("2")) {
+                        boxAndTextColor = "var(--green-color-1)";
+                        status = "Değerlendir";
+                        buttonText = "Siparişi İptal Et";
+                    } else if (orderStatus.equals("3")) {
+                        boxAndTextColor = "var(--red-color-1)";
+                        status = "İptal Ettiniz";
+                        buttonText = "İşlem Yapılamaz";
+                    } else if (orderStatus.equals("4")) {
+                        boxAndTextColor = "var(--grey-color-1)";
+                        status = "İptal Edildi";
+                        buttonText = "İşlem Yapılamaz";
+                    }
+
         %>
         <div class="order-item">
             <div class="order-info">
@@ -100,28 +126,61 @@
                 </div>
             </div>
             <div class="spacer"></div>
-            <div class="order-operation" style="background-color: <%= order.getStatus().equals("0") ? "var(--orange-color-1)" : order.getStatus().equals("1") ? "var(--blue-color-1)" : "var(--green-color-1)" %>;">
+            <div class="order-operation" style="background-color: <%=boxAndTextColor%>;">
                 <div class="order-state">
                     <p class="order-operation-text">Sipariş<br class="br-x-small">Durumu</p>
-                    <p class="order-operation-text text-align-end"><%= order.getStatus().equals("0") ? "Hazırlanıyor" : order.getStatus().equals("1") ? "Kargoya Verildi" : "Teslim Edildi" %></p>
+                    <p class="order-operation-text text-align-end"><%=status%></p>
                 </div>
                 <div class="order-amount">
                     <p class="order-operation-text">Ödendi</p>
                     <p class="order-amount-text text-align-end"><%=totalPrice%> TL</p>
                 </div>
+                <%
+                    if(orderStatus.equals("0") || orderStatus.equals("1") || orderStatus.equals("2")){
+                %>
+                <form id="orderCancellationForm" class="form-temp" method="post" action=<%=orderStatus.equals("0") ? "customer-order-cancellation" : ""%>>
+                    <input type="hidden" name="orderId" value="<%=order.getId()%>">
+                    <input type="hidden" name="newStatus" value="3">
+                    <button type="submit" class="order-button"  onclick="return confirmOrderAction(event, '<%= order.getStatus() %>')">
+                        <p class="order-button-text" style="color: <%=boxAndTextColor%>;">
+                            <%=buttonText%></p>
+                    </button>
+                </form>
+                <%
+                    }else{
+                %>
                 <div class="order-button">
-                    <p class="order-button-text" style="color: <%= order.getStatus().equals("0") ? "var(--orange-color-1)" : order.getStatus().equals("1") ? "var(--blue-color-1)" : "var(--green-color-1)" %>;">
-                        <%= order.getStatus().equals("0") ? "Siparişi İptal Et" : order.getStatus().equals("1") ? "Kargo Takip" : "Değerlendir" %>
+                    <p class="order-button-text" style="color: <%=boxAndTextColor%>;">
+                        <%=buttonText%>
                     </p>
                 </div>
+                <%
+                    }
+                %>
             </div>
         </div>
-
         <%
                 }
             }
         %>
     </div>
 </section>
+
+<script>
+    function confirmOrderAction(event, status) {
+        if (status === '0') {
+            if (confirm('Siparişi iptal etmek istediğinizden emin misiniz?')) {
+                return true;
+            } else {
+                event.preventDefault();
+                return false;
+            }
+        } else if (status === '1') {
+            window.alert('Kargo firmasının takip sistemi henüz aktif değildir.')
+        } else {
+            window.alert('Siparişi değerlendirmek için yeteri kadar süre geçmedi')
+        }
+    }
+</script>
 </body>
 </html>
