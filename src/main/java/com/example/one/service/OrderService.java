@@ -12,6 +12,10 @@ public interface OrderService {
 
     public List<OrderBean> getAllOrdersForUser(int userId);
 
+    public String updateOrder(int orderId,OrderBean order);
+
+    public String updateOrderStatus(int orderId, String newStatus);
+
     public int getLastOrderNumber();
 
 }
