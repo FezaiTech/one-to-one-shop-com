@@ -89,12 +89,12 @@
                         buttonText = "Siparişi İptal Et";
                     } else if (orderStatus.equals("1")) {
                         boxAndTextColor = "var(--blue-color-1)";
-                        status = "Kargo Takip";
-                        buttonText = "Siparişi İptal Et";
+                        status = "Kargolandı";
+                        buttonText = "Kargo Takip";
                     } else if (orderStatus.equals("2")) {
                         boxAndTextColor = "var(--green-color-1)";
-                        status = "Değerlendir";
-                        buttonText = "Siparişi İptal Et";
+                        status = "Teslim Edildi";
+                        buttonText = "Değerlendir";
                     } else if (orderStatus.equals("3")) {
                         boxAndTextColor = "var(--red-color-1)";
                         status = "İptal Ettiniz";
