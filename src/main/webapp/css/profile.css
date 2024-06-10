@@ -7,46 +7,6 @@ body{
     flex-direction: column;
 }
 
-/*HEADER*/
-#header {
-    padding: 2ch 16ch;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-}
-.app-icon{
-    height: 44px;
-    cursor: pointer;
-}
-.icon{
-    height: 16px;
-}
-
-.profile-button{
-    width: max-content;
-    height: 44px;
-    padding: 0 12px;
-    border-radius: 64px;
-    gap: 8px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    background-color: var(--orange-color-1);
-}
-
-.profile-button:hover{
-    background-color: var(--orange-color-2);
-}
-
-.button-text{
-    font-size: 1rem;
-    margin: 0;
-    color: var(--primary-color-1);
-}
-
 /*PROFILE*/
 #profile-form{
     padding: 2ch 16ch;
@@ -160,10 +120,6 @@ input {
     text-align: center;
 }
 @media screen and (max-width: 1140px) {
-    #header {
-        padding: 2ch 2ch;
-    }
-
     #profile-form {
         padding: 2ch 2ch;
         flex-direction: column;
@@ -171,14 +127,9 @@ input {
         align-items: center;
         gap: 12px;
     }
-
-    .app-icon{
-        height: 36px;
-    }
 }
 
 @media screen and (max-width: 740px) {
-
     .title-box{
         font-size: 1.1rem;
     }
@@ -188,16 +139,6 @@ input {
         bottom: 2ch;
         left: 0;
         width: 80vw;
-    }
-
-    .profile-button{
-        width: 44px;
-        height: 44px;
-        border-radius: 100%;
-    }
-
-    .button-text{
-        display: none;
     }
 }
 

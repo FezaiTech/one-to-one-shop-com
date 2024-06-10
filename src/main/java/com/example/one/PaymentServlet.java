@@ -101,6 +101,7 @@ public class PaymentServlet extends HttpServlet {
         }
 
         if ("ok".equals(addOrderStatus)) {
+            session.removeAttribute("cartItems");
             response.sendRedirect("orders.jsp");
         } else {
             response.setContentType("text/html");

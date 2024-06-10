@@ -1,9 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.net.URLDecoder" %>
-<%@ page import="javax.servlet.http.HttpSession" %>
 <%@ page import="com.example.one.beans.ProductBean" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.example.one.service.UserService" %>
 <%@ page import="com.example.one.service.ProductService" %>
 <%@ page import="com.example.one.service.operations.ProductOperations" %>
 <%@ page import="com.example.one.service.CartService" %>
@@ -26,12 +23,11 @@
 </head>
 
 <body>
-<%
-  String userEmail = (session != null) ? (String) session.getAttribute("userEmail") : null;
-  List<CartBean> cartItems = (List<CartBean>) session.getAttribute("cartItems");
-%>
 
-<%@ include file="header.jsp" %>
+<jsp:include page="header.jsp">
+  <jsp:param name="headerType" value="full" />
+</jsp:include>
+
 <section id="slider-bar">
   <div class="posters">
     <div class="poster-index">
