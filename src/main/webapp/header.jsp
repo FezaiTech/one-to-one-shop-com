@@ -32,9 +32,9 @@
         <div class="header-button category-button dropdown">
           <p class="button-text text-color">Kategoriler</p>
           <div class="dropdown-content">
-            <a href="#">Elektronik</a>
-            <a href="#">Moda</a>
-            <a href="#">Ev, Yaşam</a>
+            <a href="category-servlet?categoryName=Elektronik">Elektronik</a>
+            <a href="category-servlet?categoryName=Moda">Moda</a>
+            <a href="category-servlet?categoryName=Ev-Yaşam">Ev-Yaşam</a>
           </div>
         </div>
         <%

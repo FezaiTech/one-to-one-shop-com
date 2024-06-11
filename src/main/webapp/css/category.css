@@ -1,0 +1,232 @@
+body{
+    background-image: url('../assets/const/background_1.png');
+    background-size: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/*ITEMS*/
+#items{
+    padding: 2ch 16ch;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    width: 100%;
+    gap: 16px;
+}
+
+#items p{
+    margin: 0;
+}
+ /*GRID*/
+.wrapper {
+    display: grid;
+    grid-gap: 12px;
+    width: 100%;
+    grid-template-columns: [col1-start] 55%  [col2-start] auto [col2-end];
+    grid-template-rows: [row1-start] 200px [row2-start] 200px [row2-end];
+}
+
+.wrapper-reverse {
+    display: grid;
+    grid-gap: 12px;
+    width: 100%;
+    grid-template-columns: [col1-start] auto  [col2-start] 55% [col2-end];
+    grid-template-rows: [row1-start] 200px [row2-start] 200px [row2-end];
+}
+
+.a {
+    grid-column: col1-start / col2-start;
+    grid-row: row1-start ;
+}
+.b {
+    grid-column: col2-start ;
+    grid-row: row1-start / row2-end;
+}
+.c {
+    grid-column: col1-start;
+    grid-row: row2-start ;
+}
+
+.a-r{
+    grid-column: col1-start;
+    grid-row: row1-start / row2-end ;
+}
+
+.b-r{
+    grid-column: col2-start ;
+    grid-row: row1-start;
+}
+
+.c-r{
+    grid-column: col2-start ;
+    grid-row: row2-start;
+}
+
+/*ITEM*/
+.result-item{
+    background-color: var(--secondary-color-1);
+    padding: 12px;
+    border-radius: 12px;
+    gap: 12px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+}
+
+.img-container{
+    height: 100%;
+    width: 176px;
+    background-color: var(--primary-color-1);
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: contain;
+}
+
+.img-container-for-column{
+    height: 176px;
+    width: 100%;
+}
+
+.flex-column{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.item-add-cart{
+    color: var(--primary-color-1);
+    background-color: var(--orange-color-1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    padding: 4px 12px;
+    cursor: pointer;
+}
+.item-add-cart:hover{
+    background-color: var(--orange-color-2);
+}
+
+.cart-icon-l{
+    width: 22px;
+    display: none;
+}
+.item-add-cart-icon:hover{
+    background-color: var(--orange-color-2);
+}
+
+/*TEXT*/
+.c-text-l{
+    font-size: 1.5rem;
+    color: var(--secondary-color-2);
+}
+
+.c-text-s{
+    font-size: 1rem;
+    color: var(--secondary-color-2);
+}
+
+.item-text-l{
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.item-text-m{
+    font-size: 1.15rem;
+    font-weight: bold;
+}
+
+.item-text-s{
+    font-size: .9rem;
+}
+
+@media screen and (max-width: 1140px) {
+    #items {
+        padding: 2ch 2ch;
+        gap: 12px;
+    }
+
+    .result-item{
+        min-height: 200px;
+        height: auto;
+    }
+
+    .img-container{
+        width: 144px;
+    }
+
+    .img-container-for-column{
+        width: 100%;
+    }
+
+    .item-add-cart{
+        border-radius: 100%;
+        width: 36px;
+        height: 36px;
+        padding: 10px;
+    }
+
+    .cart-icon-l{
+        display: flex;
+    }
+
+    .add-text{
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 740px) {
+    .wrapper, .wrapper-reverse {
+        grid-template-columns: repeat(1, 2fr);
+        grid-template-rows: repeat(3, 2fr);
+    }
+
+    .a, .b, .c, .a-r, .b-r, .c-r{
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .item-add-cart{
+        width: 30px;
+        height: 30px;
+        padding: 6px;
+    }
+
+    .img-container{
+        width: 112px;
+    }
+
+    .img-container-for-column{
+        width: 100%;
+        height: 112px;
+    }
+
+    .item-text-l{
+        font-size: 1.15rem;
+    }
+
+    .item-text-m{
+        font-size: 1.05rem;
+    }
+
+    .item-text-s{
+        font-size: .8rem;
+    }
+}

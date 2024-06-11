@@ -216,6 +216,10 @@
         font-size: 0.85rem;
     }
 
+    .header-row{
+        gap: 8px;
+    }
+
     .header-button{
         height: 36px;
         padding: 0 8px;
