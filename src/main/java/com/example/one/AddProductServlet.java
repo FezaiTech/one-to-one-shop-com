@@ -6,8 +6,13 @@ import java.io.PrintWriter;
 import java.math.BigDecimal;
 
 import com.example.one.beans.ProductBean;
+import com.example.one.beans.UserBean;
 import com.example.one.service.ProductService;
+import com.example.one.service.SellerService;
+import com.example.one.service.UserService;
 import com.example.one.service.operations.ProductOperations;
+import com.example.one.service.operations.SellerOperations;
+import com.example.one.service.operations.UserOperations;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -33,13 +38,25 @@ public class AddProductServlet extends HttpServlet {
             }
         }
 
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("userEmail") == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
+
+        String userEmail = (String) session.getAttribute("userEmail");
+        UserService daou = new UserOperations();
+        UserBean userInfo = daou.getUserDetails(userEmail);
+        SellerService daos = new SellerOperations();
+        int sellerId = daos.getSellerDetails(userInfo.getId()).getId();
+
         Part part = request.getPart("product-img");
         InputStream inputStream = part.getInputStream();
         InputStream prodImage = inputStream;
 
         ProductService productService = new ProductOperations();
         ProductBean newItem = new ProductBean();
-        newItem.setSellerId(1);/*GET ID*/
+        newItem.setSellerId(sellerId);
         newItem.setName(productName);
         newItem.setDescription(productDetail);
         newItem.setCategory(productCategory);
@@ -51,9 +68,13 @@ public class AddProductServlet extends HttpServlet {
         if (g.equals("ok")){
             response.sendRedirect("store-management.jsp");
         } else {
-            response.setContentType("text/html");
             try (PrintWriter out = response.getWriter()) {
-                out.println(g);
+                out.println("<html><body>");
+                out.println("<script type='text/javascript'>");
+                out.println("alert('Bir hata meydana geldi.');");
+                out.println("window.location.href = 'store-management.jsp';");
+                out.println("</script>");
+                out.println("</body></html>");
             }
         }
     }

@@ -4,6 +4,7 @@
     justify-content: end;
     align-items: center;
     gap: 6px;
+    cursor: pointer;
 }
 .push-icon{
     width: 24px;
@@ -24,8 +25,8 @@
 }
 
 .add-cart-button{
-    width: 32px;
-    height: 32px;
+    width: 26px;
+    height: 26px;
     border-radius: 100%;
     background-color: var(--blue-color-1);
     display: flex;
@@ -36,7 +37,6 @@
 .add-cart-button:hover{
     background-color: var(--orange-color-1);
 }
-
 .cart-icon{
     width: 18px;
     height: 18px;

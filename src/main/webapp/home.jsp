@@ -6,6 +6,7 @@
 <%@ page import="com.example.one.service.CartService" %>
 <%@ page import="com.example.one.service.operations.CartOperations" %>
 <%@ page import="com.example.one.beans.CartBean" %>
+<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -53,49 +54,67 @@
   </div>
 </section>
 
-<section id="tech">
-  <div class="title-row">
-    <div class="title-column">
-      <div class="category-title">Elektronik</div>
-      <div class="category-subtitle">Kategorinin öne çıkan ürünleri</div>
-    </div>
-    <div class="push-button">
-      <div class="category-subtitle">Tümü</div>
-      <div class="push-icon">
-        <img src="assets/icons/push.png" class="mini-icon">
+<section id="category-list">
+  <%
+    String[] categoryNames = {"Elektronik", "Moda", "Ev-Yaşam", "Kitap"};
+    String[] categoryColors = {"var(--blue-color-1)", "var(--red-color-1)", "var(--green-color-1)", "var(--blue-color-3)"};
+    ProductService dao = new ProductOperations();
+    for(int i = 0; i < categoryNames.length; i++){
+      /*check array length*/
+      String category = categoryNames[i];
+      String color = categoryColors[i];
+
+      List<ProductBean> products = dao.getAllProductsByCategory(category,10);
+
+  %>
+  <div class="one-category">
+    <div class="title-row">
+      <div class="title-column">
+        <div class="category-title" style="color: <%=color%>"><%=category%></div>
+        <div class="category-subtitle" style="color: <%=color%>">Kategorinin öne çıkan ürünleri</div>
       </div>
+      <div class="push-button" onclick=goCategoryPage("<%=category%>")>
+        <div class="category-subtitle" style="color: <%=color%>">Tümü</div>
+        <div class="push-icon" style="background-color: <%=color%>">
+          <img src="assets/icons/push.png" class="mini-icon">
+        </div>
+      </div>
+    </div>
+    <div class="product-containers" id="productContainer">
+      <%
+        if(products != null && !products.isEmpty()){
+        for (ProductBean product : products) {
+      %>
+      <div class="product">
+        <p class="item-name-text"><%= product.getName() %></p>
+        <p class="br-x-small desc-text"><%= product.getDescription() %></p>
+        <div class="image-center">
+          <img src="imageServlet?productId=<%=product.getId()%>" alt="<%=product.getName()%>" class="product-image" data-productid="<%= product.getId() %>">
+        </div>
+        <div class="product-row">
+          <p class="product-price"><%= product.getPrice() %> TL</p>
+          <div class="add-cart-button">
+            <img src="assets/icons/add.png" class="cart-icon">
+          </div>
+        </div>
+      </div>
+      <%
+        }
+        }else{
+      %>
+      <div class="product">
+        <p class="product-price">Henüz bu kategori için ürün eklenmedi.</p>
+      </div>
+      <%
+        }
+      %>
     </div>
   </div>
 
   <%
-    ProductService dao = new ProductOperations();
-    List<ProductBean> products = dao.getAllProductsByCategory("Elektronik");
+    }
 
-    CartService cao = new CartOperations();
-    List<CartBean> cart = null;
   %>
-
-  <div class="product-containers" id="productContainer">
-    <%
-      for (ProductBean product : products) {
-    %>
-    <div class="product">
-      <h2><%= product.getName() %></h2>
-      <p class="br-x-small"><%= product.getDescription() %></p>
-      <div class="image-center">
-        <img src="imageServlet?productId=<%=product.getId()%>" alt="<%=product.getName()%>" class="product-image" data-productid="<%= product.getId() %>">
-      </div>
-      <div class="product-row">
-        <p class="product-price"><%= product.getPrice() %> ₺</p>
-        <div class="add-cart-button">
-          <img src="assets/icons/add.png" class="cart-icon">
-        </div>
-      </div>
-    </div>
-    <%
-      }
-    %>
-  </div>
 </section>
 
 <script src="js/home.js"></script>
@@ -131,6 +150,9 @@
     xhr.send('productId=' + productId + '&count=' + count);
   }
 
+  function goCategoryPage(category) {
+    window.location.href = 'category-servlet?categoryName=' + encodeURIComponent(category);
+  }
 </script>
 </body>
 </html>
