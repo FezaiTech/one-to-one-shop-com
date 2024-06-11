@@ -24,7 +24,7 @@ public class ProductOperations implements ProductService {
     @Override
     public String addProduct(ProductBean product) {
         String status = "fail";
-        String sql = "INSERT INTO shopping_db.products values(?,?,?,?,?,?);";
+        String sql = "INSERT INTO shopping_db.products (seller_id, name, description, category, price, image) VALUES (?,?,?,?,?,?);";
         Connection con = DatabaseConnection.provideConnection();
         PreparedStatement ps = null;
         try {
@@ -45,9 +45,10 @@ public class ProductOperations implements ProductService {
         } catch (SQLException e) {
             status = "Error: " + e.getMessage();
             e.printStackTrace();
+        } finally {
+            DatabaseConnection.closeConnection(con);
+            DatabaseConnection.closeConnection(ps);
         }
-        DatabaseConnection.closeConnection(con);
-        DatabaseConnection.closeConnection(ps);
 
         return status;
     }

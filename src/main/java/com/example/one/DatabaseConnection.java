@@ -95,7 +95,7 @@ public class DatabaseConnection {
                     "description TEXT, " +
                     "category VARCHAR(50), " +
                     "price DECIMAL(10, 2) NOT NULL, " +
-                    "image LONGBLOB NULL DEFAULT NULL, " +
+                    "image BLOB NULL DEFAULT NULL, " +
                     "added_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " +
                     "FOREIGN KEY (seller_id) REFERENCES users(id)" +
                     ")";

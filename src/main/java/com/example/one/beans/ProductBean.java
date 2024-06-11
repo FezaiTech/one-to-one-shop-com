@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.security.Timestamp;
 import java.io.InputStream;
 import java.io.Serializable;
+@SuppressWarnings("serial")
 public class ProductBean implements Serializable {
     private int id;
     private int sellerId;

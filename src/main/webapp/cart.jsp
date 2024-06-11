@@ -91,7 +91,7 @@
             <p text-small>Satıcı: <span class="font-bold"><%=sellerName%></span></p>
             <p text-small>3 gün içinde kargoda</p>
           </div>
-          <div class="item-image"><img src="assets/watch.png"></div>
+          <div class="item-image"><img src="imageServlet?productId=<%=product.getId()%>" alt="<%=product.getName()%>"></div>
         </div>
 
         <div class="cart-row-fixed content-between">

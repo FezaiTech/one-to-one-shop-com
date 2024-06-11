@@ -43,7 +43,7 @@
                     String sellerName = dao.getSellerDetails(product.getSellerId()).getStoreName();
         %>
         <div class="result-item">
-            <img src="assets/laptop.png" alt="" class="img-container" data-productid="<%= product.getId() %>">
+            <img src="imageServlet?productId=<%=product.getId()%>" alt="<%=product.getName()%>" class="img-container" data-productid="<%= product.getId() %>">
             <div class="flex-column">
                 <p class="item-text-m"><%=product.getName()%></p>
                 <p><%=product.getDescription()%></p>

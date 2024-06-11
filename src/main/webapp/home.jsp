@@ -83,7 +83,7 @@
       <h2><%= product.getName() %></h2>
       <p class="br-x-small"><%= product.getDescription() %></p>
       <div class="image-center">
-        <img src="<%= product.getImage() %>" alt="" class="product-image" data-productid="<%= product.getId() %>">
+        <img src="imageServlet?productId=<%=product.getId()%>" alt="<%=product.getName()%>" class="product-image" data-productid="<%= product.getId() %>">
       </div>
       <div class="product-row">
         <p class="product-price"><%= product.getPrice() %> ₺</p>
