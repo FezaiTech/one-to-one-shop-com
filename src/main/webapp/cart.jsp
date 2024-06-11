@@ -6,6 +6,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.math.BigDecimal" %>
+<%@ page import="com.example.one.service.SellerService" %>
+<%@ page import="com.example.one.service.operations.SellerOperations" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,6 +75,8 @@
             CartBean cart = entry.getKey();
             ProductBean product = entry.getValue();
             int quantity = cart.getCount();
+            SellerService daos = new SellerOperations();
+            String sellerName = daos.getSellerDetails(product.getSellerId()).getStoreName();
 
             BigDecimal totalPrice = product.getPrice().multiply(BigDecimal.valueOf(quantity));
             BigDecimal formattedTotalPrice = totalPrice.setScale(2, BigDecimal.ROUND_HALF_UP);
@@ -84,7 +88,7 @@
         <div class="cart-row-fixed content-between no-margin">
           <div class="text-column">
             <p><%= product.getPrice() %> TL</p>
-            <p text-small>Satıcı: <span class="font-bold"><%= product.getSellerId() %></span></p>
+            <p text-small>Satıcı: <span class="font-bold"><%=sellerName%></span></p>
             <p text-small>3 gün içinde kargoda</p>
           </div>
           <div class="item-image"><img src="assets/watch.png"></div>

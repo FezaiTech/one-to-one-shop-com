@@ -6,6 +6,7 @@
   String userEmail = (session != null) ? (String) session.getAttribute("userEmail") : null;
   List<CartBean> cartItems = (List<CartBean>) session.getAttribute("cartItems");
   String headerType = request.getParameter("headerType") != null ? request.getParameter("headerType") : "full";
+  String searchQuery = request.getParameter("searchQuery") != null ? request.getParameter("searchQuery") : "";
   /*headerType: full, profile, cart */
 %>
 
@@ -16,8 +17,8 @@
         if(headerType.equals("full")){
       %>
       <div class="search-container main-s-bar ">
-        <form action="/search" method="get">
-          <input type="text" placeholder="Ürün, kategori veya marka arayın" name="query" class="search-box">
+        <form action="search-servlet" method="get">
+          <input type="text" placeholder="Ürün, kategori veya marka arayın" value="<%=searchQuery%>" name="query" class="search-box">
           <button type="submit" class="search-button"><b>Ara</b></button>
         </form>
       </div>
@@ -74,8 +75,8 @@
         if(headerType.equals("full")){
       %>
     <div class="search-container hidden-s-bar ">
-      <form action="/search" method="get">
-        <input type="text" placeholder="Ürün, kategori veya marka arayın" name="query" class="search-box">
+      <form action="search-servlet" method="get">
+        <input type="text" placeholder="Ürün, kategori veya marka arayın" value="<%=searchQuery%>" name="query" class="search-box">
         <button type="submit" class="search-button"><b>Ara</b></button>
       </form>
     </div>
