@@ -1,6 +1,6 @@
 package com.example.one.beans;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class OrderBean {
     private int id;

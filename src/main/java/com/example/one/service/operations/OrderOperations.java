@@ -2,12 +2,14 @@ package com.example.one.service.operations;
 
 import com.example.one.DatabaseConnection;
 import com.example.one.beans.OrderBean;
+import com.example.one.beans.ProductBean;
 import com.example.one.service.OrderService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderOperations implements OrderService {
@@ -41,12 +43,99 @@ public class OrderOperations implements OrderService {
 
     @Override
     public List<OrderBean> getAllOrdersForSeller(int productId) {
-        return null;
+        String sql = "SELECT * FROM shopping_db.orders WHERE product_id = ?";
+        List<OrderBean> orderList = new ArrayList<>();
+
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            if (con == null) {
+                throw new SQLException("Failed to establish a database connection.");
+            }
+            ps.setInt(1, productId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    //other way is set
+                    OrderBean order = new OrderBean(
+                            rs.getInt("user_id"),
+                            rs.getString("order_number"),
+                            rs.getInt("product_id"),
+                            rs.getInt("quantity"),
+                            rs.getString("payment_method"),
+                            rs.getString("status"),
+                            rs.getString("delivery_address")
+                    );
+                    order.setId(rs.getInt("id"));
+                    order.setCreatedDate(rs.getTimestamp("created_date"));
+                    orderList.add(order);
+                }
+                DatabaseConnection.closeConnection(rs);
+            }
+            DatabaseConnection.closeConnection(con);
+            DatabaseConnection.closeConnection(ps);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return orderList;
     }
 
     @Override
     public List<OrderBean> getAllOrdersForUser(int userId) {
-        return null;
+        String sql = "SELECT * FROM shopping_db.orders WHERE user_id = ?";
+        List<OrderBean> orderList = new ArrayList<>();
+
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            if (con == null) {
+                throw new SQLException("Failed to establish a database connection.");
+            }
+            ps.setInt(1, userId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    //other way is set
+                    OrderBean order = new OrderBean(
+                            rs.getInt("user_id"),
+                            rs.getString("order_number"),
+                            rs.getInt("product_id"),
+                            rs.getInt("quantity"),
+                            rs.getString("payment_method"),
+                            rs.getString("status"),
+                            rs.getString("delivery_address")
+                    );
+                    order.setId(rs.getInt("id"));
+                    order.setCreatedDate(rs.getTimestamp("created_date"));
+                    orderList.add(order);
+                }
+                DatabaseConnection.closeConnection(rs);
+            }
+            DatabaseConnection.closeConnection(con);
+            DatabaseConnection.closeConnection(ps);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return orderList;
+    }
+
+    public String updateOrder(int orderId,OrderBean order){
+        return "";
+    }
+
+    public String updateOrderStatus(int orderId, String newStatus){
+        String sql = "UPDATE shopping_db.orders SET status = ? WHERE id = ?";
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, newStatus);
+            ps.setInt(2, orderId);
+
+            int rowsAffected = ps.executeUpdate();
+            DatabaseConnection.closeConnection(con);
+            DatabaseConnection.closeConnection(ps);
+            return rowsAffected > 0 ? "ok" : "Product not found.";
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "Error updating product.";
+        }
     }
 
     @Override

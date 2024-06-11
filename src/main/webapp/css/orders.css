@@ -7,45 +7,6 @@ body{
     flex-direction: column;
 }
 
-#header {
-    padding: 2ch 16ch;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    align-items: center;
-}
-.app-icon{
-    height: 44px;
-    cursor: pointer;
-}
-.icon{
-    height: 16px;
-}
-
-.profile-button{
-    width: max-content;
-    height: 44px;
-    padding: 0 12px;
-    border-radius: 64px;
-    gap: 8px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    background-color: var(--orange-color-1);
-}
-
-.profile-button:hover{
-    background-color: var(--orange-color-2);
-}
-
-.button-text{
-    font-size: 1rem;
-    margin: 0;
-    color: var(--primary-color-1);
-}
-
 #orders {
     padding: 2ch 16ch;
     display: flex;
@@ -135,7 +96,12 @@ body{
     flex-direction: row;
     justify-content: space-between;
 }
-
+.order-number{
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--red-color-1);
+}
 .order-info-title{
     text-align: center;
     font-weight: bold;
@@ -202,42 +168,44 @@ body{
     margin: 0;
 }
 
+.form-temp{
+    width: 100%;
+}
+
+input {
+    border: none;
+    width: 100%;
+}
+
 .order-button {
     width: 100%;
     height: 44px;
     padding: 0 60px;
     border-radius: 64px;
+    border: none;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     background-color: var(--primary-color-1);
+    user-select: none;
 }
 
 .order-button:hover{
     background-color: var(--secondary-color-1);
 }
 
-.order-button-text {
+.order-button-text{
     margin: 0;
     font-weight: bold;
     color: var(--orange-color-1);
 }
-.br-order{
 
-}
 
 @media screen and (max-width: 1140px) {
-    #header {
-        padding: 2ch 2ch;
-    }
     #orders {
         padding: 2ch 2ch;
-    }
-
-    .app-icon{
-        height: 36px;
     }
 
     .order-button {
@@ -259,12 +227,13 @@ body{
         display: none;
     }
     .order-operation{
-        width: 100%;
         border-radius: 0 0 8px 8px;
-        gap: 16px;
+        padding: 10px;
+        min-width: 100%;
     }
     .order-button{
         width: 100%;
+        padding: 0 20px;
     }
     .order-info{
         flex-direction: column;
@@ -288,23 +257,10 @@ body{
         background-color: var(--primary-color-1);
         margin: 6px 0;
     }
-    .br-order{
-        display: none;
-    }
     .order-title{
         font-size: 1.35rem;
     }
     .title-container{
-        display: none;
-    }
-
-    .profile-button{
-        width: 44px;
-        height: 44px;
-        border-radius: 100%;
-    }
-
-    .button-text{
         display: none;
     }
 }

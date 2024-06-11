@@ -1,18 +1,10 @@
 @media screen and (max-width: 1140px){
-    #header {
-        padding: 2ch 2ch;
-    }
-
     #slider-bar {
         padding: 2ch 2ch;
     }
 
     #tech {
         padding: 2ch 2ch;
-    }
-
-    .app-icon{
-        height: 32px;
     }
 
     .banner{
@@ -25,11 +17,6 @@
 }
 
 @media screen and (max-width: 740px){
-    #header{
-        flex-direction: column;
-        gap: 8px;
-    }
-
     #slider-bar {
         flex-direction: column;
         gap: 8px;
@@ -38,26 +25,6 @@
     .banner{
         width: 100%;
         height: auto;
-    }
-
-    .header-row{
-        gap: 6px;
-    }
-
-    .header-button{
-        height: 36px;
-    }
-
-    .button-text{
-        font-size: 0.65rem;
-    }
-
-    .my-profile-text{
-        display: none;
-    }
-
-    .text-buttons{
-        gap: 6px;
     }
 
     .posters{
@@ -112,23 +79,5 @@
     }
     .category-subtitle{
         font-size: 0.85rem;
-    }
-
-    .dropdown-content {
-        min-width: 120px;
-        margin-top: 112px;
-    }
-
-    .dropdown-content a {
-        padding: 6px 10px;
-        font-size: 0.75rem;
-    }
-
-    .dropdown-content a:hover {background-color: #ddd;}
-
-    .category-button:hover .dropdown-content {display: block;}
-
-    .header-button{
-        padding: 0 8px;
     }
 }

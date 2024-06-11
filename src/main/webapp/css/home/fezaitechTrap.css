@@ -7,36 +7,6 @@ body{
     flex-direction: column;
 }
 
-#header {
-    padding: 2ch 16ch;
-    display: flex;
-    gap: 44px;
-    width: 100%;
-    justify-content: start;
-    align-items: center;
-    flex-direction: column;
-}
-
-.header-row{
-    width: 100%;
-    gap: 44px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.app-icon{
-    height: 44px;
-    cursor: pointer;
-}
-.icon{
-    height: 16px;
-}
-
-.hidden-s-bar{
-    display: none;
-}
-
 #slider-bar {
     padding: 2ch 16ch;
     display: flex;
@@ -87,6 +57,7 @@ body{
 .poster {
     position: relative;
     width: 100%;
+    max-width: max-content;
     height: auto;
     overflow: hidden;
     cursor: grab;
