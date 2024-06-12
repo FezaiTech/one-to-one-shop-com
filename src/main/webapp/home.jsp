@@ -113,6 +113,8 @@
   %>
 </section>
 
+<jsp:include page="footer.jsp"></jsp:include>
+
 <script src="js/home.js"></script>
 <script src="js/category-list.js"></script>
 <script>
