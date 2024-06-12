@@ -3,10 +3,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.one.service.ProductService" %>
 <%@ page import="com.example.one.service.operations.ProductOperations" %>
-<%@ page import="com.example.one.service.CartService" %>
-<%@ page import="com.example.one.service.operations.CartOperations" %>
-<%@ page import="com.example.one.beans.CartBean" %>
-<%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -18,8 +14,8 @@
   <link rel="stylesheet" href="css/text.css?v=1"/>
   <link rel="stylesheet" href="css/header.css?v=1"/>
   <link rel="stylesheet" href="css/home/fezaitechTrap.css?v=1">
-  <link rel="stylesheet" href="css/home/button.css?v=1"/>
   <link rel="stylesheet" href="css/home/media-query.css?v=1"/>
+  <link rel="stylesheet" href="css/category-list.css?v=1"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
@@ -102,8 +98,8 @@
         }
         }else{
       %>
-      <div class="product">
-        <p class="product-price">Henüz bu kategori için ürün eklenmedi.</p>
+      <div class="product" style="height: min-content">
+        <p class="product-price">Bu kategori için henüz ürün eklenmedi.</p>
       </div>
       <%
         }

@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     images.forEach(image => {
         image.addEventListener('click', (e) => {
             const productId = e.target.getAttribute('data-productid');
-            window.location.href = `detail.html?id=${productId}`;
+            window.location.href = `product-detail.jsp?id=${productId}`;
         });
     });
 });
