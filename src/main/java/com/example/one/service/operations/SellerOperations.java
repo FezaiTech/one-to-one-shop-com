@@ -4,6 +4,7 @@ import com.example.one.DatabaseConnection;
 import com.example.one.beans.SellerBean;
 import com.example.one.beans.UserBean;
 import com.example.one.service.SellerService;
+import com.example.one.service.UserService;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -39,12 +40,39 @@ public class SellerOperations implements SellerService {
         return status;
     }
     @Override
-    public boolean updateSeller(int sellerId) {
-        return false;
+    public String updateSeller(int sellerId, SellerBean newSellerInfo) {
+        String sql = "UPDATE shopping_db.sellers SET store_name = ?, store_number = ? WHERE id = ?";
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, newSellerInfo.getStoreName());
+            ps.setString(2, newSellerInfo.getStoreNumber());
+            ps.setInt(3, sellerId);
+
+            int rowsAffected = ps.executeUpdate();
+            DatabaseConnection.closeConnection(con);
+            DatabaseConnection.closeConnection(ps);
+            return rowsAffected > 0 ? "ok" : "Seller not found.";
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "Error updating seller.";
+        }
     }
     @Override
-    public boolean deleteSeller(int sellerId) {
-        return false;
+    public String deleteSeller(SellerBean seller) {
+        String sql = "DELETE FROM shopping_db.sellers WHERE id = ?";
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, seller.getId());
+            int rowsAffected = ps.executeUpdate();
+            DatabaseConnection.closeConnection(con);
+            DatabaseConnection.closeConnection(ps);
+            UserService dao = new UserOperations();
+            dao.updateUserForSeller(seller.getUserId(),false);
+            return rowsAffected > 0 ? "ok" : "Seller not found.";
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "Error delete seller.";
+        }
     }
 
     @Override

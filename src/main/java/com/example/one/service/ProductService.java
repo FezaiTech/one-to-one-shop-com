@@ -19,7 +19,7 @@ public interface ProductService {
 
     public String updateProductPrice(int id, BigDecimal updatedPrice);
 
-    public List<ProductBean> getAllProductsByCategory(String category);
+    public List<ProductBean> getAllProductsByCategory(String category, int maxResults);
 
     public List<ProductBean> searchAllProducts(String search);
 

@@ -122,7 +122,20 @@ public class OrderOperations implements OrderService {
     }
 
     public String updateOrderStatus(int orderId, String newStatus){
-        return "";
+        String sql = "UPDATE shopping_db.orders SET status = ? WHERE id = ?";
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, newStatus);
+            ps.setInt(2, orderId);
+
+            int rowsAffected = ps.executeUpdate();
+            DatabaseConnection.closeConnection(con);
+            DatabaseConnection.closeConnection(ps);
+            return rowsAffected > 0 ? "ok" : "Product not found.";
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return "Error updating product.";
+        }
     }
 
     @Override

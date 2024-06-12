@@ -1,14 +1,3 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const images = document.querySelectorAll('.product-image');
-    images.forEach(image => {
-        image.addEventListener('click', (e) => {
-            const productId = e.target.getAttribute('data-productid');
-            window.location.href = `detail.html?id=${productId}`;
-        });
-    });
-});
-
-
 const posters = document.querySelectorAll('.poster-img');
 const indexes = document.querySelectorAll('.index');
 let currentIndex = 0;

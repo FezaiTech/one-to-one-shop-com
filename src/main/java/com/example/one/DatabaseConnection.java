@@ -95,7 +95,7 @@ public class DatabaseConnection {
                     "description TEXT, " +
                     "category VARCHAR(50), " +
                     "price DECIMAL(10, 2) NOT NULL, " +
-                    "image LONGBLOB NULL DEFAULT NULL, " +
+                    "image BLOB NULL DEFAULT NULL, " +
                     "added_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " +
                     "FOREIGN KEY (seller_id) REFERENCES users(id)" +
                     ")";
@@ -124,10 +124,19 @@ public class DatabaseConnection {
                     + "FOREIGN KEY (product_id) REFERENCES products(id)"
                     + ")";
 
+            String createCustomersTableSQL = "CREATE TABLE IF NOT EXISTS customers ("
+                    + "id INT AUTO_INCREMENT PRIMARY KEY, "
+                    + "user_id INT NOT NULL, "
+                    + "seller_id INT NOT NULL, "
+                    + "join_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
+                    + "FOREIGN KEY (user_id) REFERENCES users(id)"
+                    + ")";
+
             statement.execute(createUsersTableSQL);
             statement.execute(createProductsTableSQL);
             statement.execute(createSellersTableSQL);
             statement.execute(createOrdersTableSQL);
+            statement.execute(createCustomersTableSQL);
 
             System.out.println("Tables created successfully.");
         }
