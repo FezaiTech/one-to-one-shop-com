@@ -111,7 +111,7 @@
     </div>
 </section>
 
-
+<script src="js/category-list.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         var addButtons = document.querySelectorAll('.add-cart-pi');

@@ -114,6 +114,7 @@
 </section>
 
 <script src="js/home.js"></script>
+<script src="js/category-list.js"></script>
 <script>
 
   document.addEventListener('DOMContentLoaded', function () {
