@@ -48,8 +48,17 @@
             String itemClass = classes[count % classes.length];
         %>
         <div class="result-item <%= itemClass %>">
-            <img src="<%= product.getImage() %>" alt="" class="img-container">
+            <%
+                if(!itemClass.equals("b") && !itemClass.equals("a-r")){
+            %>
+            <img src="imageServlet?productId=<%=product.getId()%>" alt="<%=product.getName()%>" class="img-container" data-productid="<%= product.getId() %>">
+            <%}%>
             <div class="flex-column">
+                <%
+                    if(itemClass.equals("b") || itemClass.equals("a-r")){
+                %>
+                <img src="imageServlet?productId=<%=product.getId()%>" alt="<%=product.getName()%>" class="img-container img-container-for-column" data-productid="<%= product.getId() %>">
+                <%}%>
                 <p class="item-text-m"><%= product.getName() %></p>
                 <p><%= product.getDescription() %></p>
                 <p class="item-text-s">Satıcı : <%= sellerName %></p>
@@ -68,11 +77,46 @@
         %>
     </div>
     <%}else{
-     %>
+    %>
     <p class="item-text-m">Bu kategoriye henüz ürün eklenmemiş</p>
     <%}%>
 </section>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var addButtons = document.querySelectorAll('.item-add-cart');
+
+        addButtons.forEach(function (button) {
+            button.addEventListener('click', function (event) {
+                var productContainer = event.target.closest('.result-item');
+                var productIdElement = productContainer.querySelector('.img-container[data-productid]');
+
+                if (productIdElement) {
+                    var productId = productIdElement.getAttribute('data-productid');
+                    addToCart(productId, 1);
+                } else {
+                    console.error('Product ID not found.');
+                }
+            });
+        });
+    });
+
+    function addToCart(productId, count) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'addToCartServlet', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    location.reload();
+                } else {
+                    alert('Ürün sepete eklenirken bir hata oluştu.');
+                }
+            }
+        };
+        xhr.send('productId=' + productId + '&count=' + count);
+    }
+</script>
 
 </body>
 </html>

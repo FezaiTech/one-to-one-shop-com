@@ -118,7 +118,7 @@
                         <p>Satıcı : <%=orderToSeller.getStoreName()%></p>
                     </div>
                     <div class="order-image">
-                        <!-- Ürün resmi buraya gelecek -->
+
                     </div>
                 </div>
             </div>

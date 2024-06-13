@@ -3,10 +3,6 @@
         padding: 2ch 2ch;
     }
 
-    #tech {
-        padding: 2ch 2ch;
-    }
-
     .banner{
         width: auto;
         height: auto;
@@ -42,42 +38,5 @@
         height: 5px;
         font-size: 0;
         background-color: var(--orange-color-1);
-    }
-
-    .product {
-        border-radius: 6px;
-        padding: 8px;
-        width: 170px;
-        height: 170px;
-    }
-    .product h2 {
-        font-size: 1rem;
-    }
-    .product p {
-        font-size: 0.85rem;
-    }
-
-    .product-price{
-        font-size: 1.2rem;
-    }
-    .product-image{
-        max-width: 80px;
-    }
-
-    .add-cart-button{
-        width: 20px;
-        height: 20px;
-    }
-
-    .cart-icon{
-        width: 12px;
-        height: 12px;
-    }
-
-    .category-title{
-        font-size: 1.5rem;
-    }
-    .category-subtitle{
-        font-size: 0.85rem;
     }
 }

@@ -7,9 +7,9 @@ public interface SellerService {
 
     public String addSeller(SellerBean sellerInfo);
 
-    public  boolean updateSeller(int sellerId);
+    public  String updateSeller(int sellerId, SellerBean newSellerInfo);
 
-    public  boolean deleteSeller(int sellerId);
+    public  String deleteSeller(SellerBean seller);
 
     public SellerBean getSellerDetails(int userId);
 }

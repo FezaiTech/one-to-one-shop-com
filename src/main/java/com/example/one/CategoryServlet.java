@@ -21,7 +21,7 @@ public class CategoryServlet extends HttpServlet {
             throws ServletException, IOException {
         String categoryName = request.getParameter("categoryName");
         ProductService dao = new ProductOperations();
-        List<ProductBean> resultProducts = dao.getAllProductsByCategory(categoryName);
+        List<ProductBean> resultProducts = dao.getAllProductsByCategory(categoryName,100);
         if (resultProducts != null) {
             request.setAttribute("resultProducts", resultProducts);
             request.setAttribute("categoryName", categoryName);

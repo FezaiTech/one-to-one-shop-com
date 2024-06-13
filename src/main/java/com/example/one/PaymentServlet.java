@@ -1,12 +1,11 @@
 package com.example.one;
 
-import com.example.one.beans.CartBean;
-import com.example.one.beans.OrderBean;
-import com.example.one.beans.ProductBean;
-import com.example.one.beans.UserBean;
+import com.example.one.beans.*;
+import com.example.one.service.CustomerService;
 import com.example.one.service.OrderService;
 import com.example.one.service.ProductService;
 import com.example.one.service.UserService;
+import com.example.one.service.operations.CustomerOperations;
 import com.example.one.service.operations.OrderOperations;
 import com.example.one.service.operations.ProductOperations;
 import com.example.one.service.operations.UserOperations;
@@ -97,6 +96,14 @@ public class PaymentServlet extends HttpServlet {
                 newOrder.setDeliveryAddress(address);
 
                 addOrderStatus = dao.addOrder(newOrder);
+
+                CustomerService daos = new CustomerOperations();
+                if(!daos.checkCustomer(product.getSellerId(),userInfo.getId())){
+                    CustomerBean newCustomer = new CustomerBean();
+                    newCustomer.setSellerId(product.getSellerId());
+                    newCustomer.setUserId(userInfo.getId());
+                    daos.addCustomer(newCustomer);
+                }
             }
         }
 
