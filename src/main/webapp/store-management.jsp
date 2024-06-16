@@ -78,14 +78,16 @@
             </div>
         </div>
         <div class="row-store-man-header" >
-            <div class="store-man-header-button"><div class="button-text-center">Ürünlerim</div></div>
-            <div class="store-man-header-button"><div class="button-text-center">Siparişlerin</div></div>
-            <div class="store-man-header-button"><div class="button-text-center">Müşterilerin</div></div>
-            <div class="store-man-header-button"><div class="button-text-center">Yönetim</div></div>
+            <button onclick="changeContent('productsContent')"><div class="store-man-header-button"><p>Ürünlerim</p></div></button>
+            <button onclick="changeContent('ordersContent')"><div class="store-man-header-button"><p>Siparişlerim</p></div></button>
+            <button onclick="changeContent('customersContent')"><div class="store-man-header-button"><div class="button-text-center">Müşterilerin</div></div></button>
+            <button onclick="changeContent('managementContent')"><div class="store-man-header-button"><div class="button-text-center">Yönetim</div></div></button>
         </div>
     </div>
 </section>
+
 <div class="sizedBox"></div>
+
 <section id="search-bar">
     <div style="gap: 10px;" class="column">
         <div class="row">
@@ -107,39 +109,48 @@
     </div>
 </section>
 <section id="sm-body-grid" class="sm-body-grid">
-    <c:forEach var="product" items="${storeProducts}">
-        <div class="sm-product-box">
-            <div class="sm-product-box-padding">
-                <div style="gap: 5px" class="column">
-                    <div class="title-grid">
-                        <p class="sm-title">Markası</p>
-                        <p class="sm-answer">${product.name}</p>
-                        <p class="sm-title">Kategori</p>
-                        <p class="sm-answer">${product.category}</p>
-                        <p class="sm-title">Eklenme Tarihi</p>
-                        <p class="sm-answer">${product.addedDate}</p>
-                        <p class="sm-title">Fiyatı</p>
-                        <p class="sm-answer">${product.price}</p>
+    <%
+        if(storeProducts != null && !storeProducts.isEmpty()){
+            for (ProductBean product : storeProducts) {
+    %>
+    <div class="sm-product-box">
+        <div class="sm-product-box-padding">
+            <div style="gap: 5px" class="column">
+                <div class="title-grid">
+                    <p class="sm-title">Markası</p>
+                    <p class="sm-answer"><%=product.getName()%></p>
+                    <p class="sm-title">Kategori</p>
+                    <p class="sm-answer"><%=product.getCategory()%></p>
+                    <p class="sm-title">Eklenme Tarihi</p>
+                    <p class="sm-answer"><%=product.getAddedDate()%></p>
+                    <p class="sm-title">Fiyatı</p>
+                    <p class="sm-answer"><%=product.getPrice()%></p>
+                </div>
+                <div class="row">
+                    <div style="align-self: start; gap: 10px" class="column">
+                        <p class="sm-title">Detayı</p>
+                        <p class="sm-answer"><%=product.getDescription()%></p>
                     </div>
-                    <div class="row">
-                        <div style="align-self: start; gap: 10px" class="column">
-                            <p class="sm-title">Detayı</p>
-                            <p class="sm-answer">${product.description}</p>
-                        </div>
-                        <div class="image-box image-center">
-                            <img src="assets/monitor.png" alt="product/info" >
-                        </div>
+                    <div class="image-box image-center">
+                        <img src="imageServlet?productId=<%=product.getId()%>" alt="<%=product.getName()%>" class="product-image" data-productid="<%= product.getId() %>">
                     </div>
-                    <div class="sizedBox"></div>
-                    <div style="justify-content: end;" class="row">
-                        <div class="sm-product-edit-btn sm-button-text">Düzenle</div>
-                        <div class="sm-product-delete-btn sm-button-text">Sil</div>
-                    </div>
+                </div>
+                <div class="sizedBox"></div>
+                <div style="justify-content: end;" class="row">
+                    <div class="sm-product-edit-btn sm-button-text">Düzenle</div>
+                    <div class="sm-product-delete-btn sm-button-text">Sil</div>
                 </div>
             </div>
         </div>
-    </c:forEach>
-
+    </div>
+    <%
+        }
+    }else{
+    %>
+    <div class="sizedBox" style="background-color: red"></div>
+    <%
+        }
+    %>
 </section>
 <div id="product-add-popup-box" class="popup">
     <div class="popup-content column">
@@ -156,5 +167,29 @@
     </div>
 </div>
 <script src="js/store-management.js"></script>
+<script>
+    function changeContent(contentID){
+        var searchBar = document.getElementById("search-bar");
+        var grid = document.getElementById("sm-body-grid");
+        grid.innerHTML = "";
+        searchBar.innerHTML = "";
+
+        switch (contentID) {
+            case 'productsContent':
+                break;
+            case 'ordersContent':
+                grid.innerHTML = '<h2>Siparişlerim</h2><p>This is the content for Siparişlerim.</p>';
+                break;
+            case 'customersContent':
+                grid.innerHTML = '<h2>Müşterilerin</h2><p>This is the content for Müşterilerin.</p>';
+                break;
+            case 'managementContent':
+                grid.innerHTML = '<h2>Yönetim</h2><p>This is the content for Yönetim.</p>';
+                break;
+            default:
+                grid.innerHTML = '<h2>Default Content</h2><p>This is the default content.</p>';
+        }
+    }
+</script>
 </body>
 </html>

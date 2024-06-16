@@ -13,6 +13,7 @@ public interface ProductService {
 
     public String addProduct(ProductBean product);
 
+    public List<ProductBean> getAllProdcut();
     public String removeProduct(int id);
 
     public String updateProduct(int prevProductId, ProductBean updatedProduct);

@@ -206,7 +206,30 @@ public class ProductOperations implements ProductService {
         }
         return productList;
     }
-
+    @Override
+    public List<ProductBean> getAllProdcut(){
+        List<ProductBean> products = new ArrayList<>();
+        final String SELECT_ALL_PRODUCTS = "SELECT * FROM products";
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(SELECT_ALL_PRODUCTS);) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ProductBean product = new ProductBean(
+                        rs.getInt("seller_id"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getString("category"),
+                        rs.getBigDecimal("price"),
+                        rs.getBlob("image") != null ? rs.getBlob("image").getBinaryStream() : null
+                );
+                product.setId(rs.getInt("id"));
+                products.add(product);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
     @Override
     public ProductBean getProductDetails(int id) {
         String sql = "SELECT * FROM shopping_db.products WHERE id = ?";
