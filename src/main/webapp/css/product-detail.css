@@ -1,0 +1,152 @@
+body{
+    background-image: url('../assets/const/background_1.png');
+    background-size: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/*INFO*/
+#product-info{
+    padding: 2ch 16ch;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 32px;
+}
+
+.flex-row-pi{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.flex-prop{
+    gap: 54px;
+}
+
+.flex-column-pi{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.align-end{
+    align-items: end;
+}
+
+.item-descriptions{
+    width: 100%;
+    height: 100%;
+}
+
+/*IMG*/
+.img-pi{
+    width: 320px;
+    height: 320px;
+    padding: 30px;
+    object-fit: contain;
+    background-color: var(--secondary-color-1);
+    border-radius: 12px;
+}
+
+/*TEXT*/
+.title-pi{
+    font-size: 1.35rem;
+    font-weight: bold;
+    margin: 0;
+    color: var(--blue-color-2);
+}
+
+.exp-pi{
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+.price-pi{
+    font-size: 1.45rem;
+    font-weight: bold;
+    margin: 0;
+    color: var(--blue-color-2);
+}
+.subtitle-pi{
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.mini-pi{
+    font-size: 0.9rem;
+    color: var(--blue-color-3);
+    margin: 0;
+}
+
+/*BUTTON*/
+.add-cart-pi{
+    background: var(--orange-color-1);
+    border-radius: 6px;
+    padding: 8px 16px;
+    color: var(--primary-color-1);
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.add-cart-pi:hover{
+    background: var(--orange-color-2);
+}
+
+@media screen and (max-width: 1140px) {
+    #product-info {
+        padding: 2ch 2ch;
+    }
+
+    .flex-prop{
+        gap: 24px;
+    }
+
+    .img-pi{
+        width: 280px;
+        height: 280px;
+        padding: 26px;
+    }
+
+}
+
+@media screen and (max-width: 740px) {
+
+    .flex-row-pi{
+        flex-direction: column;
+    }
+
+    .flex-prop{
+        align-items: center;
+        gap: 12px;
+    }
+
+    .align-end{
+        align-items: center;
+    }
+
+    .img-pi{
+        width: 100%;
+        height: 200px;
+        padding: 14px;
+    }
+
+    .title-pi{
+        font-size: 1.15rem;
+    }
+
+    .exp-pi{
+        font-size: 1.05rem;
+    }
+
+    .price-pi{
+        font-size: 1.25rem;
+    }
+    .subtitle-pi{
+        font-size: 0.95rem;
+    }
+}
