@@ -15,7 +15,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>sotore-management</title>
+    <title>store-management</title>
+    <link rel="stylesheet" href="css/header.css"/>
     <link rel="stylesheet" href="css/text.css"/>
     <link rel="stylesheet" href="css/style.css"/>
     <link rel="stylesheet" href="css/store_management/button.css"/>
@@ -23,10 +24,12 @@
     <link rel="stylesheet" href="css/store_management/media-query-sm.css"/>
     <link rel="stylesheet" href="css/store_management/search-bar.css"/>
     <link rel="stylesheet" href="css/store_management/text-sm.css"/>
+    <link rel="stylesheet" href="css/store_management/customer-section.css">
 
 </head>
 <body>
 <%
+    String nane = "products";
     ProductService productService = new ProductOperations();
     SellerService sellerService = new SellerOperations();
     UserService userService = new UserOperations();
@@ -51,22 +54,10 @@
         }
     }
 %>
-<section id="header-sm">
-    <div class="header-row-sm">
-        <a href="/home.jsp"><img src="assets/brand/onetone.png" alt="AppIcon" class="app-icon"></a>
-        <div class="spacer"></div>
-        <div class="text-buttons">
-            <div class="header-button profile-button">
-                <img src="assets/icons/profile.png" alt="AppIcon" class="icon">
-                <p class="button-text my-profile-text">Profilim</p>
-                <div class="dropdown-content dropdown-profile">
-                    <a href="">Hesap Bilgileri</a>
-                    <a href="">Çıkış Yap</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
+<jsp:include page="header.jsp">
+    <jsp:param name="headerType" value="profile" />
+</jsp:include>
 
 <section id="store-desk">
     <div class="title">
@@ -77,81 +68,44 @@
                 <p class="order-title"><%= mySeller != null ? mySeller.getStoreName() : "Mağaza ADİİ" %></p>
             </div>
         </div>
-        <div class="row-store-man-header" >
-            <button onclick="changeContent('productsContent')"><div class="store-man-header-button"><p>Ürünlerim</p></div></button>
-            <button onclick="changeContent('ordersContent')"><div class="store-man-header-button"><p>Siparişlerim</p></div></button>
-            <button onclick="changeContent('customersContent')"><div class="store-man-header-button"><div class="button-text-center">Müşterilerin</div></div></button>
-            <button onclick="changeContent('managementContent')"><div class="store-man-header-button"><div class="button-text-center">Yönetim</div></div></button>
-        </div>
+        <form style="width: 100%" method="post">
+            <input type="hidden" name="page" id="pageValue" value="<%="1"%>" />
+            <div class="row-store-man-header">
+                <button class="store-man-header-button button-text-center" type="button" onclick="document.getElementById('pageValue').value='1'; this.form.submit();">Ürünlerim</button>
+                <button class="store-man-header-button button-text-center" type="button" onclick="document.getElementById('pageValue').value='2'; this.form.submit();">Siparişlerin</button>
+                <button class="store-man-header-button button-text-center" type="button" onclick="document.getElementById('pageValue').value='3'; this.form.submit();">Müşterilerin</button>
+                <button class="store-man-header-button button-text-center" type="button" onclick="document.getElementById('pageValue').value='4'; this.form.submit();">Yönetim</button>
+            </div>
+        </form>
     </div>
 </section>
 
 <div class="sizedBox"></div>
+<%
+    String currentPage = request.getParameter("page");
+    if (currentPage == null) {
+        currentPage = "1";
+    }
 
-<section id="search-bar">
-    <div style="gap: 10px;" class="column">
-        <div class="row">
-            <div style="color: black" id="sm-item-count" class="text-l">Ürün Sayısı : <%= storeProducts != null ? activeProducts : 0 %></div>
-            <div class="search-container-sm unhidden">
-                <form action="/search" method="get">
-                    <input type="text" placeholder="Ürün, kategori veya marka arayın" name="query" class="search-box">
-                    <button type="button" class="search-button"><b>Ara</b></button>
-                </form>
-            </div>
-            <button id="add-product-btn" class="add-new-product-btn">+ Yeni Ürün Ekle</button>
-        </div>
-        <div class="search-container-sm hidden">
-            <form action="/search" method="get">
-                <input type="text" placeholder="Ürün, kategori veya marka arayın" name="query" class="search-box">
-                <button type="submit" class="search-button"><b>Ara</b></button>
-            </form>
-        </div>
-    </div>
-</section>
-<section id="sm-body-grid" class="sm-body-grid">
-    <%
-        if(storeProducts != null && !storeProducts.isEmpty()){
-            for (ProductBean product : storeProducts) {
-    %>
-    <div class="sm-product-box">
-        <div class="sm-product-box-padding">
-            <div style="gap: 5px" class="column">
-                <div class="title-grid">
-                    <p class="sm-title">Markası</p>
-                    <p class="sm-answer"><%=product.getName()%></p>
-                    <p class="sm-title">Kategori</p>
-                    <p class="sm-answer"><%=product.getCategory()%></p>
-                    <p class="sm-title">Eklenme Tarihi</p>
-                    <p class="sm-answer"><%=product.getAddedDate()%></p>
-                    <p class="sm-title">Fiyatı</p>
-                    <p class="sm-answer"><%=product.getPrice()%></p>
-                </div>
-                <div class="row">
-                    <div style="align-self: start; gap: 10px" class="column">
-                        <p class="sm-title">Detayı</p>
-                        <p class="sm-answer"><%=product.getDescription()%></p>
-                    </div>
-                    <div class="image-box image-center">
-                        <img src="imageServlet?productId=<%=product.getId()%>" alt="<%=product.getName()%>" class="product-image" data-productid="<%= product.getId() %>">
-                    </div>
-                </div>
-                <div class="sizedBox"></div>
-                <div style="justify-content: end;" class="row">
-                    <div class="sm-product-edit-btn sm-button-text">Düzenle</div>
-                    <div class="sm-product-delete-btn sm-button-text">Sil</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <%
-        }
-    }else{
-    %>
-    <div class="sizedBox" style="background-color: red"></div>
-    <%
-        }
-    %>
-</section>
+    switch (currentPage) {
+        case "1":
+%><jsp:include page="products-list.jsp" /> <%
+        break;
+    case "2":
+%><jsp:include page="orders-list.jsp" /> <%
+        break;
+    case "3":
+%><jsp:include page="customers-list.jsp" /> <%
+        break;
+    case "4":
+%><jsp:include page="footer.jsp" /> <%
+        break;
+    default:
+%><jsp:include page="products-list.jsp" /> <%
+            break;
+    }
+%>
+
 <div id="product-add-popup-box" class="popup">
     <div class="popup-content column">
         <span class="close">&times;</span>
@@ -166,30 +120,8 @@
         </form>
     </div>
 </div>
+<div style="height: 50px;" class="sizedBox"></div>
+<jsp:include page="footer.jsp"></jsp:include>
 <script src="js/store-management.js"></script>
-<script>
-    function changeContent(contentID){
-        var searchBar = document.getElementById("search-bar");
-        var grid = document.getElementById("sm-body-grid");
-        grid.innerHTML = "";
-        searchBar.innerHTML = "";
-
-        switch (contentID) {
-            case 'productsContent':
-                break;
-            case 'ordersContent':
-                grid.innerHTML = '<h2>Siparişlerim</h2><p>This is the content for Siparişlerim.</p>';
-                break;
-            case 'customersContent':
-                grid.innerHTML = '<h2>Müşterilerin</h2><p>This is the content for Müşterilerin.</p>';
-                break;
-            case 'managementContent':
-                grid.innerHTML = '<h2>Yönetim</h2><p>This is the content for Yönetim.</p>';
-                break;
-            default:
-                grid.innerHTML = '<h2>Default Content</h2><p>This is the default content.</p>';
-        }
-    }
-</script>
 </body>
 </html>

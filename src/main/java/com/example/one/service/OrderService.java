@@ -8,7 +8,7 @@ public interface OrderService {
 
     public String addOrder(OrderBean order);
 
-    public List<OrderBean> getAllOrdersForSeller(int productId);
+    public List<OrderBean> getAllOrdersForSeller(int sellerID);
 
     public List<OrderBean> getAllOrdersForUser(int userId);
 

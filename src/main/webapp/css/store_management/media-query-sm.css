@@ -97,6 +97,10 @@
     .title-m{
         font-size: 18px;
     }
+
+    .sm-product-delete-btn{
+        padding: 5px 10px;
+    }
 }
 
 @media screen and (max-width: 600px){

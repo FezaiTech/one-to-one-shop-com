@@ -50,7 +50,7 @@
 .sm-product-edit-btn{
     border-radius: 7px;
     background-color: var(--blue-color-3) ;
-    padding: 1.5% 2%;
+    padding: 10px 15px;
     cursor: pointer;
 }
 .sm-product-edit-btn:hover{
@@ -60,9 +60,19 @@
 .sm-product-delete-btn{
     border-radius: 50px;
     background-color: var(--red-color-1) ;
-    padding: 1.5% 5%;
+    padding: 10px 30px;
     cursor: pointer;
 }
 .sm-product-delete-btn:hover{
     background-color: var(--red-color-2);
 }
+
+.delete-customer-button{
+    border-radius: 20px;
+    background-color: var(--red-color-1) ;
+    padding: 0.5% 4%;
+    align-content: center;
+    cursor: pointer;
+}.delete-customer-button:hover{
+     background-color: var(--red-color-2);
+ }

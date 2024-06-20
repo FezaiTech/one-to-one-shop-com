@@ -69,7 +69,9 @@ button{
 .icon{
     height: 16px;
 }
-
+p{
+    align-content: center;
+}
 .dropdown-content {
     display: none;
     position: absolute;
