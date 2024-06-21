@@ -15,7 +15,7 @@ public interface OrderService {
     public String updateOrder(int orderId,OrderBean order);
 
     public String updateOrderStatus(int orderId, String newStatus);
-
+    public String analyzingStatus(String status);
     public int getLastOrderNumber();
 
 }

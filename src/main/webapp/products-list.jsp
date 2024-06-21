@@ -64,36 +64,39 @@
     <div class="sm-product-box">
         <div class="sm-product-box-padding">
             <div style="gap: 5px" class="column">
-                <div class="title-grid">
-                    <p class="sm-title">Markası</p>
-                    <p class="sm-answer"><%=product.getName()%></p>
-                    <p class="sm-title">Kategori</p>
-                    <p class="sm-answer"><%=product.getCategory()%></p>
-                    <p class="sm-title">Eklenme Tarihi</p>
-                    <p class="sm-answer"><%=product.getAddedDate()%></p>
-                    <p class="sm-title">Fiyatı</p>
-                    <p class="sm-answer"><%=product.getPrice()%></p>
-                </div>
-                <div class="row">
-                    <div style="align-self: start; gap: 10px" class="column">
-                        <p class="sm-title">Detayı</p>
-                        <p class="sm-answer"><%=product.getDescription()%></p>
-                    </div>
-                    <div class="image-box image-center">
-                        <img src="imageServlet?productId=<%=product.getId()%>" alt="<%=product.getName()%>" class="product-image" data-productid="<%= product.getId() %>">
-                    </div>
-                </div>
-                <div class="sizedBox"></div>
-                <div style="justify-content: end;" class="row">
-                    <form id="productEditForm" class="form-temp-seller-button" method="post" action="seller-product-edit">
+                <form id="productForm-<%=product.getId()%>" method="post" action="seller-product-edit">
+                    <div class="title-grid">
                         <input type="hidden" name="productId" value="<%=product.getId()%>">
-                        <button type="submit" class="sm-product-edit-btn sm-button-text">Düzenle</button>
-                    </form>
-                    <form id="productCancellationForm" class="form-temp-seller-button" method="post" action="seller-product-delete">
-                    <input type="hidden" name="productId" value="<%=product.getId()%>">
-                    <button type="submit" class="sm-product-delete-btn sm-button-text" onclick="return confirmOrderAction(event)">Sil</button>
+                        <p class="sm-title">Markası</p>
+                        <input id="name-form" class="linedit-sm" type="text" name="name-form" value="<%=product.getName()%>" readonly>
+                        <p class="sm-title">Kategori</p>
+                        <input id="category-form" class="linedit-sm" type="text" name="category-form" value="<%=product.getCategory()%>" readonly>
+                        <p class="sm-title">Eklenme Tarihi</p>
+                        <input id="date-form" class="linedit-sm" type="text" name="date-form" value="<%=product.getAddedDate()%>" readonly>
+                        <p class="sm-title">Fiyatı</p>
+                        <input id="price-form" class="linedit-sm" type="number" name="price-form" value="<%=product.getPrice()%>" readonly>
+                    </div>
+                    <div class="row">
+                        <div style="align-self: start; gap: 10px" class="column">
+                            <p class="sm-title">Detayı</p>
+                            <input id="detail-form" class="linedit-sm" type="text" name="detail-form" value="<%=product.getDescription()%>" readonly>
+                        </div>
+                        <div class="image-box image-center">
+                            <img src="imageServlet?productId=<%=product.getId()%>" alt="<%=product.getName()%>" class="product-image" data-productid="<%= product.getId() %>">
+                        </div>
+                    </div>
+                    <div class="sizedBox"></div>
+                    <div style="justify-content: end;" class="row">
+                        <button type="button" class="sm-product-edit-btn sm-button-text" onclick="enableEdit('<%=product.getId()%>')">Düzenle</button>
+                        <button type="submit" class="sm-product-save-btn sm-button-text" style="display:none;">Kaydet</button>
+                        <form id="productCancellationForm" class="form-temp-seller-button" method="post" action="seller-product-delete">
+                            <input type="hidden" name="productId" value="<%=product.getId()%>">
+                            <button type="submit" class="sm-product-delete-btn sm-button-text" onclick="return confirmOrderAction(event)">Sil</button>
+                        </form>
+                    </div>
                 </form>
-                </div>
+
+            </div>
             </div>
         </div>
     </div>

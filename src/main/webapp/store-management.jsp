@@ -68,13 +68,13 @@
                 <p class="order-title"><%= mySeller != null ? mySeller.getStoreName() : "Mağaza ADİİ" %></p>
             </div>
         </div>
-        <form style="width: 100%" method="post">
+        <form id="store-desk-form" method="post">
             <input type="hidden" name="page" id="pageValue" value="<%="1"%>" />
             <div class="row-store-man-header">
-                <button class="store-man-header-button button-text-center" type="button" onclick="document.getElementById('pageValue').value='1'; this.form.submit();">Ürünlerim</button>
-                <button class="store-man-header-button button-text-center" type="button" onclick="document.getElementById('pageValue').value='2'; this.form.submit();">Siparişlerin</button>
-                <button class="store-man-header-button button-text-center" type="button" onclick="document.getElementById('pageValue').value='3'; this.form.submit();">Müşterilerin</button>
-                <button class="store-man-header-button button-text-center" type="button" onclick="document.getElementById('pageValue').value='4'; this.form.submit();">Yönetim</button>
+                <button class=" store-man-header-button button-text-center" type="button" onclick="document.getElementById('pageValue').value='1'; this.form.submit();">Ürünlerim</button>
+                <button class=" store-man-header-button button-text-center" type="button" onclick="document.getElementById('pageValue').value='2'; this.form.submit();">Siparişlerin</button>
+                <button class=" store-man-header-button button-text-center" type="button" onclick="document.getElementById('pageValue').value='3'; this.form.submit();">Müşterilerin</button>
+                <button class=" store-man-header-button button-text-center" type="button" onclick="document.getElementById('pageValue').value='4'; this.form.submit();">Yönetim</button>
             </div>
         </form>
     </div>
@@ -124,4 +124,14 @@
 <jsp:include page="footer.jsp"></jsp:include>
 <script src="js/store-management.js"></script>
 </body>
+<style>
+    #store-desk-form{
+        width: 60%;
+    }
+    @media screen and (max-width: 600px){
+        #store-desk-form {
+            width: 100%;
+        }
+    }
+</style>
 </html>

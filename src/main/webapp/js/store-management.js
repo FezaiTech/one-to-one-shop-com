@@ -31,5 +31,26 @@ function confirmOrderAction(event) {
         event.preventDefault();
         return false;
     }
+}
 
+document.addEventListener('DOMContentLoaded', (event) => {
+    const buttons = document.querySelectorAll('.store-man-header-button');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            buttons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+        });
+    });
+});
+
+function enableEdit(productId) {
+    const form = document.getElementById(`productForm-${productId}`);
+    const inputs = form.querySelectorAll('input');
+    const editButton = form.querySelector('.sm-product-edit-btn');
+    const saveButton = form.querySelector('.sm-product-save-btn');
+
+    inputs.forEach(input => input.removeAttribute('readonly'));
+    editButton.style.display = 'none';
+    saveButton.style.display = 'inline';
 }

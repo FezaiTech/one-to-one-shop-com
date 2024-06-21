@@ -43,16 +43,10 @@
         <div class="row">
             <div style="color: black" id="sm-item-count" class="text-l">Müşteri Sayısı : <%=storeCustomerList != null ? activerCustomer : 0%></div>
         </div>
-        <div class="search-container-sm hidden">
-            <form action="/search" method="get">
-                <input type="text" placeholder="Ürün, kategori veya marka arayın" name="query" class="search-box">
-                <button type="submit" class="search-button"><b>Ara</b></button>
-            </form>
-        </div>
     </div>
 </section>
-
-
+<div class="sizedBox"></div>
+<div class="sizedBox"></div>
 <section id="customer-section">
     <div class="column-customer-list">
         <!-- First Customer Box -->
@@ -65,19 +59,20 @@
             <div class="row" style="gap: 1px">
                 <div class="column-customer-line" style="flex: 2">
                     <div class="row-customer-line">
-                        <p class="customer-section-p" style="flex: 1">Adı</p>
-                        <p class="customer-section-p" style="flex: 4; justify-content: center"><%=user.getName()%></p>
+                        <p class="text-m" style="flex: 1">Adı</p>
+                        <p class="text-m" style="flex: 4; justify-content: center"><%=user.getName()%></p>
                     </div>
                     <div class="row-customer-line">
-                        <p class="customer-section-p" style="flex: 1">Soyadı</p>
-                        <p class="customer-section-p" style="flex: 4; justify-content: center"><%=user.getSurname()%></p>
+                        <p class="text-m" style="flex: 1">Soyadı</p>
+                        <p class="text-m" style="flex: 4; justify-content: center"><%=user.getSurname()%></p>
                     </div>
                 </div>
-                <p class="customer-section-p" style="flex: 1">E-Posta Adresi</p>
-                <p class="customer-section-p" style="flex: 2"><%=user.getEmail()%></p>
+                <p class="text-m" style="flex: 1">E-Posta Adresi</p>
+                <p class="text-m" style="flex: 2"><%=user.getEmail()%></p>
                 <form id="customerDeleteForm" name="delete_customer" action="seller-customer-delete" method="POST">
                     <input type="hidden" name="customerId" value="<%=customer.getId()%>" >
-                    <button type="submit" class="delete-customer-button">Müşteriyi Sil</button>
+                    <button type="submit" class="unhidden delete-customer-button">Müşteriyi Sil</button>
+                    <button type="submit" class="hidden delete-customer-button"><img src="assets/icons/delete.png" height="10" width="10" alt="."></button>
                 </form>
             </div>
         </div>

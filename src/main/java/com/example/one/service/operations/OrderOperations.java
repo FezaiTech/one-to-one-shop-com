@@ -49,6 +49,7 @@ public class OrderOperations implements OrderService {
                 "JOIN shopping_db.products p ON o.product_id = p.id " +
                 "JOIN shopping_db.users u ON o.user_id = u.id " +
                 "WHERE p.seller_id = ?";
+
         List<OrderBean> orderList = new ArrayList<>();
 
         try (Connection con = DatabaseConnection.provideConnection();
@@ -159,4 +160,22 @@ public class OrderOperations implements OrderService {
 
         return lastOrderNumber;
     }
+
+    @Override
+    public String analyzingStatus(String status){
+        String text = "Bilinmiyor";
+        if(status.equals("0")){
+            text = "Hazırlanıyor";
+        } else if (status.equals("1")) {
+            text = "Kargolandı";
+        } else if (status.equals("2")) {
+            text = "Teslim Edildi";
+        } else if (status.equals("3")) {
+            text = "Kullanıcı İptal Etti";
+        } else if (status.equals("4")) {
+            text = "Satıcı İptal Etti";
+        }
+        return text;
+    }
 }
+
