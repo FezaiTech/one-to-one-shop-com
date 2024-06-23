@@ -14,6 +14,7 @@
     font-style: normal;
     font-size: 18px;
     font-weight: 700;
+    overflow: hidden;
 }
 
 .sm-button-text{
@@ -21,6 +22,17 @@
     font-size: 18px;
     font-weight: 700;
     font-style: normal;
+}
+.a{
+    font-size: 18px;
+}
+@media screen and (max-width: 600px) {
+    .sm-title{
+        font-size: 15px;
+    }
+    .sm-answer{
+        font-size: 15px;
+    }
 }
 
 @media screen and (max-width: 450px) {

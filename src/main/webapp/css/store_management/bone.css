@@ -69,7 +69,9 @@ button{
 .icon{
     height: 16px;
 }
-
+p{
+    align-content: center;
+}
 .dropdown-content {
     display: none;
     position: absolute;
@@ -232,4 +234,8 @@ button{
     background-color: #FFFFFF;
     height: 100%;
     font-size: 14px;
+}
+
+input.linedit-sm{
+    border: none;
 }
