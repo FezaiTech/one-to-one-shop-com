@@ -3,6 +3,7 @@ package com.example.one.beans;
 import java.sql.Timestamp;
 
 public class CustomerBean {
+    private int id;
     private int sellerId;
     private int userId;
 
@@ -15,7 +16,12 @@ public class CustomerBean {
         this.sellerId = sellerId;
         this.userId = userId;
     }
-
+    public int getId() {
+        return id;
+    }
+    public  void setId(int id){
+        this.id = id;
+    }
     // Getters and Setters
     public int getSellerId() {
         return sellerId;
@@ -23,11 +29,9 @@ public class CustomerBean {
     public void setSellerId(int sellerId) {
         this.sellerId = sellerId;
     }
-
     public int getUserId() {
         return userId;
     }
-
     public void setUserId(int userId) {this.userId = userId;}
 
     public void setCreatedDate(Timestamp createdDate) {

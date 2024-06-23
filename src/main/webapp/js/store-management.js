@@ -24,19 +24,33 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-    fetch("produccts.json")
-        .then(response => response.json())
-        .then(data => {
+function confirmOrderAction(event) {
+    if (confirm('Ürünü silmek istediğinizden emin misiniz?')) {
+        return true;
+    } else {
+        event.preventDefault();
+        return false;
+    }
+}
 
-            const productList = document.getElementById("sm-body-grid");
-            const activeProductCount = document.getElementById("sm-item-count");
-            let activeOrders = 0;
+document.addEventListener('DOMContentLoaded', (event) => {
+    const buttons = document.querySelectorAll('.store-man-header-button');
 
-            data.forEach(eachItem =>{
-                const item = document.createElement('div');
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            buttons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+        });
+    });
+});
 
+function enableEdit(productId) {
+    const form = document.getElementById(`productForm-${productId}`);
+    const inputs = form.querySelectorAll('input');
+    const editButton = form.querySelector('.sm-product-edit-btn');
+    const saveButton = form.querySelector('.sm-product-save-btn');
 
-            })
-        })
-})
+    inputs.forEach(input => input.removeAttribute('readonly'));
+    editButton.style.display = 'none';
+    saveButton.style.display = 'inline';
+}

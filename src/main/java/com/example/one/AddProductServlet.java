@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 import com.example.one.beans.ProductBean;
 import com.example.one.beans.UserBean;
@@ -28,6 +30,8 @@ public class AddProductServlet extends HttpServlet {
         String productDetail = request.getParameter("product-detail");
         String productCategory = request.getParameter("product-category");
         String productAmountStr = request.getParameter("product-amount");
+        Part filePart = request.getPart("product-img");
+        InputStream inputStream = null;
         BigDecimal productAmount = null;
 
         if (productAmountStr != null && !productAmountStr.isEmpty()) {
@@ -38,35 +42,38 @@ public class AddProductServlet extends HttpServlet {
             }
         }
 
+        if (filePart != null) {
+            inputStream = filePart.getInputStream();
+            System.out.println("evet yükledik");
+        }
+        System.out.println("YAzdırmayı deniyoruz.");
+        System.out.println(inputStream + "KAAN");
+
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("userEmail") == null) {
             response.sendRedirect("login.jsp");
             return;
         }
-
         String userEmail = (String) session.getAttribute("userEmail");
         UserService daou = new UserOperations();
         UserBean userInfo = daou.getUserDetails(userEmail);
         SellerService daos = new SellerOperations();
         int sellerId = daos.getSellerDetails(userInfo.getId()).getId();
 
-        Part part = request.getPart("product-img");
-        InputStream inputStream = part.getInputStream();
-        InputStream prodImage = inputStream;
+        ProductBean pb = new ProductBean();
 
-        ProductService productService = new ProductOperations();
-        ProductBean newItem = new ProductBean();
-        newItem.setSellerId(sellerId);
-        newItem.setName(productName);
-        newItem.setDescription(productDetail);
-        newItem.setCategory(productCategory);
-        newItem.setPrice(productAmount);
-        newItem.setImage(prodImage);
+        pb.setCategory(productCategory);
+        pb.setName(productName);
+        pb.setDescription(productDetail);
+        pb.setPrice(productAmount);
+        pb.setImage(inputStream);
+        pb.setSellerId(sellerId);
 
-        String g = productService.addProduct(newItem);
+        ProductService ps = new ProductOperations();
+        String g = ps.addProduct(pb);
 
         if (g.equals("ok")){
-            response.sendRedirect("store-management.jsp");
+            response.sendRedirect("home.jsp");
         } else {
             try (PrintWriter out = response.getWriter()) {
                 out.println("<html><body>");

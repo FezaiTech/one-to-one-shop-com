@@ -42,19 +42,26 @@ public class OrderOperations implements OrderService {
     }
 
     @Override
-    public List<OrderBean> getAllOrdersForSeller(int productId) {
-        String sql = "SELECT * FROM shopping_db.orders WHERE product_id = ?";
+    public List<OrderBean> getAllOrdersForSeller(int sellerId) {
+        String sql = "SELECT " +
+                "o.id, o.user_id, o.order_number, o.product_id, o.quantity, o.payment_method, o.status, o.delivery_address, o.created_date " +
+                "FROM shopping_db.orders o " +
+                "JOIN shopping_db.products p ON o.product_id = p.id " +
+                "JOIN shopping_db.users u ON o.user_id = u.id " +
+                "WHERE p.seller_id = ?";
+
         List<OrderBean> orderList = new ArrayList<>();
 
         try (Connection con = DatabaseConnection.provideConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
+
             if (con == null) {
                 throw new SQLException("Failed to establish a database connection.");
             }
-            ps.setInt(1, productId);
+
+            ps.setInt(1, sellerId);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    //other way is set
                     OrderBean order = new OrderBean(
                             rs.getInt("user_id"),
                             rs.getString("order_number"),
@@ -68,10 +75,7 @@ public class OrderOperations implements OrderService {
                     order.setCreatedDate(rs.getTimestamp("created_date"));
                     orderList.add(order);
                 }
-                DatabaseConnection.closeConnection(rs);
             }
-            DatabaseConnection.closeConnection(con);
-            DatabaseConnection.closeConnection(ps);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -156,4 +160,22 @@ public class OrderOperations implements OrderService {
 
         return lastOrderNumber;
     }
+
+    @Override
+    public String analyzingStatus(String status){
+        String text = "Bilinmiyor";
+        if(status.equals("0")){
+            text = "Hazırlanıyor";
+        } else if (status.equals("1")) {
+            text = "Kargolandı";
+        } else if (status.equals("2")) {
+            text = "Teslim Edildi";
+        } else if (status.equals("3")) {
+            text = "Kullanıcı İptal Etti";
+        } else if (status.equals("4")) {
+            text = "Satıcı İptal Etti";
+        }
+        return text;
+    }
 }
+

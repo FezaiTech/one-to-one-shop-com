@@ -1,0 +1,41 @@
+.customer-box{
+    height: 40px;
+    width: 92%;
+    border-radius: 20px;
+    padding: 2% 4%;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    align-content: center;
+}
+.column-customer-list{
+    display: flex;
+    flex-direction: column;
+    align-content: start;
+    justify-content: start;
+    gap: 30px;
+}
+
+#customer-section{
+    width: 100%;
+    height: auto;
+}
+
+.row-customer-line{
+    display: flex;
+    flex-direction: row;
+    gap:10%;
+}
+.column-customer-line{
+    display: flex;
+    flex-direction: column;
+    gap: 5%;
+}
+
+.customer-section-p{
+    font-size: 18px;
+    color: black;
+    display: flex;
+    align-self: center;
+}
+#customerDeleteForm{
+    align-content: center;
+}

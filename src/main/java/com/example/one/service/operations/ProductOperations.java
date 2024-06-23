@@ -34,7 +34,8 @@ public class ProductOperations implements ProductService {
             ps.setString(3, product.getDescription());
             ps.setString(4, product.getCategory());
             ps.setBigDecimal(5, product.getPrice());
-            ps.setBlob(6, product.getImage());
+            ps.setBlob(6, product.image);
+
             int k = ps.executeUpdate();
 
             if (k > 0) {
@@ -78,7 +79,7 @@ public class ProductOperations implements ProductService {
             ps.setString(2, updatedProduct.getDescription());
             ps.setString(3, updatedProduct.getCategory());
             ps.setBigDecimal(4, updatedProduct.getPrice());
-            ps.setBlob(5, updatedProduct.getImage());
+            ps.setBlob(5, updatedProduct.image);
             ps.setInt(6, prevProductId);
             int rowsAffected = ps.executeUpdate();
             DatabaseConnection.closeConnection(con);
@@ -175,11 +176,60 @@ public class ProductOperations implements ProductService {
         return productList;
     }
 
-    @Override
-    public byte[] getImage(int id) {
-        return new byte[0];
+    public InputStream getImage(int id, ProductBean p) {
+        return p.image;
     }
 
+    @Override
+    public List<ProductBean> getAllProductsBySellerid(int sellerId) {
+        List<ProductBean> productList = new ArrayList<>();
+        String sql = "SELECT * FROM shopping_db.products WHERE seller_id = ?";
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, sellerId); // sellerId parametresini sorguya ekliyoruz
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    ProductBean product = new ProductBean(
+                            rs.getInt("seller_id"),
+                            rs.getString("name"),
+                            rs.getString("description"),
+                            rs.getString("category"),
+                            rs.getBigDecimal("price"),
+                            rs.getBlob("image") != null ? rs.getBlob("image").getBinaryStream() : null
+                    );
+                    product.setId(rs.getInt("id"));
+                    productList.add(product);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return productList;
+    }
+    @Override
+    public List<ProductBean> getAllProdcut(){
+        List<ProductBean> products = new ArrayList<>();
+        final String SELECT_ALL_PRODUCTS = "SELECT * FROM products";
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(SELECT_ALL_PRODUCTS);) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ProductBean product = new ProductBean(
+                        rs.getInt("seller_id"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getString("category"),
+                        rs.getBigDecimal("price"),
+                        rs.getBlob("image") != null ? rs.getBlob("image").getBinaryStream() : null
+                );
+                product.setId(rs.getInt("id"));
+                products.add(product);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return products;
+    }
     @Override
     public ProductBean getProductDetails(int id) {
         String sql = "SELECT * FROM shopping_db.products WHERE id = ?";

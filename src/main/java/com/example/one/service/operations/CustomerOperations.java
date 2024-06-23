@@ -81,8 +81,9 @@ public class CustomerOperations implements CustomerService {
                 while (rs.next()) {
                     CustomerBean customer = new CustomerBean(
                             rs.getInt("user_id"),
-                            rs.getInt("product_id")
+                            rs.getInt("seller_id")
                     );
+                    customer.setId(rs.getInt("id"));
                     customer.setUserId(rs.getInt("user_id"));
                     customer.setSellerId(rs.getInt("seller_id"));
                     customer.setCreatedDate(rs.getTimestamp("join_date"));

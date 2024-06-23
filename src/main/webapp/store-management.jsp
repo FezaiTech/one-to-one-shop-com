@@ -1,10 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ibrah
-  Date: 8.06.2024
-  Time: 22:17
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.example.one.service.ProductService" %>
+<%@ page import="com.example.one.service.operations.ProductOperations" %>
+<%@ page import="com.example.one.service.UserService" %>
+<%@ page import="com.example.one.service.operations.UserOperations" %>
+<%@ page import="com.example.one.beans.ProductBean" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.one.service.SellerService" %>
+<%@ page import="com.example.one.service.operations.SellerOperations" %>
+<%@ page import="com.example.one.beans.SellerBean" %>
+<%@ page import="com.example.one.beans.UserBean" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="tr">
@@ -12,7 +15,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>sotore-management</title>
+    <title>store-management</title>
+    <link rel="stylesheet" href="css/header.css"/>
     <link rel="stylesheet" href="css/text.css"/>
     <link rel="stylesheet" href="css/style.css"/>
     <link rel="stylesheet" href="css/store_management/button.css"/>
@@ -20,26 +24,40 @@
     <link rel="stylesheet" href="css/store_management/media-query-sm.css"/>
     <link rel="stylesheet" href="css/store_management/search-bar.css"/>
     <link rel="stylesheet" href="css/store_management/text-sm.css"/>
+    <link rel="stylesheet" href="css/store_management/customer-section.css">
 
 </head>
 <body>
+<%
+    String nane = "products";
+    ProductService productService = new ProductOperations();
+    SellerService sellerService = new SellerOperations();
+    UserService userService = new UserOperations();
 
-<section id="header-sm">
-    <div class="header-row-sm">
-        <img src="assets/brand/onetone.png" alt="AppIcon" class="app-icon">
-        <div class="spacer"></div>
-        <div class="text-buttons">
-            <div class="header-button profile-button">
-                <img src="assets/icons/profile.png" alt="AppIcon" class="icon">
-                <p class="button-text my-profile-text">Profilim</p>
-                <div class="dropdown-content dropdown-profile">
-                    <a href="">Hesap Bilgileri</a>
-                    <a href="">Çıkış Yap</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    String userEmail = (session != null) ? (String) session.getAttribute("userEmail") : null;
+    UserBean userInfo = userService.getUserDetails(userEmail);
+
+    SellerBean mySeller = sellerService.getSellerDetails(userInfo.getId()); //Seller
+    int sellerId = mySeller.getId();
+
+
+    List<ProductBean> storeProducts = null ;
+
+    int activeProducts = 0;
+    if (userEmail != null) {
+        storeProducts = productService.getAllProductsBySellerid(sellerId);
+        int userId = userService.getUserDetails(userEmail).getId();
+        mySeller = sellerService.getSellerDetails(userId);
+
+        for (ProductBean products : storeProducts) {
+            activeProducts++;
+        }
+    }
+%>
+
+<jsp:include page="header.jsp">
+    <jsp:param name="headerType" value="profile" />
+</jsp:include>
 
 <section id="store-desk">
     <div class="title">
@@ -47,130 +65,47 @@
             <div  class="title-container"></div>
             <div style="max-width: 300px" class="column">
                 <p class="order-title">Mağaza Yönetimi</p>
-                <p class="order-title">Mağaza ADI</p>
+                <p class="order-title"><%= mySeller != null ? mySeller.getStoreName() : "Mağaza ADİİ" %></p>
             </div>
         </div>
-        <div class="row-store-man-header" >
-            <div class="store-man-header-button"><div class="button-text-center">Ürünlerim</div></div>
-            <div class="store-man-header-button"><div class="button-text-center">Siparişlerin</div></div>
-            <div class="store-man-header-button"><div class="button-text-center">Müşterilerin</div></div>
-            <div class="store-man-header-button"><div class="button-text-center">Yönetim</div></div>
-        </div>
+        <form id="store-desk-form" method="post">
+            <input type="hidden" name="page" id="pageValue" value="<%="1"%>" />
+            <div class="row-store-man-header">
+                <button class=" store-man-header-button button-text-center" type="button" onclick="document.getElementById('pageValue').value='1'; this.form.submit();">Ürünlerim</button>
+                <button class=" store-man-header-button button-text-center" type="button" onclick="document.getElementById('pageValue').value='2'; this.form.submit();">Siparişlerin</button>
+                <button class=" store-man-header-button button-text-center" type="button" onclick="document.getElementById('pageValue').value='3'; this.form.submit();">Müşterilerin</button>
+                <button class=" store-man-header-button button-text-center" type="button" onclick="document.getElementById('pageValue').value='4'; this.form.submit();">Yönetim</button>
+            </div>
+        </form>
     </div>
 </section>
+
 <div class="sizedBox"></div>
-<section id="search-bar">
-    <div style="gap: 10px;" class="column">
-        <div class="row">
-            <div style="color: black" id="sm-item-count" class="text-l">Ürün Sayısı : 3</div>
-            <div class="search-container-sm unhidden">
-                <form action="/search" method="get">
-                    <input type="text" placeholder="Ürün, kategori veya marka arayın" name="query" class="search-box">
-                    <button type="button" class="search-button"><b>Ara</b></button>
-                </form>
-            </div>
-            <button id="add-product-btn" class="add-new-product-btn">+ Yeni Ürün Ekle</button>
-        </div>
-        <div class="search-container-sm hidden">
-            <form action="/search" method="get">
-                <input type="text" placeholder="Ürün, kategori veya marka arayın" name="query" class="search-box">
-                <button type="submit" class="search-button"><b>Ara</b></button>
-            </form>
-        </div>
-    </div>
-</section>
-<section id="sm-body-grid" class="sm-body-grid">
-    <div class="sm-product-box">
-        <div class="sm-product-box-padding">
-            <div style="gap: 5px" class="column">
-                <div class="title-grid">
-                    <p class="sm-title">Markası</p>
-                    <p class="sm-answer">Puma</p>
-                    <p class="sm-title">Kategori</p>
-                    <p class="sm-answer">Puma</p>
-                    <p class="sm-title">Eklenme Tarihi</p>
-                    <p class="sm-answer">Puma</p>
-                    <p class="sm-title">Fiyatı</p>
-                    <p class="sm-answer">afsaf</p>
-                </div>
-                <div class="row">
-                    <div style="align-self: start; gap: 10px" class="column">
-                        <p class="sm-title">Detayı</p>
-                        <p class="sm-answer">38081012 Caven Unisex Günlük Spor Ayakkabı</p>
-                    </div>
-                    <div class="image-box image-center">
-                        <img src="assets/monitor.png" alt="product/info" >
-                    </div>
-                </div>
-                <div class="sizedBox"></div>
-                <div style="justify-content: end;" class="row">
-                    <div class="sm-product-edit-btn sm-button-text">Düzenle</div>
-                    <div class="sm-product-delete-btn sm-button-text">Sil</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="sm-product-box">
-        <div class="sm-product-box-padding">
-            <div style="gap: 5px" class="column">
-                <div class="title-grid">
-                    <p class="sm-title">Markası</p>
-                    <p class="sm-answer">Puma</p>
-                    <p class="sm-title">Kategori</p>
-                    <p class="sm-answer">Puma</p>
-                    <p class="sm-title">Eklenme Tarihi</p>
-                    <p class="sm-answer">Puma</p>
-                    <p class="sm-title">Fiyatı</p>
-                    <p class="sm-answer">afsaf</p>
-                </div>
-                <div class="row">
-                    <div style="align-self: start; gap: 10px" class="column">
-                        <p class="sm-title">Detayı</p>
-                        <p class="sm-answer">38081012 Caven Unisex Günlük Spor Ayakkabı</p>
-                    </div>
-                    <div class="image-box image-center">
-                        <img src="assets/monitor.png" alt="product/info" >
-                    </div>
-                </div>
-                <div class="sizedBox"></div>
-                <div style="justify-content: end;" class="row">
-                    <div class="sm-product-edit-btn sm-button-text">Düzenle</div>
-                    <div class="sm-product-delete-btn sm-button-text">Sil</div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="sm-product-box">
-        <div class="sm-product-box-padding">
-            <div style="gap: 5px" class="column">
-                <div class="title-grid">
-                    <p class="sm-title">Markası</p>
-                    <p class="sm-answer">Puma</p>
-                    <p class="sm-title">Kategori</p>
-                    <p class="sm-answer">Puma</p>
-                    <p class="sm-title">Eklenme Tarihi</p>
-                    <p class="sm-answer">Puma</p>
-                    <p class="sm-title">Fiyatı</p>
-                    <p class="sm-answer">afsaf</p>
-                </div>
-                <div class="row">
-                    <div style="align-self: start; gap: 10px" class="column">
-                        <p class="sm-title">Detayı</p>
-                        <p class="sm-answer">38081012 Caven Unisex Günlük Spor Ayakkabı</p>
-                    </div>
-                    <div class="image-box image-center">
-                        <img src="assets/monitor.png" alt="product/info" >
-                    </div>
-                </div>
-                <div class="sizedBox"></div>
-                <div style="justify-content: end;" class="row">
-                    <div class="sm-product-edit-btn sm-button-text">Düzenle</div>
-                    <div class="sm-product-delete-btn sm-button-text">Sil</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<%
+    String currentPage = request.getParameter("page");
+    if (currentPage == null) {
+        currentPage = "1";
+    }
+
+    switch (currentPage) {
+        case "1":
+%><jsp:include page="products-list.jsp" /> <%
+        break;
+    case "2":
+%><jsp:include page="orders-list.jsp" /> <%
+        break;
+    case "3":
+%><jsp:include page="customers-list.jsp" /> <%
+        break;
+    case "4":
+%><jsp:include page="footer.jsp" /> <%
+        break;
+    default:
+%><jsp:include page="products-list.jsp" /> <%
+            break;
+    }
+%>
+
 <div id="product-add-popup-box" class="popup">
     <div class="popup-content column">
         <span class="close">&times;</span>
@@ -185,6 +120,18 @@
         </form>
     </div>
 </div>
+<div style="height: 50px;" class="sizedBox"></div>
+<jsp:include page="footer.jsp"></jsp:include>
 <script src="js/store-management.js"></script>
 </body>
+<style>
+    #store-desk-form{
+        width: 60%;
+    }
+    @media screen and (max-width: 600px){
+        #store-desk-form {
+            width: 100%;
+        }
+    }
+</style>
 </html>

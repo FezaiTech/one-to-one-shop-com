@@ -79,7 +79,34 @@ public class UserOperations implements UserService {
         }
         return null;
     }
-
+    @Override
+    public UserBean getUserDetailsWithID(int userid) {
+        String sql = "SELECT * FROM shopping_db.users WHERE id = ?";
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, userid);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    UserBean user = new UserBean(
+                            rs.getString("name"),
+                            rs.getString("surname"),
+                            rs.getString("phone"),
+                            rs.getString("email"),
+                            rs.getString("password"),
+                            rs.getBoolean("seller_status")
+                    );
+                    user.setId(rs.getInt("id"));
+                    DatabaseConnection.closeConnection(rs);
+                    return user;
+                }
+                DatabaseConnection.closeConnection(con);
+                DatabaseConnection.closeConnection(ps);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public String updateUserDetails(int userId, UserBean updateUser){
 

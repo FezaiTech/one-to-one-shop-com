@@ -12,7 +12,7 @@ public class ProductBean implements Serializable {
     private String description;
     private String category;
     private BigDecimal price;
-    private InputStream image;
+    public InputStream image;
     private Timestamp addedDate;
 
     // Constructor

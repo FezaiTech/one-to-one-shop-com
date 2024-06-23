@@ -11,7 +11,7 @@ public interface UserService {
     public boolean isRegistered(String email);
 
     public UserBean getUserDetails(String email);
-
+    public UserBean getUserDetailsWithID(int userId);
     public String updateUserDetails(int userId, UserBean updateUser);
 
     public String updateUserForSeller(int userId, boolean newSellerStatus);
