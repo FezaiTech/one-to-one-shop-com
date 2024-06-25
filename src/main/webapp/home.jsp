@@ -12,7 +12,6 @@
   <title>One To One Shop</title>
   <link rel="stylesheet" href="css/style.css?v=1"/>
   <link rel="stylesheet" href="css/text.css?v=1"/>
-  <link rel="stylesheet" href="css/header.css?v=1"/>
   <link rel="stylesheet" href="css/home/fezaitechTrap.css?v=1">
   <link rel="stylesheet" href="css/home/media-query.css?v=1"/>
   <link rel="stylesheet" href="css/category-list.css?v=1"/>

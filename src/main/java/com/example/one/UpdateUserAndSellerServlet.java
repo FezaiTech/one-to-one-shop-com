@@ -11,23 +11,22 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 
-@WebServlet(name = "updateUserServlet", value = {"/update-user-servlet","/update-seller-servlet"})
-public class UpdateUserServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+@WebServlet(name = "updateUserServlet", value = {"/update-user-servlet","/new-seller-servlet","/update-seller-servlet"})
+public class UpdateUserAndSellerServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
 
         if ("/update-user-servlet".equals(action)) {
             handleUserUpdate(request, response);
+        } else if ("/new-seller-servlet".equals(action)) {
+            handleNewSellerUpdate(request, response);
         } else if ("/update-seller-servlet".equals(action)) {
             handleSellerUpdate(request, response);
         }
@@ -70,7 +69,7 @@ public class UpdateUserServlet extends HttpServlet {
 
 
 
-    private void handleSellerUpdate(HttpServletRequest request, HttpServletResponse response)
+    private void handleNewSellerUpdate(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         int userId = Integer.parseInt(request.getParameter("sellerUserId"));
@@ -100,6 +99,40 @@ public class UpdateUserServlet extends HttpServlet {
             }
         }
 
+    }
+
+
+    private void handleSellerUpdate(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        int sellerId = Integer.parseInt(request.getParameter("userId"));
+        String storeName = request.getParameter("seller-name");
+        String storeNo = request.getParameter("seller-no");
+
+        SellerBean updateSeller = new SellerBean();
+        updateSeller.setStoreName(storeName);
+        updateSeller.setStoreNumber(storeNo);
+
+        SellerService dao = new SellerOperations();
+        String updateSellerStatus = dao.updateSeller(sellerId,updateSeller);
+
+        if ("ok".equals(updateSellerStatus)) {
+            response.setContentType("text/html");
+            try (PrintWriter out = response.getWriter()) {
+                out.println("<script type='text/javascript'>");
+                out.println("alert('Bilgiler kaydedildi');");
+                out.println("window.location.href = document.referrer;"); // Aynı sayfaya yönlendirme
+                out.println("</script>");
+            }
+        } else {
+            response.setContentType("text/html");
+            try (PrintWriter out = response.getWriter()) {
+                out.println("<script type='text/javascript'>");
+                out.println("alert('Bir hata meydana geldi.');");
+                out.println("window.location.href = document.referrer;"); // Aynı sayfaya yönlendirme
+                out.println("</script>");
+            }
+        }
     }
 
 }
