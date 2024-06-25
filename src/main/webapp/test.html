@@ -16,45 +16,10 @@
     <link rel="stylesheet" href="css/store_management/text-sm.css"/>
 </head>
 <body>
-<section id="sm-body-grid" class="sm-body-grid">
-
-    <div class="sm-product-box">
-        <div class="sm-product-box-padding">
-            <div style="gap: 5px" class="column">
-                <form>
-                    <div class="title-grid">
-                        <p class="sm-title">Markası</p>
-                        <p class="sm-title">Kategori</p>
-                        <p class="sm-answer"><%=product.getCategory()%></p>
-                        <p class="sm-title">Eklenme Tarihi</p>
-                        <p class="sm-answer"><%=product.getAddedDate()%></p>
-                        <p class="sm-title">Fiyatı</p>
-                        <p class="sm-answer"><%=product.getPrice()%></p>
-                    </div>
-                    <div class="row">
-                        <div style="align-self: start; gap: 10px" class="column">
-                            <p class="sm-title">Detayı</p>
-                            <p class="sm-answer"><%=product.getDescription()%></p>
-                        </div>
-                        <div class="image-box image-center">
-                            <img src="imageServlet?productId=<%=product.getId()%>" alt="<%=product.getName()%>" class="product-image" data-productid="<%= product.getId() %>">
-                        </div>
-                    </div>
-                </form>
-                <div class="sizedBox"></div>
-                <div style="justify-content: end;" class="row">
-                    <form id="productEditForm" class="form-temp-seller-button" method="post" action="seller-product-edit">
-                        <input type="hidden" name="productId" value="<%=product.getId()%>">
-                        <button type="submit" class="sm-product-edit-btn sm-button-text">Düzenle</button>
-                    </form>
-                    <form id="productCancellationForm" class="form-temp-seller-button" method="post" action="seller-product-delete">
-                        <input type="hidden" name="productId" value="<%=product.getId()%>">
-                        <button type="submit" class="sm-product-delete-btn sm-button-text" onclick="return confirmOrderAction(event)">Sil</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<select>
+    <option value="1">Öğe 1</option>
+    <option value="2">Öğe 2</option>
+    <option value="3">Öğe 3</option>
+</select>
 </body>
 </html>
