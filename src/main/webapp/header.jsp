@@ -1,6 +1,12 @@
 <%@ page import="com.example.one.beans.CartBean" %>
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+
+<head>
+  <link rel="stylesheet" href="css/header.css?v=1"/>
+</head>
+
 <%
 
   String userEmail = (session != null) ? (String) session.getAttribute("userEmail") : null;

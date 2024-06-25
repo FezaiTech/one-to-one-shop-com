@@ -26,7 +26,7 @@ button{
     justify-content: space-between;
     gap: 20px;
 }
-
+/*
 #header-sm {
     padding: 2ch 0;
     display: flex;
@@ -50,18 +50,18 @@ button{
     width: 100%;
     box-sizing: border-box;
 }
-
+*/
 .hidden{
     display: none;
 }
-
+/*
 .header-row-sm{
     width: 100%;
     gap: 44px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}
+}*/
 .spacer{
     width: 100%;
 }
@@ -71,7 +71,7 @@ button{
 }
 p{
     align-content: center;
-}
+}/*
 .dropdown-content {
     display: none;
     position: absolute;
@@ -104,7 +104,7 @@ p{
     height: 44px;
     cursor: pointer;
 }
-
+*/
 #store-desk {
     display: flex;
     width: 100%;

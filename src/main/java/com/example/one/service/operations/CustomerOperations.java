@@ -99,4 +99,37 @@ public class CustomerOperations implements CustomerService {
 
         return customerList;
     }
+
+    public List<CustomerBean> addCustomerForSeller(int sellerId){
+        String sql = "SELECT * FROM shopping_db.customers WHERE seller_id != ?";
+        List<CustomerBean> customerListForAdd = new ArrayList<>();
+
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            if (con == null) {
+                throw new SQLException("Failed to establish a database connection.");
+            }
+            ps.setInt(1, sellerId);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    CustomerBean customer = new CustomerBean(
+                            rs.getInt("user_id"),
+                            rs.getInt("seller_id")
+                    );
+                    customer.setId(rs.getInt("id"));
+                    customer.setUserId(rs.getInt("user_id"));
+                    customer.setSellerId(rs.getInt("seller_id"));
+                    customer.setCreatedDate(rs.getTimestamp("join_date"));
+                    customerListForAdd.add(customer);
+                }
+                DatabaseConnection.closeConnection(rs);
+            }
+            DatabaseConnection.closeConnection(con);
+            DatabaseConnection.closeConnection(ps);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return customerListForAdd;
+    }
 }

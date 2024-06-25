@@ -44,13 +44,6 @@ public class UserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-
-        try {
-            DatabaseOperations dbOperations = new DatabaseOperations(DatabaseConnection.initializeDatabase());
-        } catch (SQLException | ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
         UserService dao = new UserOperations();
         boolean emailExists = dao.isRegistered(email);
 
@@ -84,25 +77,21 @@ public class UserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        try (Connection conn = DatabaseConnection.initializeDatabase()) {
-            String query = DatabaseOperations.loginUser(email, password);
+        UserService dao = new UserOperations();
+        String query = dao.loginUser(email, password);
 
-            if ("ok".equals(query)) {
-                HttpSession session = request.getSession();
-                session.setAttribute("userEmail", email);
-                response.sendRedirect("home.jsp");
-            } else {
-                response.setContentType("text/html");
-                try (PrintWriter out = response.getWriter()) {
-                    out.println("<script type='text/javascript'>");
-                    out.println("alert(\"" + query + "\");");
-                    out.println("window.location.href = 'login.jsp" + (query.equals("E-posta hatalı") ? "" : "?email=" + email) + "';");
-                    out.println("</script>");
-                }
+        if ("ok".equals(query)) {
+            HttpSession session = request.getSession();
+            session.setAttribute("userEmail", email);
+            response.sendRedirect("home.jsp");
+        } else {
+            response.setContentType("text/html");
+            try (PrintWriter out = response.getWriter()) {
+                out.println("<script type='text/javascript'>");
+                out.println("alert(\"" + query + "\");");
+                out.println("window.location.href = 'login.jsp" + (query.equals("E-posta hatalı") ? "" : "?email=" + email) + "';");
+                out.println("</script>");
             }
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-            throw new ServletException("Database error", e);
         }
     }
 

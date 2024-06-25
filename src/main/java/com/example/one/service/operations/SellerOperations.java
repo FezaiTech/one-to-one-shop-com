@@ -40,13 +40,13 @@ public class SellerOperations implements SellerService {
         return status;
     }
     @Override
-    public String updateSeller(int sellerId, SellerBean newSellerInfo) {
-        String sql = "UPDATE shopping_db.sellers SET store_name = ?, store_number = ? WHERE id = ?";
+    public String updateSeller(int userId, SellerBean newSellerInfo) {
+        String sql = "UPDATE shopping_db.sellers SET store_name = ?, store_number = ? WHERE user_id = ?";
         try (Connection con = DatabaseConnection.provideConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setString(1, newSellerInfo.getStoreName());
             ps.setString(2, newSellerInfo.getStoreNumber());
-            ps.setInt(3, sellerId);
+            ps.setInt(3, userId);
 
             int rowsAffected = ps.executeUpdate();
             DatabaseConnection.closeConnection(con);
