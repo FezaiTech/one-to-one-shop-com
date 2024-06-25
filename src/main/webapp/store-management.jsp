@@ -104,22 +104,9 @@
     }
 %>
 
-<div id="product-add-popup-box" class="popup">
-    <div class="popup-content column">
-        <span class="close">&times;</span>
-        <form style="gap: 20px" class="column" id="add-product-form" name="add-product-form" method="post" action="addToProductServlet" enctype="multipart/form-data" >
-            <p style="text-align: center;;color: var(--green-color-1);font-weight: 800;" class="title-m">Mağazana Yeni Ürün Ekle</p>
-            <input id="product-brand" name="product-brand" type="text" placeholder="Marka" required>
-            <input id="prdoduct-category" name="product-category" type="text" placeholder="Kategori" required>
-            <input id="product-detail" name="product-detail" type="text" placeholder="Detay" required>
-            <input id="product-amount" name="product-amount" type="text" placeholder="Fiyat" required>
-            <input id="product-img" name="product-img" type="file" accept="image/*" required>
-            <button type="submit" style="width: 100%;color: #FFFFFF" class="add-new-product-btn text-l " id="add-product-btn-last">Ekle</button>
-        </form>
-    </div>
-</div>
+<jsp:include page="popup.jsp"></jsp:include>
+
 <div style="height: 50px;" class="sizedBox"></div>
-<jsp:include page="footer.jsp"></jsp:include>
 <script src="js/store-management.js"></script>
 </body>
 <style>

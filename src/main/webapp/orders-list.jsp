@@ -102,7 +102,7 @@
           %>
             <form id="orderDeliveredForm" name="deliver_order" action="seller-delivered-order" method="POST">
               <input type="hidden" name="orderId" value="<%=order.getId()%>" >
-              <button type="submit" class="sm-product-delivered-btn sm-button-text"><p class="a">Teslim Edildi Olarak İşaretle</p></button>
+              <button type="submit" class="sm-product-delivered-btn sm-button-text">Teslim Edildi Olarak İşaretle</button>
             </form>
           <%
             }else {
@@ -173,8 +173,6 @@
             <img src="imageServlet?productId=<%=orderProduct.getId()%>" alt="<%=orderProduct.getName()%>" class="product-image" data-productid="<%= orderProduct.getId() %>">
           </div>
         </div>
-
-        <div class="sizedBox"></div>
       </div>
     </div>
   </div>

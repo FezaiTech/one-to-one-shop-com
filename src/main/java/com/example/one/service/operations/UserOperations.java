@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserOperations implements UserService {
 
@@ -37,6 +39,33 @@ public class UserOperations implements UserService {
         }
         return message;
     }
+    @Override
+    public List<UserBean> getAllUser() {
+        List<UserBean> users = new ArrayList<>();
+        String sql = "SELECT * FROM shopping_db.users";
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                UserBean user = new UserBean(
+                        rs.getString("name"),
+                        rs.getString("surname"),
+                        rs.getString("phone"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getBoolean("seller_status")
+                );
+                user.setId(rs.getInt("id"));
+                users.add(user);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return users;
+    }
+
     @Override
     public boolean registerUser(String name, String surname, String phone, String email, String password, boolean sellerStatus) {
         String sql = "INSERT INTO shopping_db.users (name, surname, phone, email, password, seller_status) VALUES (?, ?, ?, ?, ?, ?)";
@@ -186,5 +215,10 @@ public class UserOperations implements UserService {
             e.printStackTrace();
             return false;
         }
+    }
+
+    @Override
+    public String getFName(String email) {
+        return null;
     }
 }

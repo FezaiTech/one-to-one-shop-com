@@ -68,18 +68,19 @@
                     <div class="title-grid">
                         <input type="hidden" name="productId" value="<%=product.getId()%>">
                         <p class="sm-title">Markası</p>
-                        <input id="name-form" class="linedit-sm" type="text" name="name-form" value="<%=product.getName()%>" readonly>
+                        <input id="name-form" class="linedit-sm sm-answer" type="text" name="name-form" value="<%=product.getName()%>" readonly>
                         <p class="sm-title">Kategori</p>
-                        <input id="category-form" class="linedit-sm" type="text" name="category-form" value="<%=product.getCategory()%>" readonly>
+                        <input id="category-form" class="linedit-sm sm-answer" type="text" name="category-form" value="<%=product.getCategory()%>" readonly>
                         <p class="sm-title">Eklenme Tarihi</p>
-                        <input id="date-form" class="linedit-sm" type="text" name="date-form" value="<%=product.getAddedDate()%>" readonly>
+                        <input id="date-form" class="linedit-sm sm-answer" type="text" name="date-form" value="<%=product.getAddedDate()%>" readonly>
                         <p class="sm-title">Fiyatı</p>
-                        <input id="price-form" class="linedit-sm" type="number" name="price-form" value="<%=product.getPrice()%>" readonly>
+                        <input id="price-form" class="linedit-sm sm-answer" type="number" name="price-form" value="<%=product.getPrice()%>" readonly>
                     </div>
+                    <div class="sizedBox"></div>
                     <div class="row">
                         <div style="align-self: start; gap: 10px" class="column">
                             <p class="sm-title">Detayı</p>
-                            <input id="detail-form" class="linedit-sm" type="text" name="detail-form" value="<%=product.getDescription()%>" readonly>
+                            <textarea id="detail-form" class="sm-answer linedit-sm"  style="border:none;resize:none;width: 80%;height: 100px;" name="detail-form" readonly><%=product.getDescription()%></textarea>
                         </div>
                         <div class="image-box image-center">
                             <img src="imageServlet?productId=<%=product.getId()%>" alt="<%=product.getName()%>" class="product-image" data-productid="<%= product.getId() %>">
