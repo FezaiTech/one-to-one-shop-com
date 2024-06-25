@@ -1,7 +1,6 @@
 package com.example.one.service.operations;
 
 import com.example.one.DatabaseConnection;
-import com.example.one.beans.ProductBean;
 import com.example.one.beans.UserBean;
 import com.example.one.service.UserService;
 
@@ -11,6 +10,33 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserOperations implements UserService {
+
+    public String loginUser(String email, String password) {
+        String message;
+        String query = "SELECT * FROM shopping_db.users WHERE email = ?";
+
+        try (Connection conn = DatabaseConnection.initializeDatabase();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setString(1, email);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                String storedPassword = rs.getString("password");
+                if (storedPassword.equals(password)) {
+                    message = "ok";
+                } else {
+                    message = "Şifre hatalı";
+                }
+            } else {
+                message = "E-posta hatalı";
+            }
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            return "error";
+        }
+        return message;
+    }
     @Override
     public boolean registerUser(String name, String surname, String phone, String email, String password, boolean sellerStatus) {
         String sql = "INSERT INTO shopping_db.users (name, surname, phone, email, password, seller_status) VALUES (?, ?, ?, ?, ?, ?)";
@@ -148,8 +174,17 @@ public class UserOperations implements UserService {
         }
     }
 
-    @Override
-    public String getFName(String email) {
-        return null;
+
+    public boolean deleteUser(int userId) {
+        String query = "DELETE FROM shopping_db.users WHERE id = ?";
+        try (Connection con = DatabaseConnection.provideConnection();
+                PreparedStatement pstmt = con.prepareStatement(query)) {
+            pstmt.setInt(1, userId);
+            int rows = pstmt.executeUpdate();
+            return rows > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
