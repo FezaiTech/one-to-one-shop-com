@@ -16,7 +16,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>store-management</title>
-    <link rel="stylesheet" href="css/header.css"/>
     <link rel="stylesheet" href="css/text.css"/>
     <link rel="stylesheet" href="css/style.css"/>
     <link rel="stylesheet" href="css/store_management/button.css"/>
@@ -25,7 +24,6 @@
     <link rel="stylesheet" href="css/store_management/search-bar.css"/>
     <link rel="stylesheet" href="css/store_management/text-sm.css"/>
     <link rel="stylesheet" href="css/store_management/customer-section.css">
-
 </head>
 <body>
 <%
@@ -98,7 +96,7 @@
 %><jsp:include page="customers-list.jsp" /> <%
         break;
     case "4":
-%><jsp:include page="footer.jsp" /> <%
+%><jsp:include page="store-update.jsp" /> <%
         break;
     default:
 %><jsp:include page="products-list.jsp" /> <%

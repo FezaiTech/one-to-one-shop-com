@@ -15,7 +15,6 @@
   <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="css/text.css"/>
   <link rel="stylesheet" href="css/profile.css"/>
-  <link rel="stylesheet" href="css/header.css"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
@@ -40,7 +39,7 @@
     <p class="title-box profile-title">Hesap</p>
     <div class="form-box">
       <p class="form-title">Bilgileriniz</p>
-      <form class="user-update-form" id="userUpdateForm" action="update-user-servlet" method="GET">
+      <form class="user-update-form" id="userUpdateForm" action="update-user-servlet" method="post">
         <input type="hidden" id="userId" name="userId" value="<%= userInfo.getId() %>">
         <input type="hidden" id="password" name="password" value="<%= userInfo.getPassword() %>">
         <input type="hidden" id="sellerStatus" name="sellerStatus" value="<%= userInfo.isSellerStatus() %>">
@@ -64,7 +63,7 @@
     <p class="title-box seller-title"><%=isSeller ? "Satıcı Bilgileriniz" : "Satıcı Olmak İstiyorum"%></p>
     <div class="form-box">
       <p class="form-title seller-form-title">Mağaza Bilgileriniz</p>
-      <form class="user-update-form" id="sellerUpdateForm" action="<%= isSeller ? "store-management.jsp" : "update-seller-servlet" %>" method="get">
+      <form class="user-update-form" id="sellerUpdateForm" action="<%= isSeller ? "store-management.jsp" : "new-seller-servlet" %>" method="post">
         <input type="hidden" id="sellerUserId" name="sellerUserId" value="<%= userInfo.getId() %>">
         <label for="seller-name"></label>
         <input type="text" id="seller-name" name="seller-name" value="<%= isSeller ? seller.getStoreName() : "" %>" placeholder="Mağaza Adı" maxlength="48" <%= isSeller ? "readonly" : "" %> required>

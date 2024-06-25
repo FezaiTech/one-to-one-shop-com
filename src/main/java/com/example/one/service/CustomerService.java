@@ -13,4 +13,7 @@ public interface CustomerService {
     public boolean checkCustomer(int sellerId,int userId);
 
     public List<CustomerBean> getCustomerForSeller(int sellerId);
+
+    public List<CustomerBean> addCustomerForSeller(int sellerId);
+
 }
