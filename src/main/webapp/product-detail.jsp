@@ -4,6 +4,8 @@
 <%@ page import="com.example.one.service.SellerService" %>
 <%@ page import="com.example.one.service.operations.SellerOperations" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.example.one.service.UserService" %>
+<%@ page import="com.example.one.service.operations.UserOperations" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="tr">
@@ -25,7 +27,8 @@
     ProductBean product = dao.getProductDetails(productId);
 
     SellerService daos = new SellerOperations();
-    String sellerName = daos.getSellerDetails(product.getSellerId()).getStoreName();
+
+    String sellerName = daos.getSellerWithProductId(product.getSellerId()).getStoreName();
 %>
 
 <jsp:include page="header.jsp">

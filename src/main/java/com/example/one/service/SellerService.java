@@ -12,4 +12,6 @@ public interface SellerService {
     public  String deleteSeller(SellerBean seller);
 
     public SellerBean getSellerDetails(int userId);
+
+    public SellerBean getSellerWithProductId(int userId);
 }

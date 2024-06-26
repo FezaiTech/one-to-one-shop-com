@@ -2,6 +2,7 @@ package com.example.one.service.operations;
 
 import com.example.one.DatabaseConnection;
 import com.example.one.beans.CustomerBean;
+import com.example.one.beans.UserBean;
 import com.example.one.service.CustomerService;
 
 import java.sql.Connection;
@@ -100,32 +101,31 @@ public class CustomerOperations implements CustomerService {
         return customerList;
     }
 
-    public List<CustomerBean> addCustomerForSeller(int sellerId){
-        String sql = "SELECT * FROM shopping_db.customers WHERE seller_id != ?";
-        List<CustomerBean> customerListForAdd = new ArrayList<>();
+    public List<UserBean> addCustomerForSeller(int sellerId) {
+        String sql = "SELECT * FROM shopping_db.users u WHERE u.id NOT IN ("
+                + "SELECT c.user_id FROM shopping_db.customers c WHERE c.seller_id = ?)";
+        List<UserBean> customerListForAdd = new ArrayList<>();
 
         try (Connection con = DatabaseConnection.provideConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            if (con == null) {
-                throw new SQLException("Failed to establish a database connection.");
-            }
+
             ps.setInt(1, sellerId);
+
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    CustomerBean customer = new CustomerBean(
-                            rs.getInt("user_id"),
-                            rs.getInt("seller_id")
+                    UserBean user = new UserBean(
+                            rs.getString("name"),
+                            rs.getString("surname"),
+                            rs.getString("phone"),
+                            rs.getString("email"),
+                            rs.getString("password"),
+                            rs.getBoolean("seller_status")
                     );
-                    customer.setId(rs.getInt("id"));
-                    customer.setUserId(rs.getInt("user_id"));
-                    customer.setSellerId(rs.getInt("seller_id"));
-                    customer.setCreatedDate(rs.getTimestamp("join_date"));
-                    customerListForAdd.add(customer);
+                    user.setId(rs.getInt("id"));
+                    customerListForAdd.add(user);
                 }
-                DatabaseConnection.closeConnection(rs);
             }
-            DatabaseConnection.closeConnection(con);
-            DatabaseConnection.closeConnection(ps);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
