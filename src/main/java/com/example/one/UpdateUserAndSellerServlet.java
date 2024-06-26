@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "updateUserServlet", value = {"/update-user-servlet","/new-seller-servlet","/update-seller-servlet"})
+@WebServlet(name = "updateUserServlet", value = {"/update-user-servlet","/new-seller-servlet","/update-seller-servlet", "/delete-seller-servlet"})
 public class UpdateUserAndSellerServlet extends HttpServlet {
 
     @Override
@@ -29,6 +29,26 @@ public class UpdateUserAndSellerServlet extends HttpServlet {
             handleNewSellerUpdate(request, response);
         } else if ("/update-seller-servlet".equals(action)) {
             handleSellerUpdate(request, response);
+        } else if ("/delete-seller-servlet".equals(action)) {
+            handlerSellerDelete(request, response);
+        }
+    }
+
+    private void handlerSellerDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int userId = Integer.parseInt(request.getParameter("userId"));
+        UserService userService = new UserOperations();
+        SellerService sellerService = new SellerOperations();
+        SellerBean seller = sellerService.getSellerDetails(userId);
+        String result = sellerService.deleteSeller(seller);
+        if ("ok".equals(result)) {
+            response.sendRedirect("profile.jsp");
+        } else {
+            response.setContentType("text/html");
+            try (PrintWriter out = response.getWriter()) {
+                out.println("<script type='text/javascript'>");
+                out.println("alert('Bir hata meydana geldi.');");
+                out.println("</script>");
+            }
         }
     }
 

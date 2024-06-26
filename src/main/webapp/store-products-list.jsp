@@ -75,10 +75,7 @@
                     <div style="justify-content: end;" class="row">
                         <button type="button" class="sm-product-edit-btn sm-button-text" onclick="enableEdit('<%=product.getId()%>')">Düzenle</button>
                         <button type="submit" class="sm-product-save-btn sm-button-text" style="display:none;">Kaydet</button>
-                        <form id="productCancellationForm" class="form-temp-seller-button" method="post" action="seller-product-delete">
-                            <input type="hidden" name="productId" value="<%=product.getId()%>">
-                            <button type="submit" class="sm-product-delete-btn sm-button-text" onclick="return confirmOrderAction(event)">Sil</button>
-                        </form>
+                        <button type="button" class="sm-product-delete-btn sm-button-text" onclick="confirmOrderAction(<%=product.getId()%>)">Sil</button>
                     </div>
                 </form>
 

@@ -140,7 +140,7 @@ public class AddProductServlet extends HttpServlet {
         String g = ps.addProduct(pb);
 
         if (g.equals("ok")){
-            response.sendRedirect("home.jsp");
+            response.sendRedirect("store-management.jsp");
         } else {
             try (PrintWriter out = response.getWriter()) {
                 out.println("<html><body>");

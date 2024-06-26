@@ -39,7 +39,10 @@
                 <button type="submit" class="button">Bilgileri Kaydet</button>
             </form>
         </div>
-        <p class="delete-store">Mağazayı kapatmak istiyorum</p>
+        <form id="remve-seller" name="delete-seller" action="delete-seller-servlet" method="post">
+            <input type="hidden" id="userId1" name="userId" value="<%= userInfo.getId() %>">
+            <button><p class="delete-store">Mağazayı kapatmak istiyorum</p></button>
+        </form>
     </div>
 </section>
 <%

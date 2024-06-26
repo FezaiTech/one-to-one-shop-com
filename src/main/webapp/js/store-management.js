@@ -31,12 +31,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-function confirmOrderAction(event) {
+function confirmOrderAction(productId) {
     if (confirm('Ürünü silmek istediğinizden emin misiniz?')) {
-        return true;
-    } else {
-        event.preventDefault();
-        return false;
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    window.location.href = "store-management.jsp";
+                } else {
+                    alert('Bir hata meydana geldi: ' + xhr.responseText);
+                }
+            }
+        };
+        xhr.open('POST', 'seller-product-delete', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send('productId=' + productId);
     }
 }
 
