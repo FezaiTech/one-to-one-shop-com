@@ -41,8 +41,8 @@
             <a href="category-servlet?categoryName=Elektronik">Elektronik</a>
             <a href="category-servlet?categoryName=Moda">Moda</a>
             <a href="category-servlet?categoryName=Ev-Yaşam">Ev-Yaşam</a>
-            <a href="category-servlet?categoryName=Ev-Yaşam">Kitap</a>
-            <a href="category-servlet?categoryName=Ev-Yaşam">Hobi-Oyuncak</a>
+            <a href="category-servlet?categoryName=Kitap">Kitap</a>
+            <a href="category-servlet?categoryName=Hobi-Oyuncak">Hobi-Oyuncak</a>
           </div>
         </div>
         <%

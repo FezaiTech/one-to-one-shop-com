@@ -116,10 +116,8 @@
                         <p><%=order.getQuantity()%> Adet</p>
                         <p>Satıcı : <%=orderToSeller.getStoreName()%></p>
                     </div>
-                    <div class="order-image">
-
-                    </div>
-                </div>
+                    <div class="order-image"><img src="imageServlet?productId=<%=orderToProduct.getId()%>" alt="<%=orderToProduct.getName()%>"></div>
+            </div>
             </div>
             <div class="spacer"></div>
             <div class="order-operation" style="background-color: <%=boxAndTextColor%>;">
