@@ -1,7 +1,7 @@
 .title-grid{
     display: grid;
     grid-template-columns: repeat(2,1fr);
-    height: 140px;
+    height: auto;
 }
 .sm-title{
     color: black;
@@ -26,12 +26,29 @@
 .a{
     font-size: 18px;
 }
-@media screen and (max-width: 600px) {
+
+@media screen and (max-width: 1500px) {
+    .sm-button-text{
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .sm-button-text{
+        font-size: 13px;
+    }
     .sm-title{
         font-size: 15px;
     }
     .sm-answer{
         font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+
+    .sm-button-text{
+        font-size: 9px;
     }
 }
 
@@ -41,5 +58,11 @@
     }
     .sm-answer{
         font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .sm-button-text{
+        font-size: 7px;
     }
 }

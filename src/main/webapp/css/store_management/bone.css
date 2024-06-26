@@ -163,7 +163,7 @@ p{
     display: grid;
     grid-template-columns: repeat(2,1fr);
     gap: 7%;
-    row-gap: 5%;
+    row-gap: 2%;
 }
 
 .sm-product-box{
@@ -176,6 +176,7 @@ p{
     display: flex;
     width: 90%;
     padding: 5%;
+    height: 86%;
 }
 .image-box{
     background-color: #F2F2F2;
@@ -236,6 +237,27 @@ p{
     font-size: 14px;
 }
 
+#add-customer-form input{
+    border: none;
+    border-radius: .25rem;
+    padding: 3% 2%;
+    width: 96%;
+    background-color: #FFFFFF;
+    height: 100%;
+    font-size: 14px;
+}
+
 input.linedit-sm{
     border: none;
+    overflow-y: auto;
+    text-overflow: ellipsis;
+    white-space: normal; /* Taşan yazıları alt satıra geçirir */
+    word-wrap: break-word; /* Uzun kelimeleri böler */
 }
+.select-list-class{
+    border: none;
+    background-color: var(--primary-color-1);
+    border-radius: 7px;
+    padding: 12px;
+}
+

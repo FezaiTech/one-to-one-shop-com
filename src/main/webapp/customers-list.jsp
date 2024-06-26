@@ -42,6 +42,7 @@
     <div style="gap: 10px;" class="column">
         <div class="row">
             <div style="color: black" id="sm-item-count" class="text-l">Müşteri Sayısı : <%=storeCustomerList != null ? activerCustomer : 0%></div>
+            <button id="add-customer-btn" class="add-new-product-btn">+ Yeni Müşteri Ekle</button>
         </div>
     </div>
 </section>

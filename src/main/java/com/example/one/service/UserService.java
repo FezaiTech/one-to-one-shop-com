@@ -2,6 +2,8 @@ package com.example.one.service;
 
 import com.example.one.beans.UserBean;
 
+import java.util.List;
+
 public interface UserService {
 
     public String loginUser(String email, String password);
@@ -21,4 +23,7 @@ public interface UserService {
     public String updateUserForSeller(int userId, boolean newSellerStatus);
 
     public boolean deleteUser(int userId);
+    public List<UserBean> getAllUser();
+    public String getFName(String emailId);
+
 }
