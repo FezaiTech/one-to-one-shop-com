@@ -126,6 +126,7 @@ public class AddProductServlet extends HttpServlet {
         SellerService daos = new SellerOperations();
         int sellerId = daos.getSellerDetails(userInfo.getId()).getId();
 
+
         ProductBean pb = new ProductBean();
 
         pb.setCategory(productCategory);

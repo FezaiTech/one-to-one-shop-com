@@ -34,7 +34,7 @@ public class ProductOperations implements ProductService {
             ps.setString(3, product.getDescription());
             ps.setString(4, product.getCategory());
             ps.setBigDecimal(5, product.getPrice());
-            ps.setBlob(6, product.image);
+            ps.setBlob(6, product.getImage());
 
             int k = ps.executeUpdate();
 
@@ -79,7 +79,7 @@ public class ProductOperations implements ProductService {
             ps.setString(2, updatedProduct.getDescription());
             ps.setString(3, updatedProduct.getCategory());
             ps.setBigDecimal(4, updatedProduct.getPrice());
-            ps.setBlob(5, updatedProduct.image);
+            ps.setBlob(5, updatedProduct.getImage());
             ps.setInt(6, prevProductId);
             int rowsAffected = ps.executeUpdate();
             DatabaseConnection.closeConnection(con);
@@ -177,7 +177,7 @@ public class ProductOperations implements ProductService {
     }
 
     public InputStream getImage(int id, ProductBean p) {
-        return p.image;
+        return p.getImage();
     }
 
     @Override
@@ -197,6 +197,7 @@ public class ProductOperations implements ProductService {
                             rs.getBigDecimal("price"),
                             rs.getBlob("image") != null ? rs.getBlob("image").getBinaryStream() : null
                     );
+                    product.setAddedDate(rs.getTimestamp("added_date"));
                     product.setId(rs.getInt("id"));
                     productList.add(product);
                 }

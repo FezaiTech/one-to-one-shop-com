@@ -9,7 +9,7 @@
 .search-container-sm {
     text-align: center;
     align-self: center;
-    width: 100%;
+    width: 80%;
     max-width: 800px;
 }
 
@@ -21,23 +21,7 @@
     padding: 0 12px;
     font-size: 0.85rem;
     border: solid var(--secondary-color-2);
-    border-radius: 5px 0 0 5px;
+    border-radius: 5px;
     height: 44px;
-    width: 100%;
-}
-
-.search-container-sm button {
-    padding: 0 24px;
-    font-size: 1rem;
-    border: solid var(--secondary-color-2);
-    border-left: none;
-    background-color: var(--secondary-color-2);
-    color: white;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 0 5px 5px 0;
-}
-
-.search-container-sm button:hover {
-    background-color: var(--primary-color-2);
+    width: 80%;
 }

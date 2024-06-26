@@ -1,13 +1,9 @@
-<%@ page import="com.example.one.service.ProductService" %>
-<%@ page import="com.example.one.service.operations.ProductOperations" %>
-<%@ page import="com.example.one.service.UserService" %>
-<%@ page import="com.example.one.service.operations.UserOperations" %>
-<%@ page import="com.example.one.beans.ProductBean" %>
-<%@ page import="java.util.List" %>
 <%@ page import="com.example.one.service.SellerService" %>
 <%@ page import="com.example.one.service.operations.SellerOperations" %>
-<%@ page import="com.example.one.beans.SellerBean" %>
+<%@ page import="com.example.one.service.UserService" %>
+<%@ page import="com.example.one.service.operations.UserOperations" %>
 <%@ page import="com.example.one.beans.UserBean" %>
+<%@ page import="com.example.one.beans.SellerBean" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="tr">
@@ -15,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>store-management</title>
+    <title>Mağaza Yönetimi</title>
     <link rel="stylesheet" href="css/text.css"/>
     <link rel="stylesheet" href="css/style.css"/>
     <link rel="stylesheet" href="css/store_management/button.css"/>
@@ -27,8 +23,6 @@
 </head>
 <body>
 <%
-    String nane = "products";
-    ProductService productService = new ProductOperations();
     SellerService sellerService = new SellerOperations();
     UserService userService = new UserOperations();
 
@@ -38,19 +32,6 @@
     SellerBean mySeller = sellerService.getSellerDetails(userInfo.getId()); //Seller
     int sellerId = mySeller.getId();
 
-
-    List<ProductBean> storeProducts = null ;
-
-    int activeProducts = 0;
-    if (userEmail != null) {
-        storeProducts = productService.getAllProductsBySellerid(sellerId);
-        int userId = userService.getUserDetails(userEmail).getId();
-        mySeller = sellerService.getSellerDetails(userId);
-
-        for (ProductBean products : storeProducts) {
-            activeProducts++;
-        }
-    }
 %>
 
 <jsp:include page="header.jsp">
@@ -63,7 +44,7 @@
             <div  class="title-container"></div>
             <div style="max-width: 300px" class="column">
                 <p class="order-title">Mağaza Yönetimi</p>
-                <p class="order-title"><%= mySeller != null ? mySeller.getStoreName() : "Mağaza ADİİ" %></p>
+                <p class="order-title"><%= mySeller != null ? mySeller.getStoreName() : "Mağaza Bulunamadı" %></p>
             </div>
         </div>
         <form id="store-desk-form" method="post">
@@ -87,24 +68,24 @@
 
     switch (currentPage) {
         case "1":
-%><jsp:include page="products-list.jsp" /> <%
+%><jsp:include page="store-products-list.jsp" /> <%
         break;
     case "2":
-%><jsp:include page="orders-list.jsp" /> <%
+%><jsp:include page="store-orders-list.jsp" /> <%
         break;
     case "3":
-%><jsp:include page="customers-list.jsp" /> <%
+%><jsp:include page="store-customers-list.jsp" /> <%
         break;
     case "4":
 %><jsp:include page="store-update.jsp" /> <%
         break;
     default:
-%><jsp:include page="products-list.jsp" /> <%
+%><jsp:include page="store-products-list.jsp" /> <%
             break;
     }
 %>
 
-<jsp:include page="popup.jsp"></jsp:include>
+<jsp:include page="store-popup.jsp"></jsp:include>
 
 <div style="height: 50px;" class="sizedBox"></div>
 <script src="js/store-management.js"></script>

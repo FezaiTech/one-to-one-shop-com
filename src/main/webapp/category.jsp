@@ -37,7 +37,7 @@
         <%
             for (ProductBean product : products) {
                 SellerService dao = new SellerOperations();
-                String sellerName = dao.getSellerDetails(product.getSellerId()).getStoreName();
+                String sellerName = dao.getSellerWithProductId(product.getSellerId()).getStoreName();
                 if (count > 0 && count % 3 == 0) {
         %>
     </div>

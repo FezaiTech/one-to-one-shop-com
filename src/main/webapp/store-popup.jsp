@@ -3,9 +3,19 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.example.one.beans.UserBean" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.example.one.service.CustomerService" %>
+<%@ page import="com.example.one.service.operations.CustomerOperations" %>
+<%@ page import="com.example.one.service.SellerService" %>
+<%@ page import="com.example.one.service.operations.SellerOperations" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     UserService userService = new UserOperations();
-    List<UserBean> users = userService.getAllUser();
+    String userEmail = (session != null) ? (String) session.getAttribute("userEmail") : null;
+    UserBean userInfo = userService.getUserDetails(userEmail);
+
+    SellerService sellerService = new SellerOperations();
+    CustomerService customerService = new CustomerOperations();
+    List<UserBean> customerToUser = customerService.addCustomerForSeller(sellerService.getSellerDetails(userInfo.getId()).getId());
 %>
 
 <div id="customer-add-popup-box" class="popup">
@@ -15,9 +25,9 @@
             <p style="text-align: center;;color: var(--green-color-1);font-weight: 800;" class="title-m">Mağazana Yeni Müşteri Ekle</p>
             <select class="select-list-class" name="customer-email"  required>
                 <%
-                    for (int i = 0; i < users.size(); i++){
+                    for (UserBean user : customerToUser){
                 %>
-                <option class="text" value="<%=users.get(i).getEmail()%>"><%=users.get(i).getEmail()%></option>
+                <option class="text" value="<%=user.getEmail()%>"><%=user.getEmail()%></option>
                 <%
                     }
                 %>
@@ -40,6 +50,7 @@
                     categories.add("Moda");
                     categories.add("Ev-Yaşam");
                     categories.add("Kitap");
+                    categories.add("Hobi-Oyuncak");
 
                     for (int i = 0; i < categories.size(); i++){
                 %>

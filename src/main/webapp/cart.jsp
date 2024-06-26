@@ -75,7 +75,7 @@
             ProductBean product = entry.getValue();
             int quantity = cart.getCount();
             SellerService daos = new SellerOperations();
-            String sellerName = daos.getSellerDetails(product.getSellerId()).getStoreName();
+            String sellerName = daos.getSellerWithProductId(product.getSellerId()).getStoreName();
 
             BigDecimal totalPrice = product.getPrice().multiply(BigDecimal.valueOf(quantity));
             BigDecimal formattedTotalPrice = totalPrice.setScale(2, BigDecimal.ROUND_HALF_UP);
