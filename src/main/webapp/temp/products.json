@@ -1,0 +1,73 @@
+[
+  {
+    "id": 1,
+    "name": "Ürün 1",
+    "price": "100",
+    "description": "Bu birinci ürünün açıklamasıdır.",
+    "path": "assets/watch.png"
+  },
+  {
+    "id": 2,
+    "name": "Ürün 2",
+    "price": "200",
+    "description": "Bu ikinci ürünün açıklamasıdır.",
+    "path": "assets/monitor.png"
+  },
+  {
+    "id": 3,
+    "name": "Ürün 3",
+    "price": "160",
+    "description": "Bu birinci ürünün açıklamasıdır.",
+    "path": "assets/laptop.png"
+  },
+  {
+    "id": 4,
+    "name": "Ürün 4",
+    "price": "280",
+    "description": "Bu ikinci ürünün açıklamasıdır.",
+    "path": "assets/watch.png"
+  },
+  {
+    "id": 5,
+    "name": "Ürün 5",
+    "price": "150",
+    "description": "Bu birinci ürünün açıklamasıdır.",
+    "path": "assets/laptop.png"
+  },
+  {
+    "id": 6,
+    "name": "Ürün 6",
+    "price": "200",
+    "description": "Bu ikinci ürünün açıklamasıdır.",
+    "path": "assets/monitor.png"
+  },
+  {
+    "id": 7,
+    "name": "Ürün 7",
+    "price": "100",
+    "description": "Bu birinci ürünün açıklamasıdır.",
+    "path": "assets/watch.png"
+  },
+  {
+    "id": 8,
+    "name": "Ürün 8",
+    "price": "1200",
+    "description": "Bu ikinci ürünün açıklamasıdır.",
+    "path": "assets/monitor.png"
+  },
+  {
+    "id": 9,
+    "name": "Ürün 9",
+    "price": "150",
+    "description": "Bu birinci ürünün açıklamasıdır.",
+    "path": "assets/laptop.png"
+  },
+  {
+    "id": 10,
+    "name": "Ürün 10",
+    "price": "250",
+    "description": "Bu ikinci ürünün açıklamasıdır.",
+    "path": "assets/watch.png"
+  }
+
+]

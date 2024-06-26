@@ -1,0 +1,116 @@
+body{
+    background-image: url('../assets/const/background_1.png');
+    background-size: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#slider-bar {
+    padding: 2ch 16ch;
+    display: flex;
+    gap: 18px;
+    width: 100%;
+    height: max-content;
+    justify-content: start;
+    align-items: center;
+    flex-direction: row;
+}
+
+.posters {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    flex-direction: column-reverse;
+}
+
+.poster-index {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--orange-color-2);
+    border-radius: 60px;
+    height: max-content;
+    flex-direction: row;
+    padding: 6px 12px;
+    gap: 12px;
+}
+
+.index {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color-1);
+    text-align: center;
+    border-radius: 100%;
+    width: 6px;
+    height: 6px;
+    font-size: 0;
+    background-color: var(--orange-color-1);
+}
+
+.index.active {
+    background-color: var(--primary-color-1);
+    color: var(--orange-color-1);
+}
+
+.poster {
+    position: relative;
+    width: 100%;
+    max-width: max-content;
+    height: auto;
+    overflow: hidden;
+    cursor: grab;
+}
+
+.poster-img {
+    display: none;
+    width: 100%;
+    max-height: 306px;
+    object-fit: fill;
+}
+
+.poster-img.active {
+    display: block;
+}
+
+.banner-column{
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+.banner{
+    width: auto;
+    height: 100%;
+    max-height: 90px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1140px){
+    #slider-bar {
+        padding: 2ch 2ch;
+    }
+
+    .banner{
+        width: auto;
+        height: auto;
+        max-height: 90px;
+        max-width: 300px;
+    }
+
+}
+
+@media screen and (max-width: 740px){
+    #slider-bar {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .banner{
+        width: 100%;
+        height: auto;
+    }
+}

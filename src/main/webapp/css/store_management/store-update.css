@@ -1,0 +1,123 @@
+/*PROFILE*/
+#profile-form{
+    padding: 2ch 16ch;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    gap: 12px;
+    align-items: start;
+    flex-direction: row;
+}
+
+.title-box{
+    width: max-content;
+    color: var(--primary-color-1);
+    border-radius: 6px;
+    padding: 8px 12px 24px 8px;
+    font-size: 1.3rem;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blue-color-3);
+}
+
+.form-box{
+    background-color: var(--primary-color-1);
+    width: max-content;
+    height: max-content;
+    max-width: 420px;
+    position: relative;
+    border-radius: 8px;
+    padding: 12px;
+    left: 18px;
+    bottom: 12px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+}
+/*FORM*/
+.seller-update-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+input {
+    border: none;
+    background: hsl(0 0% 93%);
+    border-radius: .25rem;
+    padding: .75rem 1rem;
+
+    font-size: 1.1rem;
+}
+
+.form-title{
+    font-size: 1.2rem;
+    color: var(--blue-color-3);
+}
+
+.delete-store{
+    color: var(--primary-color-2);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.delete-store:hover{
+    color: var(--red-color-1);
+}
+
+.form-row{
+    display: flex;
+    flex-direction: row;
+}
+
+.spacer{
+    width: 32px;
+}
+
+.button{
+    width: 100%;
+    height: 42px;
+    border-radius: 36px;
+    background-color: var(--blue-color-3);
+    align-items: center;
+    font-size: 20px;
+    margin-top: 12px;
+    color: white;
+    border: none;
+    user-select: none;
+}
+
+.button:hover{
+    background-color: var(--blue-color-1);
+}
+
+.info-text{
+    color: var(--primary-color-2);
+    margin-top: 8px;
+    margin-bottom: 0;
+    font-size: 0.8rem;
+    text-align: center;
+}
+@media screen and (max-width: 1140px) {
+    #profile-form {
+        padding: 2ch 2ch;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+    }
+}
+
+@media screen and (max-width: 740px) {
+    .title-box{
+        font-size: 1.1rem;
+    }
+
+    .form-box{
+        max-width: 82vw;
+        bottom: 2ch;
+        left: 0;
+        width: 80vw;
+    }
+}

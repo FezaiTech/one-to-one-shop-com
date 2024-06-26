@@ -1,0 +1,38 @@
+[
+  {
+    "order_id": 1,
+    "order_number": 1,
+    "order_date": "2023-06-01",
+    "order_time": "14:30",
+    "order_name": "Ürün 1",
+    "order_description": "Bu birinci ürünün açıklamasıdır.",
+    "order_count": "2 adet",
+    "order_seller_name": "Satıcı 1",
+    "order_state": 0,
+    "amount": "100"
+  },
+  {
+    "order_id": 2,
+    "order_number": 1,
+    "order_date": "2023-06-02",
+    "order_time": "10:00",
+    "order_name": "Ürün 2",
+    "order_description": "Bu ikinci ürünün açıklamasıdır.",
+    "order_count": "1 adet",
+    "order_seller_name": "Satıcı 2",
+    "order_state": 1,
+    "amount": "200"
+  },
+  {
+    "order_id": 3,
+    "order_number": 2,
+    "order_date": "2023-05-15",
+    "order_time": "14:00",
+    "order_name": "Ürün 3",
+    "order_description": "Bu üçüncü ürünün açıklamasıdır.",
+    "order_count": "2 adet",
+    "order_seller_name": "Satıcı 2",
+    "order_state": 2,
+    "amount": "400"
+  }
+]

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kategori Sonuçları</title>
+    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="../css/text.css"/>
+    <link rel="stylesheet" href="../css/header.css"/>
+    <link rel="stylesheet" href="../css/category.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+<section id="header">
+    <div class="header-row">
+        <img src="../assets/brand/onetone.png" alt="AppIcon" class="app-icon">
+        <div class="search-container main-s-bar ">
+            <form action="/search" method="get">
+                <input type="text" placeholder="Ürün, kategori veya marka arayın" name="query" class="search-box">
+                <button type="submit" class="search-button"><b>Ara</b></button>
+            </form>
+        </div>
+        <div class="text-buttons">
+            <div class="header-button category-button">
+                <p class="button-text text-color">Kategoriler</p>
+                <div class="dropdown-content">
+                    <a href="#">Elektronik</a>
+                    <a href="#">Moda</a>
+                    <a href="#">Ev, Yaşam</a>
+                </div>
+            </div>
+            <a href="cart.html">
+                <div id="cart-button" class="header-button cart-button">
+                    <img src="../assets/icons/cart.png" alt="AppIcon" class="icon">
+                    <p class="button-text">Sepetim (0)</p>
+                </div>
+            </a>
+            <div class="header-button profile-button">
+                <img src="../assets/icons/profile.png" alt="AppIcon" class="icon">
+                <p class="button-text my-profile-text">Profilim</p>
+                <div class="dropdown-content dropdown-profile">
+                    <a href="profile.html">Hesap Bilgileri</a>
+                    <a href="">Siparişlerim</a>
+                    <a href="">Çıkış Yap</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="search-container hidden-s-bar ">
+        <form action="/search" method="get">
+            <input type="text" placeholder="Ürün, kategori veya marka arayın" name="query" class="search-box">
+            <button type="submit" class="search-button"><b>Ara</b></button>
+        </form>
+    </div>
+</section>
+
+<section id="items">
+    <p class="c-text-l bold">Elektronik <span class="c-text-s normal">Kategorisi</span></p>
+    <div class="wrapper">
+        <div class="result-item a">
+            <img src="../assets/laptop.png" alt="" class="img-container">
+            <div class="flex-column">
+                <p class="item-text-m">Apple</p>
+                <p>2024 M3 13” Dizüstü Bilgisayar</p>
+                <p class="item-text-s">Satıcı : İstanbul AVM</p>
+                <div class="flex-row">
+                    <p class="item-text-l">36.499 TL</p>
+                    <div class="item-add-cart">
+                        <img src="../assets/icons/add-cart.png" alt="" class="cart-icon-l">
+                        <p class="add-text">Sepete Ekle</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="result-item b">
+            <div class="flex-column">
+                <img src="../assets/watch.png" alt="" class="img-container img-container-for-column">
+                <p class="item-text-m">Apple</p>
+                <p>2024 M3 13” Dizüstü Bilgisayar</p>
+                <p class="item-text-s">Satıcı : İstanbul AVM</p>
+                <div class="flex-row">
+                    <p class="item-text-l">36.499 TL</p>
+                    <div class="item-add-cart">
+                        <img src="../assets/icons/add-cart.png" alt="" class="cart-icon-l">
+                        <p class="add-text">Sepete Ekle</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="result-item c">
+            <img src="../assets/monitor-big.png" alt="" class="img-container">
+            <div class="flex-column">
+                <p class="item-text-m">Apple</p>
+                <p>2024 M3 13” Dizüstü Bilgisayar</p>
+                <p class="item-text-s">Satıcı : İstanbul AVM</p>
+                <div class="flex-row">
+                    <p class="item-text-l">36.499 TL</p>
+                    <div class="item-add-cart">
+                        <img src="../assets/icons/add-cart.png" alt="" class="cart-icon-l">
+                        <p class="add-text">Sepete Ekle</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper-reverse">
+        <div class="result-item a-r ">
+            <div class="flex-column">
+                <img src="../assets/laptop.png" alt="" class="img-container img-container-for-column">
+                <p class="item-text-m">Apple</p>
+                <p>2024 M3 13” Dizüstü Bilgisayar</p>
+                <p class="item-text-s">Satıcı : İstanbul AVM</p>
+                <div class="flex-row">
+                    <p class="item-text-l">36.499 TL</p>
+                    <div class="item-add-cart">
+                        <img src="../assets/icons/add-cart.png" alt="" class="cart-icon-l">
+                        <p class="add-text">Sepete Ekle</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="result-item b-r">
+            <img src="../assets/watch.png" alt="" class="img-container">
+            <div class="flex-column">
+                <p class="item-text-m">Apple</p>
+                <p>2024 M3 13” Dizüstü Bilgisayar</p>
+                <p class="item-text-s">Satıcı : İstanbul AVM</p>
+                <div class="flex-row">
+                    <p class="item-text-l">36.499 TL</p>
+                    <div class="item-add-cart">
+                        <img src="../assets/icons/add-cart.png" alt="" class="cart-icon-l">
+                        <p class="add-text">Sepete Ekle</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="result-item c-r">
+            <img src="../assets/monitor-big.png" alt="" class="img-container">
+            <div class="flex-column">
+                <p class="item-text-m">Apple</p>
+                <p>2024 M3 13” Dizüstü Bilgisayar</p>
+                <p class="item-text-s">Satıcı : İstanbul AVM</p>
+                <div class="flex-row">
+                    <p class="item-text-l">36.499 TL</p>
+                    <div class="item-add-cart">
+                        <img src="../assets/icons/add-cart.png" alt="" class="cart-icon-l">
+                        <p class="add-text">Sepete Ekle</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

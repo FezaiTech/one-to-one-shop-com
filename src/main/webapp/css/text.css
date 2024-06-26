@@ -1,0 +1,66 @@
+.br {
+    display: block;
+    margin-bottom: 0;
+}
+
+.br-medium {
+    display: block;
+    margin-bottom: 1em;
+}
+
+.br-large {
+    display: block;
+    margin-bottom: 2em;
+}
+
+.br-small {
+    display: block;
+    margin-bottom: -.2em;
+}
+
+.br-x-small {
+    display: block;
+    margin-bottom: -.4em;
+}
+.text{
+    font-size: 13px;
+    align-content: center;
+    align-self: center;
+}
+
+.text-m{
+    font-size: 18px;
+    color: black;
+    align-content: center;
+}
+
+.text-l{
+    font-size: 23px;
+    align-content: center;
+}
+
+.title-sm{
+    font-size: 20px;
+    font-weight: 800;
+}
+.title-m{
+    font-size: 25px;
+    font-weight: 800;
+}
+.title-l{
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.product-desc-text{
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.normal{
+    font-weight: normal;
+}

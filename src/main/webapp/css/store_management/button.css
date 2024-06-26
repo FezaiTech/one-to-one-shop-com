@@ -1,0 +1,112 @@
+.store-man-header-button {
+    border-radius: 5px;
+    align-content: center;
+    width: 140px;
+    height: 44px;
+    background-color: var(--blue-color-4);
+    cursor: pointer;
+}
+.store-man-header-button:hover {
+    background-color: var(--blue-color-1) ;
+
+}.store-man-header-button:active{
+     background-color: var(--blue-color-1) ;
+ }
+
+.button-text-center{
+    font-size: 1rem;
+    text-align: center;
+    justify-content: center;
+    color: var(--primary-color-1);
+    text-decoration: none;
+}
+
+.profile-button{
+    border-radius: 64px;
+    gap: 8px;
+    background-color: var(--orange-color-1);
+}
+
+.text-buttons{
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 24px;
+}
+
+.add-new-product-btn{
+    background-color: var(--green-color-1);
+    border-radius: 50px;
+    align-content: center;
+    align-self: center;
+    padding: 0 1%;
+    min-width: 140px;
+    width: 140px;
+    height: 44px;
+    cursor: pointer;
+}
+.add-new-product-btn:hover{
+    background-color: var(--green-color-2);
+}
+
+.sm-product-edit-btn{
+    border-radius: 7px;
+    background-color: var(--blue-color-3) ;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+.sm-product-edit-btn:hover{
+    background-color: var(--blue-color-1);
+}
+.sm-product-save-btn{
+    border-radius: 7px;
+    background-color: var(--orange-color-1) ;
+    padding: 10px 15px;
+    cursor: pointer;
+}.sm-product-save-btn:hover{
+     background-color: var(--orange-color-2);
+ }
+
+.sm-product-delivered-btn{
+    border-radius: 7px;
+    background-color: var(--green-color-1) ;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+.sm-product-delivered-btn:hover{
+    background-color: var(--green-color-2);
+}
+
+.sm-product-delete-btn{
+    border-radius: 50px;
+    background-color: var(--red-color-1) ;
+    padding: 10px 30px;
+    cursor: pointer;
+}
+.sm-product-delete-btn:hover{
+    background-color: var(--red-color-2);
+}
+
+.delete-customer-button{
+    border-radius: 20px;
+    color: #FFFFFF;
+    background-color: var(--red-color-1) ;
+    padding: 10px 20px;
+    align-content: center;
+    align-items: center;
+    cursor: pointer;
+
+}.delete-customer-button:hover{
+     background-color: var(--red-color-2);
+ }
+
+button{
+    color : white;
+    align-content: center;
+    justify-content: center;
+}
+ .btn{
+     border: none;
+     padding: 5px;
+ }

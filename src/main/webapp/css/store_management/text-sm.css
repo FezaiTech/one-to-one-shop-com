@@ -1,0 +1,75 @@
+.title-grid{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    height: auto;
+}
+.sm-title{
+    color: black;
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 400;
+}
+.sm-answer{
+    color: black;
+    font-style: normal;
+    font-size: 17px;
+    font-weight: 700;
+    overflow: hidden;
+}
+#detail-form ,#name-form{
+    font-family: "Open Sans", sans-serif;
+    font-size: 17px;
+}
+.sm-button-text{
+    color: #FFFFFF;
+    font-size: 18px;
+    font-weight: 700;
+    font-style: normal;
+}
+.a{
+    font-size: 18px;
+}
+
+.warning-text{
+    color: var(--primary-color-2);
+}
+
+@media screen and (max-width: 1500px) {
+    .sm-button-text{
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .sm-button-text{
+        font-size: 13px;
+    }
+    .sm-title{
+        font-size: 15px;
+    }
+    .sm-answer{
+        font-size: 15px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+
+    .sm-button-text{
+        font-size: 9px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .sm-title{
+        font-size: 14px;
+    }
+    .sm-answer{
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .sm-button-text{
+        font-size: 7px;
+    }
+}
