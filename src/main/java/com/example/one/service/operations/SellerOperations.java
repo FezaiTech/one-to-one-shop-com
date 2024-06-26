@@ -101,4 +101,30 @@ public class SellerOperations implements SellerService {
         }
         return null;
     }
+
+    public SellerBean getSellerWithProductId(int sellerId){
+
+        String sql = "SELECT * FROM shopping_db.sellers WHERE id = ?";
+        try (Connection con = DatabaseConnection.provideConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, sellerId);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    SellerBean user = new SellerBean(
+                            rs.getInt("id"),
+                            rs.getInt("user_id"),
+                            rs.getString("store_name"),
+                            rs.getString("store_number")
+                    );
+                    DatabaseConnection.closeConnection(rs);
+                    return user;
+                }
+                DatabaseConnection.closeConnection(con);
+                DatabaseConnection.closeConnection(ps);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

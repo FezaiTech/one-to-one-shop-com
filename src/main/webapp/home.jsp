@@ -12,8 +12,7 @@
   <title>One To One Shop</title>
   <link rel="stylesheet" href="css/style.css?v=1"/>
   <link rel="stylesheet" href="css/text.css?v=1"/>
-  <link rel="stylesheet" href="css/home/fezaitechTrap.css?v=1">
-  <link rel="stylesheet" href="css/home/media-query.css?v=1"/>
+  <link rel="stylesheet" href="css/home.css?v=1">
   <link rel="stylesheet" href="css/category-list.css?v=1"/>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
@@ -27,11 +26,11 @@
 <section id="slider-bar">
   <div class="posters">
     <div class="poster-index">
-      <div class="index" data-index="0">1</div>
-      <div class="index" data-index="1">2</div>
-      <div class="index" data-index="2">3</div>
-      <div class="index" data-index="3">4</div>
-      <div class="index" data-index="4">5</div>
+      <div class="index" data-index="0"></div>
+      <div class="index" data-index="1"></div>
+      <div class="index" data-index="2"></div>
+      <div class="index" data-index="3"></div>
+      <div class="index" data-index="4"></div>
     </div>
     <div class="poster">
       <img src="assets/const/poster-electronic.png" alt="Poster 1" class="poster-img">
@@ -51,8 +50,8 @@
 
 <section id="category-list">
   <%
-    String[] categoryNames = {"Elektronik", "Moda", "Ev-Yaşam", "Kitap"};
-    String[] categoryColors = {"var(--blue-color-1)", "var(--red-color-1)", "var(--green-color-1)", "var(--blue-color-3)"};
+    String[] categoryNames = {"Elektronik", "Moda", "Ev-Yaşam", "Kitap", "Hobi-Oyuncak"};
+    String[] categoryColors = {"var(--blue-color-1)", "var(--red-color-1)", "var(--green-color-1)", "var(--blue-color-3)", "var(--green-color-2)"};
     ProductService dao = new ProductOperations();
     for(int i = 0; i < categoryNames.length; i++){
       /*check array length*/

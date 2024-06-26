@@ -21,37 +21,22 @@
     SellerBean mySeller = sellerService.getSellerDetails(userInfo.getId()); //Seller
     int sellerId = mySeller.getId();
 
+    List<ProductBean> storeProducts = null;
 
-    List<ProductBean> storeProducts = null ;
-
-    int activeProducts = 0;
     if (userEmail != null) {
         storeProducts = productService.getAllProductsBySellerid(sellerId);
         int userId = userService.getUserDetails(userEmail).getId();
         mySeller = sellerService.getSellerDetails(userId);
-
-        for (ProductBean products : storeProducts) {
-            activeProducts++;
-        }
     }
 %>
 <section id="search-bar">
     <div style="gap: 10px;" class="column">
         <div class="row">
-            <div style="color: black" id="sm-item-count" class="text-l">Ürün Sayısı : <%= storeProducts != null ? activeProducts : 0 %></div>
+            <div style="color: black" id="sm-item-count" class="text-l">Ürün Sayısı : <%= storeProducts != null ? storeProducts.size() : 0 %></div>
             <div class="search-container-sm unhidden">
-                <form action="/search" method="get">
-                    <input type="text" placeholder="Ürün, kategori veya marka arayın" name="query" class="search-box">
-                    <button type="button" class="search-button"><b>Ara</b></button>
-                </form>
+                <input type="text" id="search-box" placeholder="Ürün, kategori veya marka arayın" class="search-box" onkeyup="filterProducts()">
             </div>
             <button id="add-product-btn" class="add-new-product-btn">+ Yeni Ürün Ekle</button>
-        </div>
-        <div class="search-container-sm hidden">
-            <form action="/search" method="get">
-                <input type="text" placeholder="Ürün, kategori veya marka arayın" name="query" class="search-box">
-                <button type="submit" class="search-button"><b>Ara</b></button>
-            </form>
         </div>
     </div>
 </section>
@@ -98,7 +83,6 @@
                 </form>
 
             </div>
-            </div>
         </div>
     </div>
     <%
@@ -106,7 +90,7 @@
     }else{
     %>
     <div class="sizedBox"></div>
-    <p>HENÜZ HİÇ BİR ÜRÜNÜNÜZ YOKTUR</p>
+    <p class="warning-text">Henüz hiç bir ürününüz yok. Ürün eklemeyi deneyin.</p>
     <%
         }
     %>

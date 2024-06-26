@@ -67,7 +67,7 @@
                 String currentOrderNumber = null;
                 for (OrderBean order : orders) {
                     ProductBean orderToProduct = daop.getProductDetails(order.getProductId());
-                    SellerBean orderToSeller = daos.getSellerDetails(orderToProduct.getSellerId());
+                    SellerBean orderToSeller = daos.getSellerWithProductId(orderToProduct.getSellerId());
                     BigDecimal totalPrice = orderToProduct.getPrice().multiply(BigDecimal.valueOf(order.getQuantity()));
                     if (currentOrderNumber == null || !currentOrderNumber.equals(order.getOrderNumber())) {
                         currentOrderNumber = order.getOrderNumber();
@@ -116,10 +116,8 @@
                         <p><%=order.getQuantity()%> Adet</p>
                         <p>Satıcı : <%=orderToSeller.getStoreName()%></p>
                     </div>
-                    <div class="order-image">
-
-                    </div>
-                </div>
+                    <div class="order-image"><img src="imageServlet?productId=<%=orderToProduct.getId()%>" alt="<%=orderToProduct.getName()%>"></div>
+            </div>
             </div>
             <div class="spacer"></div>
             <div class="order-operation" style="background-color: <%=boxAndTextColor%>;">

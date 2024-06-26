@@ -127,7 +127,7 @@
   }else{
   %>
   <div class="sizedBox"></div>
-  <p>HENÜZ HİÇ BİR ÜRÜNÜNÜZ YOKTUR</p>
+  <p class="warning-text">Henüz siparişiniz yok</p>
   <%
     }
   %>
@@ -181,7 +181,7 @@
   }else{
   %>
   <div class="sizedBox"></div>
-  <p>HENÜZ HİÇ BİR ÜRÜNÜNÜZ YOKTUR</p>
+  <p class="warning-text">Henüz tamamlanmış siparişiniz yok</p>
   <%
     }
   %>

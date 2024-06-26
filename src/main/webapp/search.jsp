@@ -39,7 +39,7 @@
             if(resultProducts != null && !resultProducts.isEmpty()){
                 for(ProductBean product : resultProducts){
                     SellerService dao = new SellerOperations();
-                    String sellerName = dao.getSellerDetails(product.getSellerId()).getStoreName();
+                    String sellerName = dao.getSellerWithProductId(product.getSellerId()).getStoreName();
         %>
         <div class="result-item">
             <img src="imageServlet?productId=<%=product.getId()%>" alt="<%=product.getName()%>" class="img-container" data-productid="<%= product.getId() %>">

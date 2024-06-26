@@ -82,7 +82,7 @@
         }else{
         %>
         <div class="sizedBox"></div>
-        <p>HENÜZ HİÇ BİR ÜRÜNÜNÜZ YOKTUR</p>
+        <p>Henüz hiç bir müşteriniz yoktur</p>
         <%
             }
         %>

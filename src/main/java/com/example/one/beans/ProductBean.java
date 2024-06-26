@@ -1,9 +1,10 @@
 package com.example.one.beans;
 
 import java.math.BigDecimal;
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.io.InputStream;
 import java.io.Serializable;
+
 @SuppressWarnings("serial")
 public class ProductBean implements Serializable {
     private int id;
@@ -12,7 +13,7 @@ public class ProductBean implements Serializable {
     private String description;
     private String category;
     private BigDecimal price;
-    public InputStream image;
+    private InputStream image;
     private Timestamp addedDate;
 
     // Constructor
